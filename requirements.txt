@@ -1,0 +1,11 @@
+virtualenv
+flask
+
+flask-script
+
+flask-bootstrap
+
+flask-sqlalchemy
+
+flask-wtf
+flask-login

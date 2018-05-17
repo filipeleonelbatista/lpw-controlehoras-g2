@@ -1,4 +1,5 @@
 flask
+flask_table
 flask-script
 flask-bootstrap
 flask-sqlalchemy

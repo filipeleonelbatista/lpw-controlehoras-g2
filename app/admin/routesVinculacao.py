@@ -3,9 +3,9 @@ from flask_table import Table
 from .formsVinculacao import VincForm, Results
 from . import admin
 
-@admin.route('/admin/vinculcao', methods=['GET', 'POST'])
-def vinculcao():
+@admin.route('/admin/vinculacao', methods=['GET', 'POST'])
+def vinculacao():
 	form = VincForm()
 	results = []
 	table = Results(results)
-	return render_template('admin/vinculcao.html', form=form, table=table)
+	return render_template('admin/vinculacao.html', form=form, table=table)

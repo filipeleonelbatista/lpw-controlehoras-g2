@@ -1,8 +1,7 @@
-{% extends "./base.html" %}
+{% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block page_content %}
-
 {{ wtf.quick_form(form) }}
-{% endblock %}
 
+{% endblock %}

@@ -1,5 +1,3 @@
 from flask import Blueprint
-talks = Blueprint('talks', __name__)
+relatorios = Blueprint('relatorios', __name__)
 from . import routes
-
-

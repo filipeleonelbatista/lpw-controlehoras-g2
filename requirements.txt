@@ -4,4 +4,5 @@ flask-script
 flask-bootstrap
 flask-sqlalchemy
 flask-wtf
+wtforms_components
 flask-login

@@ -22,6 +22,9 @@ def create_app(config_name):
     from .admin import admin as admin_blueprint
     app.register_blueprint(admin_blueprint)
 
+    from .relatorios import relatorios as relatorios_blueprint
+    app.register_blueprint(relatorios_blueprint)
+
     # Inicializando app Bootstrap
     bootstrap(app)
 

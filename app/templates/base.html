@@ -2,6 +2,26 @@
 
 {% block title %}Apropriação de Horas{% endblock %}
 
+{% block navbar %}
+<nav class="navbar navbar-default">
+        <div class="container">
+                <a class="navbar-brand" href="#">Talks</a>
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Home</a></li>
+                    {% if current_user.is_authenticated %}
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Logout</a></li>
+                    {% else %}
+                    <li><a href="#">Login</a></li>
+                    {% endif %}
+                </ul>
+        </div>
+ </nav>   
+
+
+
+{% endblock %}
+
 {% for message in get_flashed_messages() %}
 <div class="alert alert-warning">
     <button type="button" class="close" data-dismiss="alert">x</button>
@@ -10,8 +30,15 @@
 {% endfor %}
 
 {% block content %}
+
 <div class="container">
-    {% block page_content %}{% endblock %}
+        <div class="jumbotron">
+                
+                {% block page_content %}{% endblock %}   
+
+        </div>
+        
+   
 </div>
 {% endblock %}
 

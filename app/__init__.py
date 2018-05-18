@@ -13,8 +13,8 @@ def create_app(config_name):
     app = Flask(__name__)
     app.config.from_object(config[config_name])
 
-    from .talks import talks as talks_blueprint
-    app.register_blueprint(talks_blueprint)
+    from .login import login as login_blueprint
+    app.register_blueprint(login_blueprint)
 
     # Inicializando app Bootstrap
     bootstrap(app)

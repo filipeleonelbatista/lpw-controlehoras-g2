@@ -6,3 +6,4 @@ from . import perfil
 def perfil():
 	form = PerfilForm()
 	return render_template('perfil/perfil.html', form=form)
+	

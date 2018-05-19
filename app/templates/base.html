@@ -22,7 +22,7 @@
                 <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lançamentos <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                                <li><a href="#">Horas Trabalhadas</a></li>
+                                <li><a href="/lancamentos">Horas Trabalhadas</a></li>
                         </ul>
                 </li>
                 <li class="dropdown">
@@ -63,13 +63,11 @@
 {% block content %}
 
 <div class="container">
-        <div class="jumbotron">
-                
-                {% block page_content %}{% endblock %}   
-
-        </div>
-        
-   
+        <div class="panel panel-default">
+                <div class="panel-body">
+                  {% block page_content %}{% endblock %}  
+                </div>
+        </div>   
 </div>
 {% endblock %}
 

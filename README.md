@@ -13,3 +13,7 @@ python manage.py runserver
 3. [Guia basico do GIT](http://rogerdudler.github.io/git-guide/index.pt_BR.html)
 4. [Documentação de MarkDown para escrever o ReadME](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
 5. [Documentação dos Graficos para flask](https://pythonspot.com/flask-and-great-looking-charts-using-chart-js/) 
+
+## Questões pendentes.
+1. Onde referecia o JS no flask, vendo que na pasta static fica o style.css?
+R. ???

@@ -11,4 +11,4 @@ python manage.py runserver
 1. [Tutoriais do Bootstrap com modelos](https://www.w3schools.com/bootstrap/default.asp)
 2. [Elementos Bootstrap](https://getbootstrap.com/docs/3.3/components/#btn-dropdowns-sizing)
 3. [Guia basico do GIT](http://rogerdudler.github.io/git-guide/index.pt_BR.html)
-4. [Documentação de MarkDown para escrever o ReadME](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+4. [Documentação de MarkDown para escrever o ReadME](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 

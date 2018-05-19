@@ -8,4 +8,4 @@ def relatorios():
 	results = []
 	table = Results(results)
 	return render_template('relatorios/relatorios.html', form=form, table=table)
-	
+

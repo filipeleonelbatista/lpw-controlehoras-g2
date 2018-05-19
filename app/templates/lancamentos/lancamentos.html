@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block scripts %}
+  {{ super() }}
+  {{ datepicker.loader(theme="base") }} {# to load jQuery-ui #}
+  {{ datepicker.picker(id=".dp") }}
+{% endblock %}
+{% block page_content %}
+
+<div class="form-group">
+    <div class="col-xs-4">
+        <label for="sel1">Projetos</label>
+            <select class="form-control " id="sel1">
+              <option>Projeto 1</option>
+              <option>Projeto 2</option>
+              <option>Projeto 3</option>
+              <option>Projeto 4</option>
+            </select>
+            
+    
+            
+    </div>
+    
+    <div class="col-xs-4">
+        <form class="verticalform" style="margin-top:10px">
+            <div class="input-group">
+                 <input type="text" class="form-control dp" />
+                 <div class="input-group-btn">
+                        <button class="btn btn-default dp">
+                          <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                      </div>
+
+            </div>
+                </form>
+    </div>
+
+</div>
+
+{% endblock %}

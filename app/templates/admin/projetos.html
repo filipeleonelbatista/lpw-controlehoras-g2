@@ -30,19 +30,27 @@
             </table> 
     </div>
 
-    <button id="abreCadastroProj" class="btn btn-success">
-            Adicionar projeto
-        </button>
-    <div class="cadastroProj">
-            <div class="modal-content">
-                    <span class="close">&times;</span>
+    <div class="container">
+                
+                <button onclick="document.getElementById('cadProj').style.display='block'" class="btn btn-success">Cadastrar Projeto</button>
+              
+                <div id="cadProj" class="modal">
+                  <div class="modal-content">
                     <div class="container">
-                            <div class="col-xs-11">
-                                    {{ wtf.quick_form(form) }}
-                            </div>
+                      <div class="col-xs-10">
+                                <p>{{ wtf.quick_form(form) }}.</p>
+                                <span onclick="document.getElementById('cadProj').style.display='none'" class="btn btn-danger" >Cancelar</span>
+                      <span onclick="salvar" class="btn btn-success" >Salvar projeto</span>
+                      </div>          
+                      
+                      
                     </div>
-                    
-            </div>
+                  </div>
+                </div>
+              </div>
+
+
+
     </div>
 
     

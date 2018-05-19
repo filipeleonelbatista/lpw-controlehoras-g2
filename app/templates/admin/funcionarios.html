@@ -2,7 +2,6 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block page_content %}
-{{ wtf.quick_form(form) }}
 <div class="panel panel-default"> 
     <div class="panel-heading">Lista de funcionarios</div> 
     <table class="table"> 
@@ -30,5 +29,22 @@
             </tbody> 
         </table> 
 </div>
-
+<div class="container">
+                
+        <button onclick="document.getElementById('cadProj').style.display='block'" class="btn btn-success">Cadastrar funcionario</button>
+      
+        <div id="cadProj" class="modal">
+          <div class="modal-content">
+            <div class="container">
+              <div class="col-xs-10">
+                        <p>{{ wtf.quick_form(form) }}.</p>
+                        <span onclick="document.getElementById('cadProj').style.display='none'" class="btn btn-danger" >Cancelar</span>
+              <span onclick="salvar" class="btn btn-success" >Salvar funcionario</span>
+              </div>          
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
 {% endblock %}

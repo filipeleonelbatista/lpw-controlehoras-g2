@@ -1,5 +1,6 @@
 flask
 flask_table
+flask_migrate
 flask-script
 flask-bootstrap
 flask-sqlalchemy

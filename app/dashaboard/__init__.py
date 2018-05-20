@@ -1,3 +1,3 @@
 from flask import Blueprint
-relatorios = Blueprint('relatorios', __name__)
+dashaboard = Blueprint('dashaboard', __name__)
 from . import routes, routesht, routeshxp

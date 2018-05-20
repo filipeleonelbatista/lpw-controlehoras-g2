@@ -2,24 +2,31 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block page_content %}
+
+    {{ form.nome.label }}<br>
+    {{ form.nome(size=32) }}
+    <br>
+    {{ form.matricula.label }}<br>
+    {{ form.matricula(size=32) }} 
+    <br>
+    <br>   
+
 <div class="panel panel-default"> 
     <div class="panel-heading">Lista de funcionarios</div> 
     <table class="table"> 
             <thead> 
                 <tr> 
                     <th>#</th> 
-                    <th>First Name</th> 
-                    <th>Last Name</th> 
-                    <th>Username</th> 
+                    <th>Matricula</th> 
+                    <th>Nome</th> 
                     <th>Actions</th> 
                 </tr> 
             </thead> 
             <tbody> 
                 <tr> 
                     <th scope="row">1</th> 
-                    <td>Mark</td> 
-                    <td>Otto</td> 
-                    <td>@mdo</td> 
+                    <td>{{ table.matr.label }}</td> 
+                    <td>{{ table.nome.label }}</td> 
                     <td> 
                             <a href="#"><span class="glyphicon glyphicon-pencil" style="color:green" aria-hidden="true"></span></a>
                             &nbsp;

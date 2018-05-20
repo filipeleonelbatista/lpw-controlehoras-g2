@@ -6,11 +6,8 @@ from flask_table import Table, Col, LinkCol
 class Results(Table):
     id = Col('Id', show=False)
     matr = Col('Matricula')
-    descricao = Col('Descrição')
-    senha = Col('Senha')
-    edit = LinkCol('Edit', 'edit', url_kwargs=dict(id='id'))
+    nome = Col('Nome')
 
 class FuncionarioForm(FlaskForm):
     matricula = IntegerField('Matricula')
     nome = StringField('Nome', validators=[DataRequired(), Length(1, 64)])
-    password = PasswordField('Password', validators=[DataRequired()])

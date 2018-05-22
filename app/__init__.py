@@ -18,25 +18,17 @@ def create_app(config_name):
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
 
-<<<<<<< HEAD
     from .login import login as login_blueprint
     app.register_blueprint(login_blueprint)
 
-=======
->>>>>>> master
     from .perfil import perfil as perfil_blueprint
     app.register_blueprint(perfil_blueprint)
 
     from .admin import admin as admin_blueprint
     app.register_blueprint(admin_blueprint)
 
-<<<<<<< HEAD
     from .relatorios import relatorios as relatorios_blueprint
     app.register_blueprint(relatorios_blueprint)
-=======
-    from .dashaboard import dashaboard as dashaboard_blueprint
-    app.register_blueprint(dashaboard_blueprint)
->>>>>>> master
 
     from .lancamentos import lancamentos as lancamentos_blueprint
     app.register_blueprint(lancamentos_blueprint)

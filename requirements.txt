@@ -1,9 +1,6 @@
 flask
 flask_table
-<<<<<<< HEAD
-=======
 flask_migrate
->>>>>>> master
 flask-script
 flask-bootstrap
 flask-sqlalchemy

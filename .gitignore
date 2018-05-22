@@ -69,6 +69,13 @@ fabric.properties
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
+app/__pycache__/
+app/admin/__pycache__/
+app/auth/__pycache__/
+app/lancamentos/__pycache__/
+app/perfil/__pycache__/
+app/relatorios/__pycache__/
+__pycache__
 *.py[cod]
 *$py.class
 

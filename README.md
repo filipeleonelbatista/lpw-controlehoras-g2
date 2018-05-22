@@ -4,6 +4,7 @@ Trabalho do Tales 2018/1
 ## install packege
 pip3 install -r requirements.txt
 
+<<<<<<< HEAD
 ## Rodar o servidor:
 python manage.py runserver
 
@@ -67,3 +68,7 @@ quando clicar deve executar uma  função que derrube a sessão do usuário e ma
 Na pagina base do bootstrap ja está com o IF no menu. só nao Habilitei por que nao tem um usuário validado e ativo que podemos usar.
 
 Precisamos verificar o menu por que nao está muito responsivo. se voce olhar no celular nao fica top. falta isso pra ficar bom.
+=======
+#run app
+python3 manage.py runserver
+>>>>>>> start-lucio

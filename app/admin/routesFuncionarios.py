@@ -7,10 +7,8 @@ from app.models import User
 @admin.route('/admin/funcionarios', methods=['GET', 'POST'])
 def funcionarios():
 	form = FuncionarioForm()
-	results = []
-	table = Results(results)
 	if request.method == 'POST':
 		print('Aqui')
 	
 	listTable=User.query.all()	
-	return render_template('admin/funcionarios.html', form=form, table=listTable)
+	return render_template('admin/funcionarios.html', form=form, listTable=listTable)

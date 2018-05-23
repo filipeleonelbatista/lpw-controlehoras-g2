@@ -15,7 +15,7 @@ class User(UserMixin, db.Model):
     matricula = db.Column(db.Integer, nullable=False, unique=True, index=True)
     is_admin = db.Column(db.Boolean)
     password_hash = db.Column(db.String(256))
-    avatar_hash = db.Column(db.String(256))
+    #avatar_hash = db.Column(db.String(256))
     #talks = db.relationship('Talk', lazy='dynamic', backref='author')
 
     @property

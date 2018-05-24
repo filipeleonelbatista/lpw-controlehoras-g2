@@ -14,20 +14,17 @@
                 <a class="navbar-brand" href="#">Sistema CadHoras</a>
                 <ul class="nav navbar-nav">
 
-                        {% if current_user.is_authenticated %}
-
-                            {% if current_user.is_admin %}
+        
         <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cadastros <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                         <li><a href="/admin/projetos">Projetos</a></li>
                         <li><a href="/admin/clientes">Clientes</a></li>
                         <li><a href="/admin/funcionarios">Funcionarios</a></li>
-                        <li><a href="/admin/">Funcionarios x Projetos</a></li>
+                        <li><a href="/admin/vinculacao">Funcionarios x Projetos</a></li>
                         <li><a href="/admin/atividades">Atividades</a></li>
                 </ul>
                 </li>
-                            {% endif %}
                 <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lançamentos <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -37,9 +34,6 @@
                 <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Relatórios <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                                <li><a href="/relatorios/horastrabalhadas">Minhas Horas Trabalhadas</a></li>
-                                <li><a href="/relatorios/horasxprojeto">Horas x Projeto</a></li>
-                                <li><a href="/relatorios">***RELATORIOS***</a></li>
                                 <li><a href="/dashaboard/horastrabalhadas">Minhas Horas Trabalhadas</a></li>
                                 <li><a href="/dashaboard/horasxprojeto">Horas x Projeto</a></li>
                                 <li><a href="/dashaboard">***RELATORIOS***</a></li>
@@ -49,16 +43,16 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Suporte <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                                 <li><a href="/perfil">Alterar senha</a></li>
-                                <li><a href="/logout">Sair</a></li>
+                                <li><a href="#">Sair</a></li>
                         </ul>
                 </li>
-                
+
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#">Bem Vindo, {{current_user.username}}</a></li>
+                                <li><a href="#">Bem Vindo, [Nome de usuário]</a></li>
                         </ul>
-                        {% endif %}
+     
                     
                 
         </div>

@@ -8,22 +8,12 @@
             <thead> 
                 <tr> 
                     <th>#</th> 
-                    <th>First Name</th> 
-                    <th>Last Name</th> 
-                    <th>Username</th> 
                     <th>Matricula</th> 
                     <th>Nome</th> 
                     <th>Actions</th> 
                 </tr> 
             </thead> 
             <tbody> 
-                <tr> 
-                    <th scope="row">1</th> 
-                    <td>Mark</td> 
-                    <td>Otto</td> 
-                    <td>@mdo</td> 
-                    <td>{{ table.matr.data }}</td> 
-                    <td>{{ table.nome.data }}</td> 
                 {% for item in listTable %}
                 <tr>                     
                     <th scope="row">{{ loop.index }}</th> 
@@ -60,39 +50,12 @@
 </div>
 <div class="container">                
         <button onclick="document.getElementById('cadProj').style.display='block'" class="btn btn-success">Cadastrar funcionario</button>
-      
-        <div id="cadProj" class="modal">
-          <div class="modal-content">
-            <div class="container">
-              <div class="col-xs-10">
-                        <span onclick="document.getElementById('cadProj').style.display='none'" class="btn btn-danger" >Cancelar</span>
-              <span onclick="salvar" class="btn btn-success" >Salvar funcionario</span>
-              </div>          
-              
-              
-              </div>              
-
       <form action = "{{ request.path }}" method = "post">
             <div id="cadProj" class="modal">
               <div class="modal-content">
                 <div class="container">
                   <div class="col-xs-10">
-                            <p> <h4>Matricula  </h4>
-                                {{ form.matricula(class_="form-control")  }}
-                                <h4>Nome  </h4>
-                                {{ form.nome(class_="form-control") }}
-                                <h4>  </h4>
-                                {{ form.admin }} é administrador?<br>
-                                <h4>Senha  </h4>
-                                {{ form.password(class_="form-control") }}
-                                <h4>  </h4>
-                                {{ form.salvar(class_="btn btn-success") }}
-                                {{ form.cancelar(class_="btn btn-danger") }}
-                                
-                            </p>
-                            <!-- <span onclick="document.getElementById('cadProj').style.display='none'" class="btn btn-danger" >Cancelar</span>
-                            <span onclick="document.getElementById('cadProj').style.display='salvar'" class="btn btn-success" >Salvar funcionario</span> -->
-                            
+                            <p>{{ wtf.quick_form(form) }}</p>
                   </div>              
                 </div>
               </div>

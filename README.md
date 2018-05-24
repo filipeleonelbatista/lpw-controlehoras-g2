@@ -4,6 +4,7 @@ Trabalho do Tales 2018/1
 ## install packege
 pip3 install -r requirements.txt
 
+<<<<<<< HEAD
 ## Rodar o servidor:
 python manage.py runserver
 
@@ -15,7 +16,59 @@ python manage.py runserver
 5. [Documentação dos Graficos para flask](https://pythonspot.com/flask-and-great-looking-charts-using-chart-js/) 
 
 ## Questões pendentes.
-1. Terminar os outros cadastros
+1. Onde referecia o JS no flask, vendo que na pasta static fica o style.css?
+R. Foi colocado no arquivo base do template a seguinte linha:
+```python
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 
+{% endblock %}
+
+```
+
+### Comentarios das paginas
+```
+/
+A pagina de login está pronta, precisa fazer a criação do primeiro usuario e testar a validação.
+
+/admin/projetos
+Testar o permissionamento, somente quem tiver o codigo de administrador pode abrir esta pagina
+
+/admin/clientes
+Testar o permissionamento, somente quem tiver o codigo de administrador pode abrir esta pagina
+
+/admin/funcionarios
+Testar o permissionamento, somente quem tiver o codigo de administrador pode abrir esta pagina
+
+/admin/atividades
+Testar o permissionamento, somente quem tiver o codigo de administrador pode abrir esta pagina
+
+/lancamentos
+Programar o contador de horas para iniciar o contador e gravar. ao clicar em iniciar ele grava a data e hora que iniciou e ao clicar em gravar ele grava a data e hora que parou. só quando clicar em gravar a informação deve ir para a tabela oficial, poderiamos ter uma tabela de buffer pra evitar problemas.
+Baixei o datepiker pro flask, tem que ver como ele se comporta no post das informações.
+
+/relatorios/horastrabalhadas
+Precisa baixar do banco as informações e ja entregar a tabela pronta.
+
+/relatorios/horasxprojeto
+não tive ideia ainda de como funciona. devemos ver com o tales
+
+/relatorios
+como seriam 2 telas conforme citado a cima podemos usar isso na tela inicial, para apresentar algo e nao deixar ela vazia
+
+/perfil
+entendo como tela de edição de usuário. Verificar se nao existe a necessidade de uma Foto de perfil
+
+/logout
+quando clicar deve executar uma  função que derrube a sessão do usuário e mande pra tela inicial o /
+
+```
+### Comentários adicionais
+Na pagina base do bootstrap ja está com o IF no menu. só nao Habilitei por que nao tem um usuário validado e ativo que podemos usar.
+
+Precisamos verificar o menu por que nao está muito responsivo. se voce olhar no celular nao fica top. falta isso pra ficar bom.
+=======
 #run app
 python3 manage.py runserver
+>>>>>>> start-lucio

@@ -15,16 +15,9 @@ python manage.py runserver
 5. [Documentação dos Graficos para flask](https://pythonspot.com/flask-and-great-looking-charts-using-chart-js/) 
 
 ## Questões pendentes.
-1. Onde referecia o JS no flask, vendo que na pasta static fica o style.css?
-R. Foi colocado no arquivo base do template a seguinte linha:
-```python
-{% block head %}
-{{ super() }}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
-
-{% endblock %}
-
-```
+1. Colocar o @login.require nas rotas para impedir o acecsso.
+2. Colocar o if admini no menu para verificar se o usuario é administrador e liberar o menu de administrador.
+3. terminar os outros cadastros
 
 ### Comentarios das paginas
 ```
@@ -67,3 +60,5 @@ quando clicar deve executar uma  função que derrube a sessão do usuário e ma
 Na pagina base do bootstrap ja está com o IF no menu. só nao Habilitei por que nao tem um usuário validado e ativo que podemos usar.
 
 Precisamos verificar o menu por que nao está muito responsivo. se voce olhar no celular nao fica top. falta isso pra ficar bom.
+#run app
+python3 manage.py runserver

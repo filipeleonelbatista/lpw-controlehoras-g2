@@ -10,11 +10,14 @@ def funcionarios():
 	form = FuncionarioForm()
 	if form.validate_on_submit() and form.salvar.data:
 		user = User(matricula=form.matricula.data, username=form.nome.data, password=form.password.data, is_admin=form.admin.data)
-		print('User: [%s]' % user.username)
-		print('password_hash: [%s]' % user.password_hash)
-		print('is_admin: [%s]' % user.is_admin)
 		db.session.add(user)
 		db.session.commit()
-    	    	
-	listTable=User.query.all()	
+
+	if request.method == 'GET' and request.args.get('delete'):
+		user = User.query.filter_by(matricula=request.args.get('delete')).first()
+		db.session.delete(user)
+		db.session.commit()
+
+	listTable=User.query.all()
 	return render_template('admin/funcionarios.html', form=form, listTable=listTable)
+	

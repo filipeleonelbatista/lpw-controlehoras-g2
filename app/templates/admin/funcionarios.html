@@ -20,17 +20,35 @@
                     <td>{{ item.matricula }}</td> 
                     <td>{{ item.username }}</td> 
                     <td> 
-                            <a href="#"><span class="glyphicon glyphicon-pencil" style="color:green" aria-hidden="true"></span></a>
-                            &nbsp;
-                            <a href="#"><span class="glyphicon glyphicon-trash" style="color:red" aria-hidden="true"></span></a>
+                        <button onclick="document.getElementById('cadProj').style.display='block'">
+                            <a href="#"><span class="glyphicon glyphicon-pencil" style="color:green" aria-hidden="true">
+                            </span></a>
+                        </button> 
+                        <form action = "{{ request.path }}" method = "post">
+                            <div id="cadProj" class="modal">
+                              <div class="modal-content">
+                                <div class="container">
+                                  <div class="col-xs-10">
+                                        <!--<p>{{ wtf.quick_form(form) }}</p>-->
+                                        <p>Falta implementar</p>
+                                  </div>              
+                                </div>
+                              </div>
+                            </div>
+                        </form>  
+                        <form action="funcionarios">
+                        <button class="btn btn-default" type="submit" name="delete" value={{ item.matricula }}>
+                            <a href="#"><span class="glyphicon glyphicon-trash" style="color:red" aria-hidden="true">
+                        </span></a>
+                        </button>
+                        </form>
                     </td>                     
                 </tr> 
                 {% endfor %}
             </tbody> 
         </table> 
 </div>
-<div class="container">
-                
+<div class="container">                
         <button onclick="document.getElementById('cadProj').style.display='block'" class="btn btn-success">Cadastrar funcionario</button>
       <form action = "{{ request.path }}" method = "post">
             <div id="cadProj" class="modal">
@@ -38,8 +56,6 @@
                 <div class="container">
                   <div class="col-xs-10">
                             <p>{{ wtf.quick_form(form) }}</p>
-                            <!-- <span onclick="document.getElementById('cadProj').style.display='none'" class="btn btn-danger" >Cancelar</span>
-                            <span onclick="document.getElementById('cadProj').style.display='salvar'" class="btn btn-success" >Salvar funcionario</span> -->
                   </div>              
                 </div>
               </div>

@@ -8,7 +8,7 @@ from app import db
 @admin.route('/admin/funcionarios', methods=['GET', 'POST'])
 def funcionarios():
 	form = FuncionarioForm()
-	if form.validate_on_submit() and form.salvar.data:
+	if request.method == 'POST' and request.args.get("Cadastrar"):
 		user = User(matricula=form.matricula.data, username=form.nome.data, password=form.password.data, is_admin=form.admin.data)
 		db.session.add(user)
 		db.session.commit()

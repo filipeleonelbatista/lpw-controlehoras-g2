@@ -20,17 +20,20 @@
                     <td>{{ item.matricula }}</td> 
                     <td>{{ item.username }}</td> 
                     <td> 
-                        <button onclick="document.getElementById('cadProj').style.display='block'">
+                        <button onclick="document.getElementById('editProj').style.display='block'">
                             <a href="#"><span class="glyphicon glyphicon-pencil" style="color:green" aria-hidden="true">
                             </span></a>
                         </button> 
                         <form action = "{{ request.path }}" method = "post">
-                            <div id="cadProj" class="modal">
+                            <div id="editProj" class="modal">
                               <div class="modal-content">
                                 <div class="container">
                                   <div class="col-xs-10">
-                                        <!--<p>{{ wtf.quick_form(form) }}</p>-->
-                                        <p>Falta implementar</p>
+
+                                        <p>Falta implementar<br>
+                                        precisa receber os campos e editar.</p>
+                                        <h4> </h4>
+                                        {{ form.cancelar(class_="btn btn-danger") }}
                                   </div>              
                                 </div>
                               </div>
@@ -55,7 +58,18 @@
               <div class="modal-content">
                 <div class="container">
                   <div class="col-xs-10">
-                            <p>{{ wtf.quick_form(form) }}</p>
+                    <h4>Nome do Funcionário </h4>
+                    {{ form.nome(class_="form-control") }}
+                    <h4>Matricula </h4>
+                    {{ form.matricula(class_="form-control") }}
+                    <h4>Senha </h4>
+                    {{ form.password(class_="form-control") }}
+                    <h4> </h4> 
+                    {{ form.admin }}
+                    é Admimnistrador?
+                    <h4> </h4>
+                    {{ form.salvar(class_="btn btn-success") }}
+                    {{ form.cancelar(class_="btn btn-danger") }}
                   </div>              
                 </div>
               </div>

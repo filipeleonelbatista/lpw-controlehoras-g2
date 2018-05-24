@@ -7,6 +7,7 @@ class Results(Table):
     id = Col('Id', show=False)
     matr = Col('Matricula')
     nome = Col('Nome')
+    admin = Col('Admin')
 
 class FuncionarioForm(FlaskForm):
     matricula = IntegerField('Matricula')

@@ -15,7 +15,7 @@ migrate = Migrate(app, db)
 manager.add_command('db', MigrateCommand)
 
 @manager.command
-def adduser(matricula, username, admin=False):
+def adduser(matricula, username, admin=True):
     """ Registra um novo usuário """
     from getpass import getpass
     password = getpass()

@@ -1,8 +1,10 @@
 {% extends "base.html" %}
+
 {% block scripts %}
   {{ super() }}
   {{ datepicker.loader(theme="base") }} {# to load jQuery-ui #}
   {{ datepicker.picker(id=".dp") }}
+
 {% endblock %}
 {% block page_content %}
 <div class="col-xs-12">
@@ -88,19 +90,65 @@
   </div>
         <div class="col-xs-6">
             <div class="col-xs-6">
-                <button type="button" class="btn btn-block btn-lg btn-primary">Iniciar </button>
+                <button id="start" type="button" class="btn btn-block btn-lg btn-primary">Iniciar </button>
             </div>
             <div class="col-xs-6">
-                <button type="button" class="btn btn-block btn-lg btn-danger">Parar  </button>
+                <button id="stop" type="button" class="btn btn-block btn-lg btn-danger">Parar  </button>
             </div>
             <div class="col-xs-12">
-                <h2 class="text-center">Tempo Trabalhado: [00:07]<br><br>
-                
+                <h2 class="text-center" style="font-size:25px">Tempo Trabalhado: 
+                    <h1 class="text-center" style="font-size:25px"><time>00:00:00</time></h1></h2>
+                    
+                    <button id="clear" type="button" class="btn btn-block btn-lg btn-warning">Zerar </button>
                     <button type="button" class="btn btn-block btn-lg btn-success">Gravar </button>
                 </h2>
-                
+               <!-- <script src="{{ url_for('static',filename='myscript.js') }}"></script> -->
+<script>
+        var h1 = document.getElementsByTagName('h1')[0],
+            start = document.getElementById('start'),
+            stop = document.getElementById('stop'),
+            clear = document.getElementById('clear'),
+            seconds = 0, minutes = 0, hours = 0,
+            t;
+
+        function add() {
+            seconds++;
+            if (seconds >= 60) {
+                seconds = 0;
+                minutes++;
+                if (minutes >= 60) {
+                    minutes = 0;
+                    hours++;
+                }
+            }
+            
+            h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+
+            timer();
+        }
+        function timer() {
+            t = setTimeout(add, 1000);
+        }
+        timer();
+
+
+        /* Start button */
+        start.onclick = timer;
+
+        /* Stop button */
+        stop.onclick = function() {
+            clearTimeout(t);
+        }
+
+        /* Clear button */
+        clear.onclick = function() {
+            h1.textContent = "00:00:00";
+            seconds = 0; minutes = 0; hours = 0;
+        }
+</script>
             </div>
         </div>
+    </div>
 </div>
 
 

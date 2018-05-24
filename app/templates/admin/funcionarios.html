@@ -10,6 +10,7 @@
                     <th>#</th> 
                     <th>Matricula</th> 
                     <th>Nome</th> 
+                    <th>Admin?</th> 
                     <th>Actions</th> 
                 </tr> 
             </thead> 
@@ -19,8 +20,10 @@
                     <th scope="row">{{ loop.index }}</th> 
                     <td>{{ item.matricula }}</td> 
                     <td>{{ item.username }}</td> 
-                    <td> 
-                        <button onclick="document.getElementById('editProj').style.display='block'">
+                    <td>{{ item.admin }}</td> 
+                    <td>
+                         
+                        <button onclick="document.getElementById('editProj').style.display='block'" class="btn btn-default">
                             <a href="#"><span class="glyphicon glyphicon-pencil" style="color:green" aria-hidden="true">
                             </span></a>
                         </button> 

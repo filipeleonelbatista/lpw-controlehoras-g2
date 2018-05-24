@@ -8,10 +8,13 @@ from app import db
 @admin.route('/admin/funcionarios', methods=['GET', 'POST'])
 def funcionarios():
 	form = FuncionarioForm()
-	if request.method == 'POST' and request.args.get("Cadastrar"):
+	if form.validate_on_submit():
 		user = User(matricula=form.matricula.data, username=form.nome.data, password=form.password.data, is_admin=form.admin.data)
 		db.session.add(user)
 		db.session.commit()
+		flash('Seus dados foram cadastrados!')
+	else:
+		flash('Algo esta errado')
 
 	if request.method == 'GET' and request.args.get('delete'):
 		user = User.query.filter_by(matricula=request.args.get('delete')).first()

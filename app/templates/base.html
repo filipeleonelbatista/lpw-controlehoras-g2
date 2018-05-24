@@ -14,7 +14,9 @@
                 <a class="navbar-brand" href="#">Sistema CadHoras</a>
                 <ul class="nav navbar-nav">
 
-        
+                        {% if current_user.is_authenticated %}
+
+                        <!-- if current user is admin -->
         <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cadastros <span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -25,6 +27,7 @@
                         <li><a href="/admin/atividades">Atividades</a></li>
                 </ul>
                 </li>
+                <!-- endif if current user is admin -->
                 <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lançamentos <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -46,11 +49,11 @@
                                 <li><a href="#">Sair</a></li>
                         </ul>
                 </li>
-
+                {% endif %}
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#">Bem Vindo, [Nome de usuário]</a></li>
+                                <li><a href="#">Bem Vindo, {{current_user.username}}</a></li>
                         </ul>
      
                     

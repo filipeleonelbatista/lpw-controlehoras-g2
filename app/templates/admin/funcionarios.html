@@ -37,7 +37,19 @@
               <div class="modal-content">
                 <div class="container">
                   <div class="col-xs-10">
-                            <p>{{ wtf.quick_form(form) }}</p>
+                            <p> <h4>Matricula  </h4>
+                                {{ form.matricula(class_="form-control")  }}
+                                <h4>Nome  </h4>
+                                {{ form.nome(class_="form-control") }}
+                                <h4>  </h4>
+                                {{ form.admin }} é administrador?<br>
+                                <h4>Senha  </h4>
+                                {{ form.password(class_="form-control") }}
+                                <h4>  </h4>
+                                {{ form.salvar(class_="btn btn-success") }}
+                                {{ form.cancelar(class_="btn btn-danger") }}
+                                
+                            </p>
                             <!-- <span onclick="document.getElementById('cadProj').style.display='none'" class="btn btn-danger" >Cancelar</span>
                             <span onclick="document.getElementById('cadProj').style.display='salvar'" class="btn btn-success" >Salvar funcionario</span> -->
                   </div>              

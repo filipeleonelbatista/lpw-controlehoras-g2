@@ -14,7 +14,7 @@
                 <a class="navbar-brand" href="#">Sistema CadHoras</a>
                 <ul class="nav navbar-nav">
 
-        
+                        {% if current_user.is_authenticated %}
         <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cadastros <span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -43,17 +43,17 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Suporte <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                                 <li><a href="/perfil">Alterar senha</a></li>
-                                <li><a href="#">Sair</a></li>
+                                <li><a href="/logout">Sair</a></li>
                         </ul>
                 </li>
 
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#">Bem Vindo, [Nome de usuário]</a></li>
+                                <li><a href="#">Bem Vindo, [current_user.username]</a></li>
                         </ul>
      
-                    
+             {% endif %}      
                 
         </div>
  </nav>   

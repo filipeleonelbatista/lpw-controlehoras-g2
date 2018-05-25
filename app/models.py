@@ -11,7 +11,7 @@ class User(UserMixin, db.Model):
     print('Preparando para adicionar o funcionarios')
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), nullable=False, unique=True, index=True)
+    username = db.Column(db.String(64), nullable=False, index=True)
     matricula = db.Column(db.Integer, nullable=False, unique=True, index=True)
     is_admin = db.Column(db.Boolean)
     password_hash = db.Column(db.String(256))

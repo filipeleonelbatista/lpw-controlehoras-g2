@@ -23,7 +23,7 @@ def adduser(matricula, username, admin=False):
     if password != password2:
         import sys
         sys.exit('Erro: senhas nao conferem')
-    #db.create_all()
+    db.create_all()
     user = User(matricula=matricula, username=username, password=password, is_admin=admin)
     db.session.add(user)
     db.session.commit()

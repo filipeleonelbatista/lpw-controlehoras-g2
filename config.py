@@ -7,7 +7,6 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    DEBUG = False
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'SeGr&d0'
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
                               'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')

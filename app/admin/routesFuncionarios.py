@@ -1,5 +1,4 @@
 from flask import render_template, redirect, request, url_for, flash
-from flask_table import Table
 from .formsFuncionarios import FuncionarioForm
 from . import admin
 from app.models import User
@@ -33,7 +32,7 @@ def funcionarios():
 		form.matricula.data = user.matricula
 		form.nome.data = user.username
 		form.admin.data = user.is_admin
-		return render_template('admin/edit.html',form=form)
+		return render_template('admin/edit.html',form=form, action='funcUpdate')
 
 	listTable=User.query.all()
 	return render_template('admin/funcionarios.html', form=form, listTable=listTable)

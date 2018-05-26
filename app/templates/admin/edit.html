@@ -2,7 +2,7 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block page_content %}
-<form action = "funcUpdate" method = "POST">
+<form action = {{ action }} method = "POST">
     <h4>Nome do Funcionário </h4>
     {{ form.nome(class_="form-control") }}
     <h4>Matricula </h4>

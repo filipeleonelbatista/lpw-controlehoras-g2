@@ -1,6 +1,6 @@
 flask
 flask_table
-flask_migrate
+Flask-Migrate
 flask-script
 flask-bootstrap
 flask-sqlalchemy

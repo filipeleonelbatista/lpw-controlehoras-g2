@@ -9,6 +9,8 @@ def atividades():
 	form = AtividadeForm()
 	if request.method == 'POST' and form.salvar.id == "salvar":
 		try:
+			print(form.idAtividade.data)
+			print(form.descricao.data)
 			atividade = Task(codTask=form.idAtividade.data, descricao=form.descricao.data)
 			db.session.add(atividade)
 			db.session.commit()
@@ -38,12 +40,14 @@ def atividades():
 
 @admin.route('/admin/atividUpdate', methods=['GET', 'POST'])
 def atividUpdate():
+	print('Fazer update')
 	form = AtividadeForm()
+	print(request.args.get('update'))
 	if request.method == 'POST' and form.salvar.id == "salvar":
-		atividade = Task.query.filter_by(codTask=request.args.get('update')).first_or_404()
+		atividade = Task.query.filter_by(codTask=form.idAtividade.data).first_or_404()
 		if atividade:
-			user.idAtividade = form.idAtividade.data
-			user.descricao = form.descricao.data
+			atividade.idAtividade = form.idAtividade.data
+			atividade.descricao = form.descricao.data
 			try:
 				db.session.commit()
 				flash('Registro alterado com sucesso', 'info')
@@ -52,4 +56,4 @@ def atividUpdate():
 				flash('Registro falhou em alterar', 'danger')
 
 	listTable=Task.query.all()
-	return render_template('admin/funcionarios.html', form=form, listTable=listTable)
+	return render_template('admin/atividades.html', form=form, listTable=listTable)

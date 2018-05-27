@@ -32,7 +32,7 @@ def funcionarios():
 		form.matricula.data = user.matricula
 		form.nome.data = user.username
 		form.admin.data = user.is_admin
-		return render_template('admin/edit.html',form=form, action='funcUpdate')
+		return render_template('admin/editFuncionario.html',form=form, action='funcUpdate')
 
 	listTable=User.query.all()
 	return render_template('admin/funcionarios.html', form=form, listTable=listTable)

@@ -45,7 +45,7 @@ class Client(UserMixin, db.Model):
     print('Preparando para adicionar o cliente')
     __tablename__ = 'client'
     id = db.Column(db.Integer, primary_key=True)    
-    nameEmpresa = db.Column(db.String(64), nullable=False, unique=True, index=True)
+    nameEmpresa = db.Column(db.String(64), nullable=False, index=True)
     clientCNPJ = db.Column(db.String(64), nullable=False, unique=True, index=True)
     
 class Project(UserMixin, db.Model):

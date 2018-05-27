@@ -52,7 +52,7 @@ class Project(UserMixin, db.Model):
     print('Preparando para adicionar o project')
     __tablename__ = 'project'
     id = db.Column(db.Integer, primary_key=True)
-    codProject = db.Column(db.Integer)
+    codProject = db.Column(db.Integer,nullable=False, unique=True, index=True)
     nameProject = db.Column(db.String(64), nullable=False, unique=True, index=True)
     #colocar o id do cliente aqui
     descricao = db.Column(db.String(64))
@@ -61,7 +61,7 @@ class Binding(UserMixin, db.Model):
     print('Preparando para adicionar o binding')
     __tablename__ = 'binding'
     id = db.Column(db.Integer, primary_key=True)
-    codBinding = db.Column(db.Integer)
+    codBinding = db.Column(db.Integer,nullable=False, unique=True, index=True)
     #colocar o id do funcionario aqui
     #colocar o id do projeto aqui
     is_coord = db.Column(db.Boolean)

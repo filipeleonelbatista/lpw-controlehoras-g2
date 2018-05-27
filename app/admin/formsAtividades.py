@@ -7,3 +7,4 @@ class AtividadeForm(FlaskForm):
 	descricao = StringField(label='Descricao', validators=[DataRequired(), Length(1, 64)])
 	salvar = SubmitField('Cadastrar')
 	cancelar = SubmitField('Cancelar')
+	

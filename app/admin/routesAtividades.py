@@ -57,3 +57,4 @@ def atividUpdate():
 
 	listTable=Task.query.all()
 	return render_template('admin/atividades.html', form=form, listTable=listTable)
+	

@@ -12,9 +12,7 @@ def funcionarios():
 		user = User(matricula=form.matricula.data, username=form.nome.data, password=form.password.data, is_admin=form.admin.data)
 		db.session.add(user)
 		db.session.commit()
-		flash('Seus dados foram cadastrados!')
-	else:
-		flash('Algo esta errado')
+	
 
 	if request.method == 'GET' and request.args.get('delete'):
 		user = User.query.filter_by(matricula=request.args.get('delete')).first()

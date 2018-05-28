@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block page_content %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+                <!-- <strong>Title</strong> --> {{ message }}
+                <br>
+                <form action="clientes" method="GET">
+                    <input type="submit" value="Close">
+                </form>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<div class="panel panel-default">
+    <div class="panel-heading">Lista de Clientes</div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>CPF/CNPJ</th>
+                <th>Nome</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in listTable %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ item.clientCNPJ }}</td>
+                    <td>{{ item.nameEmpresa }}</td>
+                    <td>
+                        <form action="clientes" method="GET">
+                            <button class="btn btn-default" type="submit" name="update" value={{ item.clientCNPJ }}>
+                            <a href="#"><span class="glyphicon glyphicon-pencil" style="color:green" aria-hidden="true">
+                            </span></a>
+                            </button>
+                        </form>
+                        <form action="clientes" method="GET">
+                            <button class="btn btn-default" type="submit" name="delete" value={{ item.clientCNPJ }}>
+                            <a href="#"><span class="glyphicon glyphicon-trash" style="color:red" aria-hidden="true">
+                            </span></a>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <button onclick="document.getElementById('cadProj').style.display='block'" class="btn btn-success">Cadastrar Atividade</button>
+    <form action = "{{ request.path }}" method = "POST">
+        <div id="cadProj" class="modal">
+            <div class="modal-content">
+                <div class="container">
+                    <div class="col-xs-10">
+                        <h4>CNPJ/CPF Cliente </h4>
+                        {{ form.cnpj(class_="form-control") }}
+                        <h4>Nome do Cliente </h4>
+                        {{ form.nome(class_="form-control") }}
+                        <h4> </h4>
+                        {{ form.salvar(class_="btn btn-success") }}
+                        {{ form.cancelar(class_="btn btn-danger") }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

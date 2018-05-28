@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
-
 {% block page_content %}
+<<<<<<< HEAD
 <div class="panel panel-default"> 
     <div class="panel-heading">Lista de funcionarios</div> 
     <table class="table"> 
@@ -24,59 +24,81 @@
                     <td>
                          
                         <button onclick="document.getElementById('editProj').style.display='block'" class="btn btn-default">
+=======
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+                <!-- <strong>Title</strong> --> {{ message }}
+                <br>
+                <form action="funcionarios" method="GET">
+                    <input type="submit" value="Close">
+                </form>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<div class="panel panel-default">
+    <div class="panel-heading">Lista de funcionarios</div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Matricula</th>
+                <th>Nome</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in listTable %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ item.matricula }}</td>
+                    <td>{{ item.username }}</td>
+                    <td>
+                        <form action="funcionarios" method="GET">
+                            <button class="btn btn-default" type="submit" name="update" value={{ item.matricula }}>
+>>>>>>> master
                             <a href="#"><span class="glyphicon glyphicon-pencil" style="color:green" aria-hidden="true">
                             </span></a>
-                        </button> 
-                        <form action = "{{ request.path }}" method = "post">
-                            <div id="editProj" class="modal">
-                              <div class="modal-content">
-                                <div class="container">
-                                  <div class="col-xs-10">
-
-                                        <p>Falta implementar<br>
-                                        precisa receber os campos e editar.</p>
-                                        <h4> </h4>
-                                        {{ form.cancelar(class_="btn btn-danger") }}
-                                  </div>              
-                                </div>
-                              </div>
-                            </div>
-                        </form>  
-                        <form action="funcionarios">
-                        <button class="btn btn-default" type="submit" name="delete" value={{ item.matricula }}>
-                            <a href="#"><span class="glyphicon glyphicon-trash" style="color:red" aria-hidden="true">
-                        </span></a>
-                        </button>
+                            </button>
                         </form>
-                    </td>                     
-                </tr> 
-                {% endfor %}
-            </tbody> 
-        </table> 
+                        <form action="funcionarios" method="GET">
+                            <button class="btn btn-default" type="submit" name="delete" value={{ item.matricula }}>
+                            <a href="#"><span class="glyphicon glyphicon-trash" style="color:red" aria-hidden="true">
+                            </span></a>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
-<div class="container">                
-        <button onclick="document.getElementById('cadProj').style.display='block'" class="btn btn-success">Cadastrar funcionario</button>
-      <form action = "{{ request.path }}" method = "post">
-            <div id="cadProj" class="modal">
-              <div class="modal-content">
+<div class="container">
+    <button onclick="document.getElementById('cadProj').style.display='block'" class="btn btn-success">Cadastrar funcionario</button>
+    <form action = "{{ request.path }}" method = "POST">
+        <div id="cadProj" class="modal">
+            <div class="modal-content">
                 <div class="container">
-                  <div class="col-xs-10">
-                    <h4>Nome do Funcionário </h4>
-                    {{ form.nome(class_="form-control") }}
-                    <h4>Matricula </h4>
-                    {{ form.matricula(class_="form-control") }}
-                    <h4>Senha </h4>
-                    {{ form.password(class_="form-control") }}
-                    <h4> </h4> 
-                    {{ form.admin }}
-                    é Admimnistrador?
-                    <h4> </h4>
-                    {{ form.salvar(class_="btn btn-success") }}
-                    {{ form.cancelar(class_="btn btn-danger") }}
-                  </div>              
+                    <div class="col-xs-10">
+                        <h4>Nome do Funcionário </h4>
+                        {{ form.nome(class_="form-control") }}
+                        <h4>Matricula </h4>
+                        {{ form.matricula(class_="form-control") }}
+                        <h4>Senha </h4>
+                        {{ form.password(class_="form-control") }}
+                        <h4> </h4>
+                        {{ form.admin }}
+                        é Admimnistrador?
+                        <h4> </h4>
+                        {{ form.salvar(class_="btn btn-success") }}
+                        {{ form.cancelar(class_="btn btn-danger") }}
+                    </div>
                 </div>
-              </div>
             </div>
-        </form>
-      </div>
+        </div>
+    </form>
+</div>
 {% endblock %}

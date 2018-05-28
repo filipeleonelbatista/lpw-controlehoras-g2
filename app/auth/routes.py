@@ -21,5 +21,4 @@ def login():
 @login_required
 def logout():
     logout_user()
-    flash('You have been logged out.')
-    return redirect(url_for('talks.index'))
+    return redirect(request.args.get('next') or url_for('auth.login'))

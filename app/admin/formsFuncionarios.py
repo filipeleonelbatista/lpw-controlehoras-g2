@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, SubmitField, BooleanField, PasswordField
 from wtforms.validators import DataRequired, Length
+<<<<<<< HEAD
 from flask_table import Table, Col, LinkCol
 
 class Results(Table):
@@ -8,6 +9,8 @@ class Results(Table):
     matr = Col('Matricula')
     nome = Col('Nome')
     admin = Col('Admin')
+=======
+>>>>>>> master
 
 class FuncionarioForm(FlaskForm):
     matricula = IntegerField('Matricula')

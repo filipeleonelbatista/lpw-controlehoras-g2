@@ -11,7 +11,7 @@ class User(UserMixin, db.Model):
     print('Preparando para adicionar o funcionarios')
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), nullable=False, unique=True, index=True)
+    username = db.Column(db.String(64), nullable=False, index=True)
     matricula = db.Column(db.Integer, nullable=False, unique=True, index=True)
     is_admin = db.Column(db.Boolean)
     password_hash = db.Column(db.String(256))
@@ -42,12 +42,14 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 class Client(UserMixin, db.Model):
+    print('Preparando para adicionar o cliente')
     __tablename__ = 'client'
     id = db.Column(db.Integer, primary_key=True)    
-    nameEmpresa = db.Column(db.String(64), nullable=False, unique=True, index=True)
+    nameEmpresa = db.Column(db.String(64), nullable=False, index=True)
     clientCNPJ = db.Column(db.String(64), nullable=False, unique=True, index=True)
     
 class Project(UserMixin, db.Model):
+    print('Preparando para adicionar o project')
     __tablename__ = 'project'
     id = db.Column(db.Integer, primary_key=True)
     codProject = db.Column(db.Integer)
@@ -56,6 +58,7 @@ class Project(UserMixin, db.Model):
     descricao = db.Column(db.String(64))
     
 class Binding(UserMixin, db.Model):
+    print('Preparando para adicionar o binding')
     __tablename__ = 'binding'
     id = db.Column(db.Integer, primary_key=True)
     codBinding = db.Column(db.Integer)
@@ -64,7 +67,8 @@ class Binding(UserMixin, db.Model):
     is_coord = db.Column(db.Boolean)
 
 class Task(UserMixin, db.Model):
+    print('Preparando para adicionar o task')
     __tablename__ = 'task'
     id = db.Column(db.Integer, primary_key=True)
-    codTask = db.Column(db.Integer)
+    codTask = db.Column(db.Integer, nullable=False, unique=True, index=True)
     descricao = db.Column(db.String(64))

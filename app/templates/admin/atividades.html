@@ -1,50 +1,74 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
-
 {% block page_content %}
-<div class="panel panel-default"> 
-        <div class="panel-heading">Lista de Atividades</div> 
-        <table class="table"> 
-                <thead> 
-                    <tr>
-                        <th>#</th>  
-                        <th>CodAtividade</th> 
-                        <th>Descrição</th>
-                        <th>Actions</th> 
-                    </tr> 
-                </thead> 
-                <tbody> 
-                    <tr> 
-                        <th scope="row">1</th> 
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td> 
-                                <a href="#"><span class="glyphicon glyphicon-pencil" style="color:green" aria-hidden="true"></span></a>
-                                &nbsp;
-                                <a href="#"><span class="glyphicon glyphicon-trash" style="color:red" aria-hidden="true"></span></a>
-                        </td> 
-                    </tr> 
-                </tbody> 
-            </table> 
-    </div>
-
-    <div class="container">
-                
-            <button onclick="document.getElementById('cadProj').style.display='block'" class="btn btn-success">Cadastrar Atividades</button>
-          
-            <div id="cadProj" class="modal">
-              <div class="modal-content">
-                <div class="container">
-                  <div class="col-xs-10">
-                            <p>{{ wtf.quick_form(form) }}.</p>
-                            <span onclick="document.getElementById('cadProj').style.display='none'" class="btn btn-danger" >Cancelar</span>
-                  <span onclick="salvar" class="btn btn-success" >Salvar Atividade</span>
-                  </div>          
-                  
-                  
-                </div>
-              </div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+                <!-- <strong>Title</strong> --> {{ message }}
+                <br>
+                <form action="atividades" method="GET">
+                    <input type="submit" value="Close">
+                </form>
             </div>
-          </div>
-    
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<div class="panel panel-default">
+    <div class="panel-heading">Lista de Atividades</div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>CodAtividade</th>
+                <th>Descrição</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in listTable %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ item.codTask }}</td>
+                    <td>{{ item.descricao }}</td>
+                    <td>
+                        <form action="atividades" method="GET">
+                            <button class="btn btn-default" type="submit" name="update" value={{ item.codTask }}>
+                            <a href="#"><span class="glyphicon glyphicon-pencil" style="color:green" aria-hidden="true">
+                            </span></a>
+                            </button>
+                        </form>
+                        <form action="atividades" method="GET">
+                            <button class="btn btn-default" type="submit" name="delete" value={{ item.codTask }}>
+                            <a href="#"><span class="glyphicon glyphicon-trash" style="color:red" aria-hidden="true">
+                            </span></a>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <button onclick="document.getElementById('cadProj').style.display='block'" class="btn btn-success">Cadastrar Atividade</button>
+    <form action = "{{ request.path }}" method = "POST">
+        <div id="cadProj" class="modal">
+            <div class="modal-content">
+                <div class="container">
+                    <div class="col-xs-10">
+                        <h4>ID Atividade </h4>
+                        {{ form.idAtividade(class_="form-control") }}
+                        <h4>Descrição </h4>
+                        {{ form.descricao(class_="form-control") }}
+                        <h4> </h4>
+                        {{ form.salvar(class_="btn btn-success") }}
+                        {{ form.cancelar(class_="btn btn-danger") }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
 {% endblock %}

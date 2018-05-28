@@ -7,13 +7,11 @@ from app import db
 @admin.route('/admin/funcionarios', methods=['GET', 'POST'])
 def funcionarios():
 	form = FuncionarioForm()
-<<<<<<< HEAD
 	if form.validate_on_submit():
 		user = User(matricula=form.matricula.data, username=form.nome.data, password=form.password.data, is_admin=form.admin.data)
 		db.session.add(user)
 		db.session.commit()
 	
-=======
 	if request.method == 'POST' and form.salvar.id == "salvar":
 		try:
 			user = User(matricula=form.matricula.data, username=form.nome.data, password=form.password.data, is_admin=form.admin.data)
@@ -33,7 +31,6 @@ def funcionarios():
 		except:
 			db.session.rollback()
 			flash('Registro falhou em apagar', 'danger')
->>>>>>> master
 
 	elif request.method == 'GET' and request.args.get('update'):
 		user = User.query.filter_by(matricula=request.args.get('update')).first_or_404()

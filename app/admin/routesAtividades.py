@@ -1,10 +1,12 @@
 from flask import render_template, redirect, request, url_for, flash
+from flask_login import login_required
 from .formsAtividades import AtividadeForm
 from . import admin
 from app.models import Task
 from app import db
 
 @admin.route('/admin/atividades', methods=['GET', 'POST'])
+@login_required
 def atividades():
 	form = AtividadeForm()
 	if request.method == 'POST' and form.salvar.id == "salvar":
@@ -39,6 +41,7 @@ def atividades():
 	return render_template('admin/atividades.html', form=form, listTable=listTable)
 
 @admin.route('/admin/atividUpdate', methods=['GET', 'POST'])
+@login_required
 def atividUpdate():
 	print('Fazer update')
 	form = AtividadeForm()

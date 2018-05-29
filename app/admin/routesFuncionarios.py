@@ -1,10 +1,12 @@
 from flask import render_template, redirect, request, url_for, flash
+from flask_login import login_required
 from .formsFuncionarios import FuncionarioForm
 from . import admin
 from app.models import User
 from app import db
 
 @admin.route('/admin/funcionarios', methods=['GET', 'POST'])
+@login_required
 def funcionarios():
 	form = FuncionarioForm()
 	if request.method == 'POST' and form.salvar.id == "salvar":
@@ -38,6 +40,7 @@ def funcionarios():
 	return render_template('admin/funcionarios.html', form=form, listTable=listTable)
 
 @admin.route('/admin/funcUpdate', methods=['GET', 'POST'])
+@login_required
 def funcUpdate():
 	form = FuncionarioForm()
 	if request.method == 'POST' and form.salvar.id == "salvar":

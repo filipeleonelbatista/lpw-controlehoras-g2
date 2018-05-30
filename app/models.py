@@ -15,6 +15,8 @@ class User(UserMixin, db.Model):
     matricula = db.Column(db.Integer, nullable=False, unique=True, index=True)
     is_admin = db.Column(db.Boolean)
     password_hash = db.Column(db.String(256))
+    binding_id = db.Column (db.Integer, db.ForeignKey('binding.id'),
+        nullable = False)
     #avatar_hash = db.Column(db.String(256))
     #talks = db.relationship('Talk', lazy='dynamic', backref='author')
 
@@ -47,6 +49,7 @@ class Client(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nameEmpresa = db.Column(db.String(64), nullable=False, index=True)
     clientCNPJ = db.Column(db.String(64), nullable=False, unique=True, index=True)
+    project = db.relationship( 'Project', backref = 'client', lazy = True)
     
 class Project(UserMixin, db.Model):
     print('Preparando para adicionar o project')
@@ -54,7 +57,12 @@ class Project(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     codProject = db.Column(db.Integer,nullable=False, unique=True, index=True)
     nameProject = db.Column(db.String(64), nullable=False, unique=True, index=True)
-    #colocar o id do cliente aqui
+    client_id = db.Column (db.Integer, db.ForeignKey('client.id'),
+        nullable = False)
+    binding_id = db.Column(db.Integer, db.ForeignKey('binding.id'),
+        nullable=False)
+    category = db.relationship('Binding',
+        backref=db.backref('project', lazy=True))
     descricao = db.Column(db.String(64))
     
 class Binding(UserMixin, db.Model):
@@ -62,8 +70,8 @@ class Binding(UserMixin, db.Model):
     __tablename__ = 'binding'
     id = db.Column(db.Integer, primary_key=True)
     codBinding = db.Column(db.Integer,nullable=False, unique=True, index=True)
-    #colocar o id do funcionario aqui
-    #colocar o id do projeto aqui
+    user = db.relationship( 'User', backref = 'user', lazy = True)
+
     is_coord = db.Column(db.Boolean)
 
 class Task(UserMixin, db.Model):

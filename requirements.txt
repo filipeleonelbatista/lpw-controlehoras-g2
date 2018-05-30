@@ -8,3 +8,4 @@ flask-wtf
 wtforms_components
 flask-login
 Flask-Datepicker
+blueprint

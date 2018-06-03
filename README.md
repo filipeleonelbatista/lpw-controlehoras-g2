@@ -49,4 +49,3 @@ entendo como tela de edição de usuário. Colocar o upload do avatar. No Base c
 quando clicar deve executar uma  função que derrube a sessão do usuário e mande pra tela inicial o  "/"
 
 ```
-

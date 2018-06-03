@@ -15,3 +15,4 @@ run:
 	python3 manage.py runserver
 
 .PHONY: init run clean-pyc
+	

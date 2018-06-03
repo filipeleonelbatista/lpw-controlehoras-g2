@@ -52,7 +52,6 @@ def projetos():
 @login_required
 def projectUpdate():
 	form = ProjetoForm()
-	print(request.args.get('update'))
 	if request.method == 'POST' and form.salvar.id == "salvar":
 		project = Project.query.filter_by(codProject=form.codProj.data).first_or_404()
 		if project:
@@ -69,3 +68,4 @@ def projectUpdate():
 
 	listTable=Project.query.all()
 	return render_template('admin/projetos.html', form=form, listTable=listTable)
+	

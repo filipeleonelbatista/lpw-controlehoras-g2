@@ -1,5 +1,5 @@
 from flask import render_template, redirect, request, url_for, flash
-from flask_table import Table
+from flask_login import login_required
 from .formsVinculacao import VincForm
 from . import admin
 from app import db
@@ -36,15 +36,42 @@ def vinculacao():
 			db.session.rollback()
 			flash('Registro falhou em apagar', 'danger')
 
-	# elif request.method == 'GET' and request.args.get('update'):
-	# 	binding = Binding.query.filter_by(idBinding=request.args.get('update')).first_or_404()
-	# 	form.codProj.data = binding.idBinding
-	# 	form.nomeProj.data = binding.nameProject	
-	# 	#form.selectClient.choices = [(client.id, client.nameEmpresa) for client in Client.getAllClient()]
-	# 	client=Client.getClientID(binding.client_id)
-	# 	form.selectClient.choices = [(client.id, client.nameEmpresa)]
-	# 	form.descrProj.data = binding.descricao
-	# 	return render_template('admin/editProject.html',form=form, action='projectUpdate')
+	elif request.method == 'GET' and request.args.get('update'):
+		binding = Binding.query.filter_by(idBinding=request.args.get('update')).first_or_404()
+		form.codVinc.data = binding.idBinding
+		
+		form.selectProj.choices = [(project.id, project.nameProject) for project in Project.getAllProject()]
+		form.selectProj.process_data(binding.project_id)
+		
+		form.selectFunc.choices = [(user.id, user.username) for user in User.getAllUsers()]
+		form.selectFunc.process_data(binding.users_id)
+
+		form.coordenador.data=binding.is_coord
+
+		return render_template('admin/editVinculacao.html',form=form, action='vinctUpdate')
 	
 	listTable=Binding.query.all()
 	return render_template('admin/vinculacao.html', form=form, listTable=listTable)
+
+@admin.route('/admin/vinctUpdate', methods=['GET', 'POST'])
+@login_required
+def vinctUpdate():
+	form = VincForm()
+	if request.method == 'POST' and form.salvar.id == "salvar":
+		binding = Binding.query.filter_by(idBinding=form.codVinc.data).first_or_404()
+		if binding:
+			binding.idBinding=form.codVinc.data 
+			binding.project_id=form.selectProj.data
+			binding.users_id=form.selectFunc.data
+			binding.is_coord=form.coordenador.data
+
+			try:
+				db.session.commit()
+				flash('Registro alterado com sucesso', 'info')
+			except:
+				db.session.rollback()
+				flash('Registro falhou em alterar', 'danger')
+
+	listTable=Binding.query.all()
+	return render_template('admin/vinculacao.html', form=form, listTable=listTable)
+	

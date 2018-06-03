@@ -12,10 +12,6 @@ def projetos():
 	form.selectClient.choices = [(client.id, client.nameEmpresa) for client in Client.getAllClient()]
 	
 	if request.method == 'POST' and form.salvar.id == "salvar":
-		print(form.codProj.data)
-		print(form.nomeProj.data)
-		print(form.descrProj.data)
-		print(form.selectClient.data)		
 		try:			
 			project = Project(
 				codProject=form.codProj.data, 
@@ -44,9 +40,8 @@ def projetos():
 		project = Project.query.filter_by(codProject=request.args.get('update')).first_or_404()
 		form.codProj.data = project.codProject
 		form.nomeProj.data = project.nameProject	
-		#form.selectClient.choices = [(client.id, client.nameEmpresa) for client in Client.getAllClient()]
-		client=Client.getClientID(project.client_id)
-		form.selectClient.choices = [(client.id, client.nameEmpresa)]
+		form.selectClient.choices = [(client.id, client.nameEmpresa) for client in Client.getAllClient()]
+		form.selectClient.process_data(project.client_id)
 		form.descrProj.data = project.descricao
 		return render_template('admin/editProject.html',form=form, action='projectUpdate')
 	
@@ -57,7 +52,6 @@ def projetos():
 @login_required
 def projectUpdate():
 	form = ProjetoForm()
-	print(request.args.get('update'))
 	if request.method == 'POST' and form.salvar.id == "salvar":
 		project = Project.query.filter_by(codProject=form.codProj.data).first_or_404()
 		if project:
@@ -74,3 +68,4 @@ def projectUpdate():
 
 	listTable=Project.query.all()
 	return render_template('admin/projetos.html', form=form, listTable=listTable)
+	

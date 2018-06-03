@@ -42,6 +42,9 @@ class User(UserMixin, db.Model, Base):
         hash = self.avatar_hash or hashlib.md5(self.email.encode('utf-8')).hexdigest()
         return "{url}/{hash}?s={size}&d={default}&r={rating}".format(url=url, hash=hash, size=size, default=default, rating=rating)
 
+    def getAllUsers():
+        return User.query.all()
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -71,12 +74,17 @@ class Project(UserMixin, db.Model, Base):
     descricao = db.Column(db.String(64))
     binding = relationship("Binding")
 
+    def getAllProject():
+        return Project.query.all()
+
 class Binding(UserMixin, db.Model, Base):
     print('Preparando para adicionar o binding')
     __tablename__ = 'binding'
     id = db.Column(db.Integer, primary_key=True)
+    idBinding = db.Column(db.Integer,nullable=False, unique=True, index=True)
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
     users_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    is_coord = db.Column(db.Boolean)
 
 class Task(UserMixin, db.Model):
     print('Preparando para adicionar o task')

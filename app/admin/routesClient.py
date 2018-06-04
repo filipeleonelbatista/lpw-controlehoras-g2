@@ -1,10 +1,12 @@
 from flask import render_template, redirect, request, url_for, flash
+from flask_login import login_required
 from .formsClient import ClientsForm
 from . import admin
 from app.models import Client
 from app import db
 
 @admin.route('/admin/clientes', methods=['GET', 'POST'])
+@login_required
 def clientes():
 	form = ClientsForm()
 	if request.method == 'POST' and form.salvar.id == "salvar":
@@ -40,6 +42,7 @@ def clientes():
 	return render_template('admin/clientes.html', form=form, listTable=listTable)
 
 @admin.route('/admin/clientUpdate', methods=['GET', 'POST'])
+@login_required
 def clientUpdate():
 	form = ClientsForm()
 	print(request.args.get('update'))

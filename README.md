@@ -1,3 +1,18 @@
+## for Linux
+```
+01. [criar pasta]
+02. [entrar na pasta - cd pasta]
+03. [instalar - python3 -m venv venv]
+04. [ativar a virtualização - . venv/bin/activate]
+05. [ciar arquivo de dependencia - requirements.txt]
+06. [instalar dependencias - pip install -r requirements.txt]
+07. [inicializar o banco de dados - python3 manage.py db init]
+08. [criar a migração - python3 manage.py db migrate]
+09. [atualizar a migração - python3 manage.py db upgrade]
+10. [criar o primeiro usuario para administrar o sistema - python3 manage.py adduser 123 admin]
+11. [executar o sistema - python3 manage.py runserver]
+
+```
 ## install packege
 pip3 install -r requirements.txt
 
@@ -49,4 +64,3 @@ entendo como tela de edição de usuário. Colocar o upload do avatar. No Base c
 quando clicar deve executar uma  função que derrube a sessão do usuário e mande pra tela inicial o  "/"
 
 ```
-

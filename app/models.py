@@ -6,8 +6,12 @@ from flask import request
 from . import db, login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
 
-class User(UserMixin, db.Model):
+Base = declarative_base()
+
+class User(UserMixin, db.Model, Base):
     print('Preparando para adicionar o funcionarios')
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
@@ -15,6 +19,7 @@ class User(UserMixin, db.Model):
     matricula = db.Column(db.Integer, nullable=False, unique=True, index=True)
     is_admin = db.Column(db.Boolean)
     password_hash = db.Column(db.String(256))
+    binding = relationship("Binding")
     #avatar_hash = db.Column(db.String(256))
     #talks = db.relationship('Talk', lazy='dynamic', backref='author')
 
@@ -37,6 +42,9 @@ class User(UserMixin, db.Model):
         hash = self.avatar_hash or hashlib.md5(self.email.encode('utf-8')).hexdigest()
         return "{url}/{hash}?s={size}&d={default}&r={rating}".format(url=url, hash=hash, size=size, default=default, rating=rating)
 
+    def getAllUsers():
+        return User.query.all()
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -44,26 +52,38 @@ def load_user(user_id):
 class Client(UserMixin, db.Model):
     print('Preparando para adicionar o cliente')
     __tablename__ = 'client'
-    id = db.Column(db.Integer, primary_key=True)    
+    id = db.Column(db.Integer, primary_key=True)
     nameEmpresa = db.Column(db.String(64), nullable=False, index=True)
     clientCNPJ = db.Column(db.String(64), nullable=False, unique=True, index=True)
+    project = db.relationship( 'Project', backref = 'client', lazy = True)
     
-class Project(UserMixin, db.Model):
+    def getAllClient():
+        return Client.query.all()
+
+    def getClientID(client_id):
+        return Client.query.get(int(client_id))
+    
+class Project(UserMixin, db.Model, Base):
     print('Preparando para adicionar o project')
     __tablename__ = 'project'
     id = db.Column(db.Integer, primary_key=True)
-    codProject = db.Column(db.Integer)
+    codProject = db.Column(db.Integer,nullable=False, unique=True, index=True)
     nameProject = db.Column(db.String(64), nullable=False, unique=True, index=True)
-    #colocar o id do cliente aqui
+    client_id = db.Column (db.Integer, db.ForeignKey('client.id'),
+        nullable = False)
     descricao = db.Column(db.String(64))
-    
-class Binding(UserMixin, db.Model):
+    binding = relationship("Binding")
+
+    def getAllProject():
+        return Project.query.all()
+
+class Binding(UserMixin, db.Model, Base):
     print('Preparando para adicionar o binding')
     __tablename__ = 'binding'
     id = db.Column(db.Integer, primary_key=True)
-    codBinding = db.Column(db.Integer)
-    #colocar o id do funcionario aqui
-    #colocar o id do projeto aqui
+    idBinding = db.Column(db.Integer,nullable=False, unique=True, index=True)
+    project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
+    users_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     is_coord = db.Column(db.Boolean)
 
 class Task(UserMixin, db.Model):

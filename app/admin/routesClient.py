@@ -9,7 +9,7 @@ from app import db
 @login_required
 def clientes():
 	form = ClientsForm()
-	if request.method == 'POST' and form.salvar.id == "salvar":
+	if request.method == 'POST' and form.salvar.data == True:
 		try:
 			print(form.cnpj.data)
 			print(form.nome.data)
@@ -45,8 +45,7 @@ def clientes():
 @login_required
 def clientUpdate():
 	form = ClientsForm()
-	print(request.args.get('update'))
-	if request.method == 'POST' and form.salvar.id == "salvar":
+	if request.method == 'POST' and form.salvar.data == True:
 		client = Client.query.filter_by(clientCNPJ=form.cnpj.data).first_or_404()
 		if client:
 			client.cnpj = form.cnpj.data

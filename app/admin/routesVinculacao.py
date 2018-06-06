@@ -11,7 +11,7 @@ def vinculacao():
 	form.selectFunc.choices = [(user.id, user.username) for user in User.getAllUsers()]
 	form.selectProj.choices = [(project.id, project.nameProject) for project in Project.getAllProject()]
 
-	if request.method == 'POST' and form.salvar.id == "salvar":
+	if request.method == 'POST' and form.salvar.data == True:
 		try:			
 			binding = Binding(
 				idBinding=form.codVinc.data, 
@@ -57,7 +57,7 @@ def vinculacao():
 @login_required
 def vinctUpdate():
 	form = VincForm()
-	if request.method == 'POST' and form.salvar.id == "salvar":
+	if request.method == 'POST' and form.salvar.data == True:
 		binding = Binding.query.filter_by(idBinding=form.codVinc.data).first_or_404()
 		if binding:
 			binding.idBinding=form.codVinc.data 

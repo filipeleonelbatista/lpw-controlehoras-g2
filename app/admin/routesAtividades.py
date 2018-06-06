@@ -9,7 +9,7 @@ from app import db
 @login_required
 def atividades():
 	form = AtividadeForm()
-	if request.method == 'POST' and form.salvar.id == "salvar":
+	if request.method == 'POST' and form.salvar.data == True:
 		try:
 			print(form.idAtividade.data)
 			print(form.descricao.data)
@@ -45,8 +45,7 @@ def atividades():
 def atividUpdate():
 	print('Fazer update')
 	form = AtividadeForm()
-	print(request.args.get('update'))
-	if request.method == 'POST' and form.salvar.id == "salvar":
+	if request.method == 'POST' and form.salvar.data == True:
 		atividade = Task.query.filter_by(codTask=form.idAtividade.data).first_or_404()
 		if atividade:
 			atividade.idAtividade = form.idAtividade.data

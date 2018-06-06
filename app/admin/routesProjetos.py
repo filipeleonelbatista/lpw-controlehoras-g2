@@ -11,7 +11,7 @@ def projetos():
 	form = ProjetoForm()
 	form.selectClient.choices = [(client.id, client.nameEmpresa) for client in Client.getAllClient()]
 	
-	if request.method == 'POST' and form.salvar.id == "salvar":
+	if request.method == 'POST' and form.salvar.data == True:
 		try:			
 			project = Project(
 				codProject=form.codProj.data, 
@@ -52,7 +52,7 @@ def projetos():
 @login_required
 def projectUpdate():
 	form = ProjetoForm()
-	if request.method == 'POST' and form.salvar.id == "salvar":
+	if request.method == 'POST' and form.salvar.data == True:
 		project = Project.query.filter_by(codProject=form.codProj.data).first_or_404()
 		if project:
 			project.codProject = form.codProj.data

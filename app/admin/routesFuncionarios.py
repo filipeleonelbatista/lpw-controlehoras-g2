@@ -43,7 +43,7 @@ def funcionarios():
 @login_required
 def funcUpdate():
 	form = FuncionarioForm()
-	if request.method == 'POST' and form.salvar.id == "salvar":
+	if request.method == 'POST' and form.salvar.data == True:
 		user = User.query.filter_by(matricula=form.matricula.data).first_or_404()
 		if user:
 			user.username = form.nome.data

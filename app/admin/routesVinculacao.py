@@ -57,7 +57,7 @@ def vinculacao():
 @login_required
 def vinctUpdate():
 	form = VincForm()
-	if request.method == 'POST' and form.salvar.id == "salvar":
+	if request.method == 'POST' and form.salvar.data == True:
 		binding = Binding.query.filter_by(idBinding=form.codVinc.data).first_or_404()
 		if binding:
 			binding.idBinding=form.codVinc.data 

@@ -52,7 +52,7 @@ def projetos():
 @login_required
 def projectUpdate():
 	form = ProjetoForm()
-	if request.method == 'POST' and form.salvar.id == "salvar":
+	if request.method == 'POST' and form.salvar.data == True:
 		project = Project.query.filter_by(codProject=form.codProj.data).first_or_404()
 		if project:
 			project.codProject = form.codProj.data

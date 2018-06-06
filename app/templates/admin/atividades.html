@@ -27,27 +27,25 @@
             </tr>
         </thead>
         <tbody>
-            {% for item in listTable %}
-                <tr>
-                    <th scope="row">{{ loop.index }}</th>
-                    <td>{{ item.codTask }}</td>
-                    <td>{{ item.descricao }}</td>
-                    <td>
-                        <form action="atividades" method="GET">
+            <form action="funcionarios" method="GET">
+                {% for item in listTable %}
+                    <tr>
+                        <th scope="row">{{ loop.index }}</th>
+                        <td>{{ item.codTask }}</td>
+                        <td>{{ item.descricao }}</td>
+                        <td>
                             <button class="btn btn-default" type="submit" name="update" value={{ item.codTask }}>
                             <a href="#"><span class="glyphicon glyphicon-pencil" style="color:green" aria-hidden="true">
                             </span></a>
                             </button>
-                        </form>
-                        <form action="atividades" method="GET">
                             <button class="btn btn-default" type="submit" name="delete" value={{ item.codTask }}>
                             <a href="#"><span class="glyphicon glyphicon-trash" style="color:red" aria-hidden="true">
                             </span></a>
                             </button>
-                        </form>
-                    </td>
-                </tr>
-            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </form>
         </tbody>
     </table>
 </div>

@@ -9,7 +9,7 @@ from app import db
 @login_required
 def clientes():
 	form = ClientsForm()
-	if request.method == 'POST' and form.salvar.id == "salvar":
+	if request.method == 'POST' and form.salvar.data == True:
 		try:
 			print(form.cnpj.data)
 			print(form.nome.data)

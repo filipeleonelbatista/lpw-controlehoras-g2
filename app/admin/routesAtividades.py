@@ -9,7 +9,7 @@ from app import db
 @login_required
 def atividades():
 	form = AtividadeForm()
-	if request.method == 'POST' and form.salvar.id == "salvar":
+	if request.method == 'POST' and form.salvar.data == True:
 		try:
 			print(form.idAtividade.data)
 			print(form.descricao.data)

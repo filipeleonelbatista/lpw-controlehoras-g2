@@ -1,0 +1,92 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Apropriação de Horas{% endblock %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Sistema CadHoras</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true" style="">
+          <ul class="nav navbar-nav">
+            
+                {% if current_user.is_authenticated %}
+        <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cadastros <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                        <li><a href="/admin/projetos">Projetos</a></li>
+                        <li><a href="/admin/clientes">Clientes</a></li>
+                        <li><a href="/admin/funcionarios">Funcionarios</a></li>
+                        <li><a href="/admin/vinculacao">Funcionarios x Projetos</a></li>
+                        <li><a href="/admin/atividades">Atividades</a></li>
+                </ul>
+                </li>
+                <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lançamentos <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                                <li><a href="/lancamentos">Horas Trabalhadas</a></li>
+                        </ul>
+                </li>
+                <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Relatórios <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                                <li><a href="/dashaboard/horastrabalhadas">Minhas Horas Trabalhadas</a></li>
+                                <li><a href="/dashaboard/horasxprojeto">Horas x Projeto</a></li>
+                                <li><a href="/dashaboard">***RELATORIOS***</a></li>
+                        </ul>
+                </li>
+                <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Suporte <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                                <li><a href="/perfil">Alterar senha</a></li>
+                                <li><a href="/logout">Sair</a></li>
+                        </ul>
+                </li>
+
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Bem Vindo, {{ current_user.username }}</a></li>
+                        </ul>
+     
+             {% endif %}
+
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+{% endblock %}
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning">
+    <button type="button" class="close" data-dismiss="alert">x</button>
+    {{ message }}
+</div>
+{% endfor %}
+
+{% block content %}
+
+<div class="container">
+        <div class="panel panel-default">
+                <div class="panel-body">
+                  {% block page_content %}{% endblock %}  
+                </div>
+        </div>   
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block page_content %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+                <!-- <strong>Title</strong> --> {{ message }}
+                <br>
+                <form action="funcionarios" method="GET">
+                    <input type="submit" value="Close">
+                </form>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<div class="panel panel-default">
+    <div class="panel-heading">Lista de funcionarios</div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Matricula</th>
+                <th>Nome</th>
+                <th>Cargo</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <form action="funcionarios" method="GET">
+                {% for item in listTable %}
+                    <tr>
+                        <th scope="row">{{ loop.index }}</th>
+                        <td>{{ item.matricula }}</td>
+                        <td>{{ item.username }}</td>
+                        <td>{% if item.is_admin %}
+                            <div class="btn btn-sm btn-outline-success">
+                                    Admimnistrador
+                            </div>
+                                {% else %}
+                                <div class="btn btn-sm btn-outline-primary">
+                                        Usuário
+                                </div>
+                                {% endif %}
+
+                        </td>
+                        <td>
+                            <button class="btn btn-default" type="submit" name="update" value={{ item.matricula }}>
+                            <a href="#"><span class="glyphicon glyphicon-pencil" style="color:green" aria-hidden="true">
+                            </span></a>
+                            </button>
+                            <button class="btn btn-default" type="submit" name="delete" value={{ item.matricula }}>
+                            <a href="#"><span class="glyphicon glyphicon-trash" style="color:red" aria-hidden="true">
+                            </span></a>
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </form>
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <button onclick="document.getElementById('cadProj').style.display='block'" class="btn btn-success">Cadastrar funcionario</button>
+    <form action = "{{ request.path }}" method = "POST">
+        <div id="cadProj" class="modal">
+            <div class="modal-content">
+                <div class="container">
+                    <div class="col-xs-10">
+                        <h4>Nome do Funcionário </h4>
+                        {{ form.nome(class_="form-control") }}
+                        <h4>Matricula </h4>
+                        {{ form.matricula(class_="form-control") }}
+                        <h4>Senha </h4>
+                        {{ form.password(class_="form-control") }}
+                        <h4> </h4>
+                        {{ form.admin }}
+                        é Admimnistrador?
+                        <h4> </h4>
+                        {{ form.salvar(class_="btn btn-success") }}
+                        {{ form.cancelar(class_="btn btn-danger") }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

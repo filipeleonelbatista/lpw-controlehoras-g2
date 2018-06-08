@@ -56,7 +56,4 @@ def atividUpdate():
 			except:
 				db.session.rollback()
 				flash('Registro falhou em alterar', 'danger')
-
-	listTable=Task.query.all()
-	return render_template('admin/atividades.html', form=form, listTable=listTable)
-	
+	return redirect(url_for('.atividades'))

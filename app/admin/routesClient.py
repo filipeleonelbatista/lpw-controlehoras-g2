@@ -56,6 +56,4 @@ def clientUpdate():
 			except:
 				db.session.rollback()
 				flash('Registro falhou em alterar', 'danger')
-
-	listTable=Client.query.all()
-	return render_template('admin/clientes.html', form=form, listTable=listTable)
+	return redirect(url_for('.clientes'))

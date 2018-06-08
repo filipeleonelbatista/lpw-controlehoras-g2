@@ -71,7 +71,4 @@ def vinctUpdate():
 			except:
 				db.session.rollback()
 				flash('Registro falhou em alterar', 'danger')
-
-	listTable=Binding.query.all()
-	return render_template('admin/vinculacao.html', form=form, listTable=listTable)
-	
+	return redirect(url_for('.vinculacao'))

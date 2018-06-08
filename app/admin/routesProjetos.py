@@ -49,7 +49,6 @@ def projetos():
 	return render_template('admin/projetos.html', form=form, listTable=listTable)
 
 @admin.route('/admin/projectUpdate', methods=['GET', 'POST'])
-@login_required
 def projectUpdate():
 	form = ProjetoForm()
 	if request.method == 'POST' and form.salvar.data == True:
@@ -65,7 +64,4 @@ def projectUpdate():
 			except:
 				db.session.rollback()
 				flash('Registro falhou em alterar', 'danger')
-
-	listTable=Project.query.all()
-	return render_template('admin/projetos.html', form=form, listTable=listTable)
-	
+	return redirect(url_for('.projetos'))

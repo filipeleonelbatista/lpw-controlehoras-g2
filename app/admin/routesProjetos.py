@@ -46,6 +46,7 @@ def projetos():
 		return render_template('admin/editProject.html',form=form, action='projectUpdate')
 	
 	listTable=Project.query.all()
+	
 	return render_template('admin/projetos.html', form=form, listTable=listTable)
 
 @admin.route('/admin/projectUpdate', methods=['GET', 'POST'])

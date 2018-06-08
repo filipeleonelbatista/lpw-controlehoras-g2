@@ -12,9 +12,9 @@ def vinculacao():
 	form.selectProj.choices = [(project.id, project.nameProject) for project in Project.getAllProject()]
 
 	if request.method == 'POST' and form.salvar.data == True:
-		try:			
+		try:
 			binding = Binding(
-				idBinding=form.codVinc.data, 
+				idBinding=form.codVinc.data,
 				project_id=form.selectProj.data,
 				users_id=form.selectFunc.data,
 				is_coord=form.coordenador.data
@@ -39,17 +39,13 @@ def vinculacao():
 	elif request.method == 'GET' and request.args.get('update'):
 		binding = Binding.query.filter_by(idBinding=request.args.get('update')).first_or_404()
 		form.codVinc.data = binding.idBinding
-		
 		form.selectProj.choices = [(project.id, project.nameProject) for project in Project.getAllProject()]
 		form.selectProj.process_data(binding.project_id)
-		
 		form.selectFunc.choices = [(user.id, user.username) for user in User.getAllUsers()]
 		form.selectFunc.process_data(binding.users_id)
-
 		form.coordenador.data=binding.is_coord
-
 		return render_template('admin/editVinculacao.html',form=form, action='vinctUpdate')
-	
+
 	listTable=Binding.query.all()
 	return render_template('admin/vinculacao.html', form=form, listTable=listTable)
 
@@ -64,7 +60,6 @@ def vinctUpdate():
 			binding.project_id=form.selectProj.data
 			binding.users_id=form.selectFunc.data
 			binding.is_coord=form.coordenador.data
-
 			try:
 				db.session.commit()
 				flash('Registro alterado com sucesso', 'info')

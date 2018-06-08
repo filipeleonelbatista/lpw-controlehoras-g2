@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block page_content %}
+        <form action = {{ action }} method = "POST">
+                <h4>ID Projeto </h4>
+                {{ form.codProj(class_="form-control") }}
+                <h4>Nome do projeto </h4>
+                {{ form.nomeProj(class_="form-control") }}
+                <h4>Selecione Cliente </h4>
+                {{ form.selectClient(class_="form-control") }}
+                <h4>Descrição </h4>
+                {{ form.descrProj(class_="form-control") }}
+                <h4> </h4>
+                {{ form.salvar(class_="btn btn-success") }}
+                {{ form.cancelar(class_="btn btn-danger") }}
+        </form>
+{% endblock %}

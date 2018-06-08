@@ -56,6 +56,4 @@ def funcUpdate():
 			except:
 				db.session.rollback()
 				flash('Registro falhou em alterar', 'danger')
-
-	listTable=User.query.all()
-	return render_template('admin/funcionarios.html', form=form, listTable=listTable)
+	return redirect(url_for('.funcionarios'))

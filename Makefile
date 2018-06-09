@@ -1,9 +1,8 @@
 install:
-	python3 -m venv venv
-	virtualenv venv
+	virtualenv -p python3 venv
 
 init:
-	pip3 install -r requirements.txt
+	pip install -r requirements.txt
 
 clean-pyc:
 	@echo "Limpando o projeto"

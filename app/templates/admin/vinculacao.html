@@ -33,8 +33,8 @@
                     <tr>
                         <th scope="row">{{ loop.index }}</th>
                         <td>{{ item.idBinding }}</td>
-                        <td>{{ item.project_id }}</td>
-                        <td>{{ item.users_id }}</td>
+                        <td>{{ item.project.nameProject }}</td>
+                        <td>{{ item.users.username }}</td>
                         <td>
                             <button class="btn btn-default" type="submit" name="update" value={{ item.idBinding }}>
                             <a href="#"><span class="glyphicon glyphicon-pencil" style="color:green" aria-hidden="true">

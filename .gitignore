@@ -168,5 +168,10 @@ venv.bak/
 
 # SQLITE
 .sqlite
+*.sqlite
+data-dev.sqlite
+
+#migrations
+migrations/
 
 # End of https://www.gitignore.io/api/python,pycharm

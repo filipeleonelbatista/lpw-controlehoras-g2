@@ -16,3 +16,15 @@ class ProjetoForm(FlaskForm):
 		super(ProjetoForm, self).__init__(*args, **kwargs)
 		self.selectClient.choices = [(a.id, a.nameEmpresa) 
 		for a in Client.query.order_by(Client.nameEmpresa)]
+
+	def validacao(__self__, form):
+		if form.codProj.data == '' or form.nomeProj.data == '':
+			print('Algum campo vazio!')
+			return True
+		return False
+
+	def validInteger(__self__, codProj):
+		if type(codProj) == int:
+			print('number')
+			return False
+		return True

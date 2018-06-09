@@ -9,3 +9,16 @@ class FuncionarioForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired(), Length(min=3, max=64)])
     salvar = SubmitField('Cadastrar')
     cancelar = SubmitField('Cancelar')
+
+    def validacao(__self__, form):
+    	print('password ' + form.password.data)
+    	if form.nome.data == '' or form.password.data == '':
+    		print('Algum campo vazio!')
+    		return True
+    	return False
+
+    def validInteger(__self__, matricula):
+    	if type(matricula) == int:
+    		print('number')
+    		return False
+    	return True

@@ -169,6 +169,7 @@ venv.bak/
 # SQLITE
 .sqlite
 *.sqlite
+data-dev.*
 
 #migrations
 migrations/

@@ -1,0 +1,12 @@
+/
+/admin/projetos
+/admin/clientes
+/admin/funcionarios
+/admin/atividades
+/lancamentos
+/relatorios/horastrabalhadas
+/relatorios/horasxprojeto
+/relatorios
+/perfil
+/logout
+

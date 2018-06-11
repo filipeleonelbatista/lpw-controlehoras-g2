@@ -11,7 +11,10 @@ def projetos():
 	form = ProjetoForm()
 	form.selectClient.choices = [(client.id, client.nameEmpresa) for client in Client.getAllClient()]
 	
-	if request.method == 'POST' and form.salvar.data == True:
+	if form.cancelar.data == True:
+            flash('Registro nao foi salvo', 'warning')
+	
+	elif request.method == 'POST' and form.salvar.data == True:
 		try:			
 			project = Project(
 				codProject=form.codProj.data, 

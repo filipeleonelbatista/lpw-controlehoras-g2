@@ -19,7 +19,7 @@ class User(UserMixin, db.Model, Base):
     matricula = db.Column(db.Integer, nullable=False, unique=True, index=True)
     is_admin = db.Column(db.Boolean)
     password_hash = db.Column(db.String(256))
-    binding = relationship("Binding")
+    binding = db.relationship( 'Binding', backref = 'users', lazy = True)
     #avatar_hash = db.Column(db.String(256))
     #talks = db.relationship('Talk', lazy='dynamic', backref='author')
 
@@ -72,7 +72,7 @@ class Project(UserMixin, db.Model, Base):
     client_id = db.Column (db.Integer, db.ForeignKey('client.id'),
         nullable = False)
     descricao = db.Column(db.String(64))
-    binding = relationship("Binding")
+    binding = db.relationship( 'Binding', backref = 'project', lazy = True)
 
     def getAllProject():
         return Project.query.all()

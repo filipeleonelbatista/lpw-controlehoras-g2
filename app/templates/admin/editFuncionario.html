@@ -3,16 +3,18 @@
 {% block page_content %}
     <form action = {{ action }} method = "POST">
         <h4>Nome do Funcionário </h4>
-        {{ form.nome(class_="form-control") }}
+        {{ form.nome(required="required", class_="form-control") }}
         <h4>Matricula </h4>
-        {{ form.matricula(class_="form-control") }}
+        {{ form.matricula(required="required", class_="form-control") }}
         <h4>Senha </h4>
-        {{ form.password(class_="form-control") }}
+        {{ form.password(required="required", class_="form-control") }}
         <h4> </h4>
         {{ form.admin }}
         é Admimnistrador?
         <h4> </h4>
         {{ form.salvar(class_="btn btn-success") }}
-        {{ form.cancelar(class_="btn btn-danger") }}
+        {{ form.cancelar(formnovalidate="formnovalidate", class_="btn btn-danger") }}
+        
+        </div>
     </form>
 {% endblock %}

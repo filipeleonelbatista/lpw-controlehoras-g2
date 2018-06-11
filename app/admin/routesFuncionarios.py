@@ -9,7 +9,10 @@ from app import db
 @login_required
 def funcionarios():
 	form = FuncionarioForm()
-	if request.method == 'POST' and form.salvar.data == True:
+	if form.cancelar.data == True:
+            flash('Registro nao foi salvo', 'warning')
+	
+	elif request.method == 'POST' and form.salvar.data == True:
 		try:
 			user = User(matricula=form.matricula.data, username=form.nome.data, password=form.password.data, is_admin=form.admin.data)
 			db.session.add(user)
@@ -49,7 +52,7 @@ def funcUpdate():
 			user.username = form.nome.data
 			user.matricula = form.matricula.data
 			user.is_admin = form.admin.data
-			user.password_hash = form.password.data
+			user.password_hash=user.password(form.password.data)
 			try:
 				db.session.commit()
 				flash('Registro alterado com sucesso', 'info')

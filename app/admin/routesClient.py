@@ -9,7 +9,10 @@ from app import db
 @login_required
 def clientes():
 	form = ClientsForm()
-	if request.method == 'POST' and form.salvar.data == True:
+	if form.cancelar.data == True:
+            flash('Registro nao foi salvo', 'warning')
+	
+	elif request.method == 'POST' and form.salvar.data == True:
 		try:
 			print(form.cnpj.data)
 			print(form.nome.data)

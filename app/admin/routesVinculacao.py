@@ -11,7 +11,10 @@ def vinculacao():
 	form.selectFunc.choices = [(user.id, user.username) for user in User.getAllUsers()]
 	form.selectProj.choices = [(project.id, project.nameProject) for project in Project.getAllProject()]
 
-	if request.method == 'POST' and form.salvar.data == True:
+	if form.cancelar.data == True:
+            flash('Registro nao foi salvo', 'warning')
+	
+	elif request.method == 'POST' and form.salvar.data == True:
 		try:			
 			binding = Binding(
 				idBinding=form.codVinc.data, 

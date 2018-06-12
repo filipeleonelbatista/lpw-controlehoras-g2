@@ -57,12 +57,12 @@
                 <div class="container">
                     <div class="col-xs-10">
                         <h4>CNPJ/CPF Cliente </h4>
-                        {{ form.cnpj(class_="form-control") }}
+                        {{ form.cnpj(required="required", class_="form-control") }}
                         <h4>Nome do Cliente </h4>
-                        {{ form.nome(class_="form-control") }}
+                        {{ form.nome(required="required", class_="form-control") }}
                         <h4> </h4>
                         {{ form.salvar(class_="btn btn-success") }}
-                        {{ form.cancelar(class_="btn btn-danger") }}
+                        {{ form.cancelar(formnovalidate="formnovalidate", class_="btn btn-danger") }}
                     </div>
                 </div>
             </div>

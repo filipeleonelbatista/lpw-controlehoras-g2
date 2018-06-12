@@ -92,3 +92,6 @@ class Task(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     codTask = db.Column(db.Integer, nullable=False, unique=True, index=True)
     descricao = db.Column(db.String(64))
+
+    def getAllTask():
+        return Task.query.all()

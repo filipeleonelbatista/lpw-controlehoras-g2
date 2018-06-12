@@ -9,3 +9,14 @@ class VincForm(FlaskForm):
     coordenador = BooleanField('Coordenador')
     salvar = SubmitField('Cadastrar')
     cancelar = SubmitField('Cancelar')
+
+    def validacao(__self__, form):
+    	if form.codVinc.data == '':
+    		return True
+    	return False
+
+    def validInteger(__self__, codVinc):
+    	if type(codVinc) == int:
+    		print('number')
+    		return False
+    	return True

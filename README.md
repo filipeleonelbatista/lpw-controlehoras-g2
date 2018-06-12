@@ -34,9 +34,17 @@ Fariamos alguns graficos para apresentar com os relatórios das telas de relató
 /
 Precisa criar o aviso de usuário invalido.
 
-/admin 
-esta acessivel por URL para qualquer tipo de usuario. 
-colocar alguma diretiva is admin required
+/admin/projetos
+Testar o permissionamento, somente quem tiver o codigo de administrador pode abrir esta pagina
+
+/admin/clientes
+Testar o permissionamento, somente quem tiver o codigo de administrador pode abrir esta pagina
+
+/admin/funcionarios
+Testar novamente o cadastro do funcionario. Está funcionando o delete, falta o update.
+
+/admin/atividades
+Testar o permissionamento, somente quem tiver o codigo de administrador pode abrir esta pagina
 
 /lancamentos
 Impedir que o contador inicie direto ao abrir a pagina. ao clicar em iniciar ele grava a hora no banco em uma tabela reserva e depois quando clicar em terminar ele grava a data e hora de inicio e final. apresentando uma janela para selecionar o projeto e atividade.
@@ -51,5 +59,8 @@ Ter um selecionador dos projetos do usuario ativo e filtrar as horas por projeto
 
 /perfil
 entendo como tela de edição de usuário. Colocar o upload do avatar. No Base colocar a foto de perfil.
+
+/logout
+quando clicar deve executar uma  função que derrube a sessão do usuário e mande pra tela inicial o  "/"
 
 ```

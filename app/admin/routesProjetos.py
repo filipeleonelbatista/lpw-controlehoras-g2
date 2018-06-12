@@ -11,60 +11,74 @@ def projetos():
 	form = ProjetoForm()
 	form.selectClient.choices = [(client.id, client.nameEmpresa) for client in Client.getAllClient()]
 	
-	if form.cancelar.data == True:
-            flash('Registro nao foi salvo', 'warning')
-	
-	elif request.method == 'POST' and form.salvar.data == True:
-		try:			
-			project = Project(
-				codProject=form.codProj.data, 
-				nameProject=form.nomeProj.data,
-				client_id=form.selectClient.data,
-				descricao=form.descrProj.data
-				)
-			db.session.add(project)
-			db.session.commit()
-			flash('Registrado com sucesso', 'success')
+	if request.method == 'POST' and form.salvar.data == True:
+		try:
+			if form.validacao(form):
+				flash('Falta preenchar um campo!', 'danger')
+			elif form.validInteger(form.codProj.data):
+				flash('ID do projeto deve ser composto de somente numeros!', 'danger')
+			else:
+				project = Project(
+					codProject=form.codProj.data,
+					nameProject=form.nomeProj.data,
+					client_id=form.selectClient.data,
+					descricao=form.descrProj.data
+					)
+				db.session.add(project)
+				db.session.commit()
+				flash('Registrado com sucesso', 'success')
 		except:
 			db.session.rollback()
 			flash('Registro falhou na adição', 'danger')
 
 	elif request.method == 'GET' and request.args.get('delete'):
 		try:
-			project = Project.query.filter_by(codProject=request.args.get('delete')).first_or_404()
-			db.session.delete(project)
-			db.session.commit()
-			flash('Registro apagado com sucesso', 'danger')
+			if request.args.get('delete') == '':
+				flash('Falta o ID do projeto!', 'danger')
+			else:
+				project = Project.query.filter_by(codProject=request.args.get('delete')).first_or_404()
+				db.session.delete(project)
+				db.session.commit()
+				flash('Registro apagado com sucesso', 'danger')
 		except:
 			db.session.rollback()
 			flash('Registro falhou em apagar', 'danger')
 
 	elif request.method == 'GET' and request.args.get('update'):
-		project = Project.query.filter_by(codProject=request.args.get('update')).first_or_404()
-		form.codProj.data = project.codProject
-		form.nomeProj.data = project.nameProject	
-		form.selectClient.choices = [(client.id, client.nameEmpresa) for client in Client.getAllClient()]
-		form.selectClient.process_data(project.client_id)
-		form.descrProj.data = project.descricao
-		return render_template('admin/editProject.html',form=form, action='projectUpdate')
+		if request.args.get('update') == '':
+			flash('Falta o ID do projeto!', 'danger')
+		else:
+			project = Project.query.filter_by(codProject=request.args.get('update')).first_or_404()
+			form.codProj.data = project.codProject
+			form.nomeProj.data = project.nameProject
+			form.selectClient.choices = [(client.id, client.nameEmpresa) for client in Client.getAllClient()]
+			form.selectClient.process_data(project.client_id)
+			form.descrProj.data = project.descricao
+			return render_template('admin/editProject.html',form=form, action='projectUpdate')
 	
 	listTable=Project.query.all()
 	return render_template('admin/projetos.html', form=form, listTable=listTable)
 
 @admin.route('/admin/projectUpdate', methods=['GET', 'POST'])
+@login_required
 def projectUpdate():
 	form = ProjetoForm()
 	if request.method == 'POST' and form.salvar.data == True:
-		project = Project.query.filter_by(codProject=form.codProj.data).first_or_404()
-		if project:
-			project.codProject = form.codProj.data
-			project.nameProject = form.nomeProj.data
-			project.client_id = form.selectClient.data
-			project.descricao = form.descrProj.data
-			try:
-				db.session.commit()
-				flash('Registro alterado com sucesso', 'info')
-			except:
-				db.session.rollback()
-				flash('Registro falhou em alterar', 'danger')
+		if form.validacao(form):
+			flash('Falta preenchar um campo!', 'danger')
+		elif form.validInteger(form.codProj.data):
+			flash('ID do projeto deve ser composto de somente numeros!', 'danger')
+		else:
+			project = Project.query.filter_by(codProject=form.codProj.data).first_or_404()
+			if project:
+				project.codProject = form.codProj.data
+				project.nameProject = form.nomeProj.data
+				project.client_id = form.selectClient.data
+				project.descricao = form.descrProj.data
+				try:
+					db.session.commit()
+					flash('Registro alterado com sucesso', 'info')
+				except:
+					db.session.rollback()
+					flash('Registro falhou em alterar', 'danger')
 	return redirect(url_for('.projetos'))

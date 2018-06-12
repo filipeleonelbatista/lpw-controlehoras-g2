@@ -39,12 +39,8 @@
                 
 
           <label for="sel1">Atividade **Não é do form** </label>
-          <select class="form-control " id="sel1">
-            <option>Projeto 1</option>
-            <option>Projeto 2</option>
-            <option>Projeto 3</option>
-            <option>Projeto 4</option>
-          </select>
+          {{ form.selectAtividade(required="required", class_="form-control") }}
+          
 
 
           <label for="sel1"></label>

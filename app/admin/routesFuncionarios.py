@@ -1,5 +1,6 @@
 from flask import render_template, redirect, request, url_for, flash
 from flask_login import login_required
+from werkzeug.security import generate_password_hash
 from .formsFuncionarios import FuncionarioForm
 from . import admin
 from app.models import User
@@ -65,8 +66,9 @@ def funcUpdate():
 				user.username = form.nome.data
 				user.matricula = form.matricula.data
 				user.is_admin = form.admin.data
-				user.password_hash = form.password.data
+				user.password_hash = generate_password_hash(form.password.data)
 				try:
+					db.session.add(user)
 					db.session.commit()
 					flash('Registro alterado com sucesso', 'info')
 				except:

@@ -12,38 +12,38 @@
   <div class="col-xs-6">
       <div class="form-group">
          
-        <label for="sel1">Projetos **Não é do form**</label>
+        <label for="sel1">Projetos</label>
         {{ form.selectProjeto(required="required", class_="form-control") }}
 
             <form class="verticalform">
                 <label>Data Inicio</label>  
               <div class="input-group">
-                  {{ form.dtInicio(class_="form-control dp") }}
+                  {{ form.dtInicio(required="required", class_="form-control dp") }}
                     <spam class="input-group-addon glyphicon glyphicon-calendar"></spam>
                   </div>
                 </form>
 
                     <label>Hora Inicio</label> 
-                    {{ form.hrInicio(class_="form-control") }}
+                    {{ form.hrInicio(required="required", class_="form-control") }}
             
             <form class="verticalform">
               <label>Data Fim</label>  
             <div class="input-group">
-                {{ form.dtFim(class_="form-control dp") }}
+                {{ form.dtFim(required="required", class_="form-control dp") }}
                   <spam class="input-group-addon glyphicon glyphicon-calendar"></spam>
                 </div>
               </form>
 
                   <label>Hora Fim</label> 
-                  {{ form.hrFim(class_="form-control") }}         
+                  {{ form.hrFim(required="required", class_="form-control") }}         
                 
 
-          <label for="sel1">Atividade **Não é do form** </label>
+          <label for="sel1">Atividade </label>
           {{ form.selectAtividade(required="required", class_="form-control") }}
           
 
 
-          <label for="sel1"></label>
+          <label for="sel1">Descrição</label>
           {{ form.descricao(class_="form-control") }}
           <br>     
      </div>
@@ -68,7 +68,7 @@
 
 <div class="col-xs-12">
     <div class="panel panel-default"> 
-        <div class="panel-heading">Lista de Atividades **Não é do banco**</div> 
+        <div class="panel-heading">Lista de Atividades</div> 
         <table class="table"> 
                 <thead> 
                     <tr> 
@@ -82,23 +82,41 @@
                         <th>Ações</th>  
                     </tr> 
                 </thead> 
-                <tbody> 
+                <!-- 
+
+                #######################################################################################################
+                #                                                                                                     #
+                #    Comentario feito por Filipe Batista                                                              #
+                #                                                                                                     #
+                #    Aqui coloquei comentado para funcionar o template. ja pega direto da tabela que eu montei.       #
+                #    naquela tabela tem alguns problemas com o campo dateTime. Tem que pensar como vamos separar      #
+                #    a data do tempo                                                                                  #
+                #                                                                                                     #
+                #######################################################################################################    
+                    <tbody> {% for item in listTable %}
+                        {{ loop.index }}
                     <tr>
-                        <td>Projeto 1</td>
-                        <td>Desenvolvimento</td>
-                        <td>21/03/2012</td> 
+                        <td>{{ iten.project.nameProjeto }}</td>
+                        <td>{{ iten.project.descricao }}</td>
+                        <td>{{ iten.dtInicio }}</td> 
                         <td>11:30</td> 
-                        <td>21/03/2012</td> 
+                        <td>{{ iten.dtFim }}</td> 
                         <td>18:30</td> 
-                        <td>7</td>  
+                        <td>{{ iten.qtdHoras }}</td>  
                         <td> 
-                            <a href="#"><span class="glyphicon glyphicon-remove" style="color:red" aria-hidden="true"></span></a>
-                                &nbsp;
-                                <a href="#"><span class="glyphicon glyphicon-pencil" style="color:green" aria-hidden="true"></span></a>
+                            <button class="btn btn-default" type="submit" name="update" value="#">
+                                <a href="#"><span class="glyphicon glyphicon-pencil" style="color:green" aria-hidden="true">
+                                </span></a>
+                            </button>
+                            <button class="btn btn-default" type="submit" name="delete" value="#">
+                                <a href="#"><span class="glyphicon glyphicon-trash" style="color:red" aria-hidden="true">
+                                </span></a>
+                            </button>
                         </td>
                                                  
                     </tr> 
-                </tbody> 
+                    {% endfor %}
+                </tbody>  -->
             </table> 
     </div>
 </div>

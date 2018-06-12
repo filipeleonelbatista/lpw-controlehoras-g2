@@ -19,11 +19,13 @@ def lancamentos():
 		# parar o contador jogar a hora final no campo data/hora
 		pass
 
-	if formR.gravar.data:
-		# gravar todos os dados e jogar na tabela.
-		pass
-		
+	if request.method == 'POST' and formR.gravar.data == True:
+		# gravar todos os dados e jogar na tabela. tratar a quantidade de horas que será a hora de saida menos a de entrada e salvar em qtdHora
+		horas = Horas(projeto = form.selectProjeto.data, dtInicio = form.dtInicio.data, dtFim = form.dtFim.data, atividade = form.atividade.data, descricaoHora = form.descricao.data)
+		db.session.add(horas)
+		db.session.commit()
+		flash('Registrado com sucesso', 'success')	
 
-	#listTable=User.query.all()listTable=listTable
-	return render_template('lancamentos/lancamentos.html', form=form, formR=formR)
+	listTable=User.query.all()
+	return render_template('lancamentos/lancamentos.html', form=form, formR=formR, listTable=listTable)
 

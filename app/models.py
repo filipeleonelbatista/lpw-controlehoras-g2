@@ -8,6 +8,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, DateTime, String, Integer, ForeignKey, func
 
 Base = declarative_base()
 
@@ -85,6 +86,29 @@ class Binding(UserMixin, db.Model, Base):
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
     users_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     is_coord = db.Column(db.Boolean)
+
+
+
+#######################################################################################################
+#                                                                                                     #
+#    Comentario feito por Filipe Batista                                                              #
+#                                                                                                     #
+#    Aqui foi a tabela que idealizei para ultilizar na parte dos funcionarios                         # 
+#    Verifica o que esta acontecendo que nao funciona o dateTime                                      #
+#                                                                                                     #
+#                                                                                                     #
+#######################################################################################################
+# class horas(UserMixin, db.Model, Base):
+#     print('Preparando para adicionar a horas')
+#     __tablename__ = 'binding'
+#     id = db.Column(db.Integer, primary_key=True)
+#     idHora = db.Column(db.Integer,nullable=False, unique=True, index=True)
+#     project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
+#     dtInicial = db.Column(db.DateTime)
+#     dtfinal = db.Column(db.DateTime)
+#     qtdHoras = db.Column(db.Integer,nullable=False, index=True)
+#     descricaoHoras = db.Column(db.String(64))
+#     project = db.relationship( 'Project', backref = 'horas', lazy = True)
 
 class Task(UserMixin, db.Model):
     print('Preparando para adicionar o task')

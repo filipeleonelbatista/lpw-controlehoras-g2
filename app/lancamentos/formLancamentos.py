@@ -15,4 +15,4 @@ class lancamentoForm(FlaskForm):
     parar = SubmitField('Parar')
 
     def validacao(__self__, form):
-        pass
+        return False

@@ -94,10 +94,10 @@ class Lancamento(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
     task_id = db.Column(db.Integer, db.ForeignKey('task.id'))
-    dtInic = db.Column(db.Date())
-    hrInic = db.Column(db.Time())
-    dtFim = db.Column(db.Date())
-    hrFim = db.Column(db.Time())
+    dtInic = db.Column(db.Date)
+    hrInic = db.Column(db.Time)
+    dtFim = db.Column(db.Date)
+    hrFim = db.Column(db.Time)
     descricao = db.Column(db.String(256))
 
 class Task(UserMixin, db.Model):

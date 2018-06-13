@@ -11,15 +11,19 @@ def lancamentos():
 	form = lancamentoForm()
 	form.selectProjeto.choices = [(project.id, project.nameProject) for project in Project.getAllProject()]
 	form.selectAtividade.choices = [(task.codTask, task.descricao) for task in Task.getAllTask()]
-	print("antes post")
-
 	if request.method == 'POST' and form.iniciar.data == True:
 		print("depois post")
 		try:
 			if form.validacao(form):
 				flash('Falta preenchar um campo!', 'danger')
 			else:
-				print("Obtendo")
+				print(form.selectProjeto.data)
+				print(form.dtInicio.data)
+				print(form.hrInicio.data)
+				print(form.dtFim.data)
+				print(form.hrFim.data)
+				print(form.selectAtividade.data)
+				print(form.descricao.data)
 				lancamento = Lancamento(
 					project_id=form.selectProjeto.data,
 					dtInic=form.dtInicio.data,
@@ -56,4 +60,6 @@ def lancamentos():
 			return render_template('lancamentos/editLancamentos.html',form=form, action='lancUpdate')
 
 	listTable=Lancamento.query.all()
+	for item in listTable:
+		print(item)
 	return render_template('lancamentos/lancamentos.html', form=form, listTable=listTable)

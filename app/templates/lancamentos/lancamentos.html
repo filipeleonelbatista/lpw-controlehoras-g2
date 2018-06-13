@@ -59,14 +59,40 @@
       <br>
       <div class="col-xs-6">
         <!-- {{ form.iniciar(class_="btn btn-block btn-lg btn-primary") }} -->
-        <button onclick="getDataInicio()" id="btn-start" type="button" class="btn btn-block btn-lg btn-primary">Iniciar </button>
+        <button onclick="getDataInicio()" type="button" class="btn btn-block btn-lg btn-primary">Iniciar </button>
       </div>
       <div class="col-xs-6">
         <!-- {{ form.parar(class_="btn btn-block btn-lg btn-danger") }} -->
-        <button onclick="getDataFim();" id="btn-stop" type="button" class="btn btn-block btn-lg btn-danger">Parar  </button>
+        <button onclick="getDataFim();" type="button" class="btn btn-block btn-lg btn-danger">Parar  </button>
         <script>
-               
+            function contador(x){
+              var display  = document.getElementById('display');
+              var id       = null;
+              var r = confirm("Valor: " + x);
+              if(x==1){
+                if(!id) {
+                    // A mágica...
+                    id = setInterval(function () {
+                      display.value = Number(display.value) + 1;
+                    }, 1000);    
+                  }
+              }
+              
+                if(x==0){
+                  // Desliga a animação mas
+                  // o valor de `id` continua sendo válido (true)
+                  clearInterval(id);
+                  // Anulamos o valor da variável id,
+                  // é como se ela fosse uma variável de controle
+                  id = null;
+                  return '0';
+                }
+                
+              
+            }   
+
             function getDataInicio() {
+                               
               var data = new Date();
               var dia     = data.getDate();           // 1-31
               var mes     = data.getMonth();          // 0-11 (zero=janeiro)
@@ -74,11 +100,37 @@
               var hora    = data.getHours();          // 0-23
               var min     = data.getMinutes();        // 0-59      
               
-              var str_data = dia + '/' + (mes+1) + '/' + ano4;
-              var str_hora = hora + ':' + min;  
-    
+              if ((hora<10)&&(min<10)){
+                var str_hora = '0' + hora + ':0' + min;
+              }else{
+                if(hora<10){
+                var str_hora = '0' + hora + ':' + min;                   
+                }else{
+                  if(min<10){
+                    var str_hora = hora + ':0' + min; 
+                  }else{
+                    var str_hora = hora + ':' + min;
+                  }
+                }
+              }
+              
+              if((dia<10)&&(mes<10)){
+                var str_data = '0' + dia + '/0' + (mes+1) + '/' + ano4;
+              }else{
+                if(dia<10){
+                  var str_data = '0' + dia + '/' + (mes+1) + '/' + ano4;
+                }else{
+                  if(mes<10){
+                    var str_data = dia + '/0' + (mes+1) + '/' + ano4;
+                  }else{
+                     var str_data = dia + '/' + (mes+1) + '/' + ano4; 
+                  }
+                }
+              }  
+              
                   $('#dtInicio').val(str_data);
                   $('#hrInicio').val(str_hora);
+                  contador(1);
              }
             function getDataFim() {
               var data = new Date();
@@ -88,16 +140,43 @@
               var hora    = data.getHours();          // 0-23
               var min     = data.getMinutes();        // 0-59      
               
-              var str_data = dia + '/' + (mes+1) + '/' + ano4;
-              var str_hora = hora + ':' + min;  
-    
+              
+              if ((hora<10)&&(min<10)){
+                var str_hora = '0' + hora + ':0' + min;
+              }else{
+                if(hora<10){
+                var str_hora = '0' + hora + ':' + min;                   
+                }else{
+                  if(min<10){
+                    var str_hora = hora + ':0' + min; 
+                  }else{
+                    var str_hora = hora + ':' + min;
+                  }
+                }
+              } 
+
+              if((dia<10)&&(mes<10)){
+                var str_data = '0' + dia + '/0' + (mes+1) + '/' + ano4;
+              }else{
+                if(dia<10){
+                  var str_data = '0' + dia + '/' + (mes+1) + '/' + ano4;
+                }else{
+                  if(mes<10){
+                    var str_data = dia + '/0' + (mes+1) + '/' + ano4;
+                  }else{
+                     var str_data = dia + '/' + (mes+1) + '/' + ano4; 
+                  }
+                }
+              } 
                   $('#dtFim').val(str_data);
                   $('#hrFim').val(str_hora);
+                  contador(0);
            }
             </script>  
       </div>
       <div class="col-xs-12">
-        <h2 class="text-center">Tempo Trabalhado: <p id="display"></p>
+        <h2 class="text-center">Tempo Trabalhado: 
+          <input type="text" class="form-control" id="display"/>
         </h2>
         
       </div>

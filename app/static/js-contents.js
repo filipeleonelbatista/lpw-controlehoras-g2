@@ -24,35 +24,6 @@ window.onclick = function(event) {
     }
 } */
 
-function getDataInicio() {
-    var data = new Date();
-    var dia     = data.getDate();           // 1-31
-    var mes     = data.getMonth();          // 0-11 (zero=janeiro)
-    var ano4    = data.getFullYear();       // 4 dígitos
-    var hora    = data.getHours();          // 0-23
-    var min     = data.getMinutes();        // 0-59      
-    
-    var str_data = dia + '/' + (mes+1) + '/' + ano4;
-    var str_hora = hora + ':' + min;  
-
-        $('#dtInicio').val(str_data);
-        $('#hrInicio').val(str_hora);
-  }
-  function getDataFim() {
-    var data = new Date();
-    var dia     = data.getDate();           // 1-31
-    var mes     = data.getMonth();          // 0-11 (zero=janeiro)
-    var ano4    = data.getFullYear();       // 4 dígitos
-    var hora    = data.getHours();          // 0-23
-    var min     = data.getMinutes();        // 0-59      
-    
-    var str_data = dia + '/' + (mes+1) + '/' + ano4;
-    var str_hora = hora + ':' + min;  
-
-        $('#dtFim').val(str_data);
-        $('#hrFim').val(str_hora);
-  }
-
 window.onload=function(){
            
     $("#cnpj").keydown(function(){

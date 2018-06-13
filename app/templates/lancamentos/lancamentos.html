@@ -3,7 +3,7 @@
 {% block scripts %}
   {{ super() }}
   {{ datepicker.loader(theme="base") }} {# to load jQuery-ui #}
-  {{ datepicker.picker(id=".dp") }}
+  {{ datepicker.picker(id=".dp", dateFormat='dd/mm/yy') }}
 {% endblock %}
 {% block page_content %}
   {% with messages = get_flashed_messages(with_categories=true) %}
@@ -50,23 +50,56 @@
       <label for="sel1">Descrição</label>
       {{ form.descricao(class_="form-control") }}
       <br>
+      {{ form.gravar(class_="btn btn-success") }}
+      <br>
     </div>
   </div>
   <form action = "{{ request.path }}" method = "POST">
     <div class="col-xs-6">
+      <br>
       <div class="col-xs-6">
-        {{ form.iniciar(class_="btn btn-block btn-lg btn-primary") }}
-        <!-- <button type="button" class="btn btn-block btn-lg btn-primary">Iniciar </button> -->
+        <!-- {{ form.iniciar(class_="btn btn-block btn-lg btn-primary") }} -->
+        <button onclick="getDataInicio()" id="btn-start" type="button" class="btn btn-block btn-lg btn-primary">Iniciar </button>
       </div>
       <div class="col-xs-6">
-        {{ form.parar(class_="btn btn-block btn-lg btn-danger") }}
-        <!-- <button type="button" class="btn btn-block btn-lg btn-danger">Parar  </button> -->
+        <!-- {{ form.parar(class_="btn btn-block btn-lg btn-danger") }} -->
+        <button onclick="getDataFim();" id="btn-stop" type="button" class="btn btn-block btn-lg btn-danger">Parar  </button>
+        <script>
+               
+            function getDataInicio() {
+              var data = new Date();
+              var dia     = data.getDate();           // 1-31
+              var mes     = data.getMonth();          // 0-11 (zero=janeiro)
+              var ano4    = data.getFullYear();       // 4 dígitos
+              var hora    = data.getHours();          // 0-23
+              var min     = data.getMinutes();        // 0-59      
+              
+              var str_data = dia + '/' + (mes+1) + '/' + ano4;
+              var str_hora = hora + ':' + min;  
+    
+                  $('#dtInicio').val(str_data);
+                  $('#hrInicio').val(str_hora);
+             }
+            function getDataFim() {
+              var data = new Date();
+              var dia     = data.getDate();           // 1-31
+              var mes     = data.getMonth();          // 0-11 (zero=janeiro)
+              var ano4    = data.getFullYear();       // 4 dígitos
+              var hora    = data.getHours();          // 0-23
+              var min     = data.getMinutes();        // 0-59      
+              
+              var str_data = dia + '/' + (mes+1) + '/' + ano4;
+              var str_hora = hora + ':' + min;  
+    
+                  $('#dtFim').val(str_data);
+                  $('#hrFim').val(str_hora);
+           }
+            </script>  
       </div>
       <div class="col-xs-12">
-        <h2 class="text-center">Tempo Trabalhado: [00:07]<br><br>
-        {{ form.gravar(class_="btn btn-block btn-lg btn-success") }}
-        <!-- <button type="button" class="btn btn-block btn-lg btn-success">Gravar </button> -->
+        <h2 class="text-center">Tempo Trabalhado: <p id="display"></p>
         </h2>
+        
       </div>
     </div>
   </form>

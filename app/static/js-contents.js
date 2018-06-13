@@ -24,8 +24,37 @@ window.onclick = function(event) {
     }
 } */
 
+function getDataInicio() {
+    var data = new Date();
+    var dia     = data.getDate();           // 1-31
+    var mes     = data.getMonth();          // 0-11 (zero=janeiro)
+    var ano4    = data.getFullYear();       // 4 dígitos
+    var hora    = data.getHours();          // 0-23
+    var min     = data.getMinutes();        // 0-59      
+    
+    var str_data = dia + '/' + (mes+1) + '/' + ano4;
+    var str_hora = hora + ':' + min;  
+
+        $('#dtInicio').val(str_data);
+        $('#hrInicio').val(str_hora);
+  }
+  function getDataFim() {
+    var data = new Date();
+    var dia     = data.getDate();           // 1-31
+    var mes     = data.getMonth();          // 0-11 (zero=janeiro)
+    var ano4    = data.getFullYear();       // 4 dígitos
+    var hora    = data.getHours();          // 0-23
+    var min     = data.getMinutes();        // 0-59      
+    
+    var str_data = dia + '/' + (mes+1) + '/' + ano4;
+    var str_hora = hora + ':' + min;  
+
+        $('#dtFim').val(str_data);
+        $('#hrFim').val(str_hora);
+  }
+
 window.onload=function(){
-  
+           
     $("#cnpj").keydown(function(){
         try {
             $("#cnpj").unmask();
@@ -35,6 +64,52 @@ window.onload=function(){
         
         if(tamanho <= 14){
             $("#cnpj").mask("99.999.999/9999-99");
+        }
+        
+        // ajustando foco
+        var elem = this;
+        setTimeout(function(){
+            // mudo a posição do seletor
+            elem.selectionStart = elem.selectionEnd = 10000;
+        }, 0);
+        // reaplico o valor para mudar o foco
+        var currentValue = $(this).val();
+        $(this).val('');
+        $(this).val(currentValue);
+    });
+
+    $("#hrInicio").keydown(function(){
+        try {
+            $("#hrInicio").unmask();
+        } catch (e) {}
+        
+        var tamanho = $("#hrInicio").val().length;
+        
+        if(tamanho <= 5){
+            $("#hrInicio").mask("99:99");
+        }
+        
+        // ajustando foco
+        var elem = this;
+        setTimeout(function(){
+            // mudo a posição do seletor
+            elem.selectionStart = elem.selectionEnd = 10000;
+        }, 0);
+        // reaplico o valor para mudar o foco
+        var currentValue = $(this).val();
+        $(this).val('');
+        $(this).val(currentValue);
+    });
+
+    $("#hrFim").keydown(function(){
+        try {
+            $("#hrFim").unmask();
+        } catch (e) {}
+        
+        var tamanho = $("#hrFim").val().length;
+        
+        if(tamanho <= 5){
+            $("#hrFim").mask("99:99");
         }
         
         // ajustando foco

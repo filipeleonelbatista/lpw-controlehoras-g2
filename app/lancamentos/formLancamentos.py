@@ -10,10 +10,9 @@ class lancamentoForm(FlaskForm):
     hrFim = DateTimeField('Data de Termino')
     selectAtividade = SelectField(u'project', validators=[DataRequired()])
     descricao = TextAreaField('Descrição do trabalho realizado...')
-    salvar = SubmitField('salvar')
-    cancelar = SubmitField('cancelar')
-
-class relogioForm(FlaskForm):
     iniciar = SubmitField('Iniciar')
     gravar = SubmitField('Gravar')
     parar = SubmitField('Parar')
+
+    def validacao(__self__, form):
+        pass

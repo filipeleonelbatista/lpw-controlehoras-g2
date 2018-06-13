@@ -1,30 +1,59 @@
 from flask import render_template, redirect, request, url_for, flash
+from flask_login import login_required
 from . import lancamentos
 from .formLancamentos import lancamentoForm
-from .formLancamentos import relogioForm
-from app.models import Task, Project
+from app import db
+from app.models import Task, Project, Lancamento
 
 @lancamentos.route('/lancamentos', methods=['GET', 'POST'])
+@login_required
 def lancamentos():
 	form = lancamentoForm()
 	form.selectProjeto.choices = [(project.id, project.nameProject) for project in Project.getAllProject()]
 	form.selectAtividade.choices = [(task.codTask, task.descricao) for task in Task.getAllTask()]
-	formR = relogioForm()
+	print("antes post")
 
-	if formR.iniciar.data:
-		# iniciar o contador e jogar a hora inicial no campo data/hora
-		pass
-	
-	if formR.parar.data:
-		# parar o contador jogar a hora final no campo data/hora
-		pass
+	if request.method == 'POST' and form.iniciar.data == True:
+		print("depois post")
+		try:
+			if form.validacao(form):
+				flash('Falta preenchar um campo!', 'danger')
+			else:
+				print("Obtendo")
+				lancamento = Lancamento(
+					project_id=form.selectProjeto.data,
+					dtInic=form.dtInicio.data,
+					hrInic=form.hrInicio.data,
+					dtFim=form.dtFim.data,
+					hrFim=form.hrFim.data,
+					task_id=form.selectAtividade.data,
+					descricao=form.descricao.data
+					)
+				print("commit")
+				db.session.add(lancamento)
+				db.session.commit()
+				flash('Registrado com sucesso', 'success')
+		except:
+			db.session.rollback()
+			flash('Registro falhou na adição', 'danger')
+			
+	elif request.method == 'GET' and request.args.get('delete'):
+		try:
+			if request.args.get('delete') == '':
+				flash('Falta a matricula!', 'danger')
+			else:				
+				db.session.delete(user)
+				db.session.commit()
+				flash('Registro apagado com sucesso', 'danger')
+		except:
+			db.session.rollback()
+			flash('Registro falhou em apagar', 'danger')
 
-	if request.method == 'POST' and formR.gravar.data == True:
-		# gravar todos os dados e jogar na tabela. tratar a quantidade de horas que será a hora de saida menos a de entrada e salvar em qtdHora
-		horas = Horas(projeto = form.selectProjeto.data, dtInicio = form.dtInicio.data, dtFim = form.dtFim.data, atividade = form.atividade.data, descricaoHora = form.descricao.data)
-		db.session.add(horas)
-		db.session.commit()
-		flash('Registrado com sucesso', 'success')	
+	elif request.method == 'GET' and request.args.get('update'):
+		if request.args.get('update') == '':
+			flash('Falta a matricula!', 'danger')
+		else:
+			return render_template('lancamentos/editLancamentos.html',form=form, action='lancUpdate')
 
-	listTable=User.query.all()
-	return render_template('lancamentos/lancamentos.html', form=form, formR=formR, listTable=listTable)
+	listTable=Lancamento.query.all()
+	return render_template('lancamentos/lancamentos.html', form=form, listTable=listTable)

@@ -74,6 +74,7 @@ class Project(UserMixin, db.Model, Base):
         nullable = False)
     descricao = db.Column(db.String(64))
     binding = db.relationship( 'Binding', backref = 'project', lazy = True)
+    lancamento = db.relationship( 'Lancamento', backref = 'project', lazy = True)
 
     def getAllProject():
         return Project.query.all()
@@ -82,33 +83,22 @@ class Binding(UserMixin, db.Model, Base):
     print('Preparando para adicionar o binding')
     __tablename__ = 'binding'
     id = db.Column(db.Integer, primary_key=True)
-    idBinding = db.Column(db.Integer,nullable=False, unique=True, index=True)
+    idBinding = db.Column(db.Integer, nullable=False, unique=True, index=True)
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
     users_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     is_coord = db.Column(db.Boolean)
 
-
-
-#######################################################################################################
-#                                                                                                     #
-#    Comentario feito por Filipe Batista                                                              #
-#                                                                                                     #
-#    Aqui foi a tabela que idealizei para ultilizar na parte dos funcionarios                         # 
-#    Verifica o que esta acontecendo que nao funciona o dateTime                                      #
-#                                                                                                     #
-#                                                                                                     #
-#######################################################################################################
-# class horas(UserMixin, db.Model, Base):
-#     print('Preparando para adicionar a horas')
-#     __tablename__ = 'binding'
-#     id = db.Column(db.Integer, primary_key=True)
-#     idHora = db.Column(db.Integer,nullable=False, unique=True, index=True)
-#     project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
-#     dtInicial = db.Column(db.DateTime)
-#     dtfinal = db.Column(db.DateTime)
-#     qtdHoras = db.Column(db.Integer,nullable=False, index=True)
-#     descricaoHoras = db.Column(db.String(64))
-#     project = db.relationship( 'Project', backref = 'horas', lazy = True)
+class Lancamento(UserMixin, db.Model):
+    print('Preparando para adicionar o lancamentos')
+    __tablename__ = 'lancamentos'
+    id = db.Column(db.Integer, primary_key=True)
+    project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
+    task_id = db.Column(db.Integer, db.ForeignKey('task.id'))
+    dtInic = db.Column(db.Date, nullable=False)
+    hrInic = db.Column(db.Time, nullable=False)
+    dtFim = db.Column(db.Date)
+    hrFim = db.Column(db.Time)
+    descricao = db.Column(db.String(256))
 
 class Task(UserMixin, db.Model):
     print('Preparando para adicionar o task')
@@ -116,6 +106,7 @@ class Task(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     codTask = db.Column(db.Integer, nullable=False, unique=True, index=True)
     descricao = db.Column(db.String(64))
+    lancamento = db.relationship( 'Lancamento', backref = 'task', lazy = True)
 
     def getAllTask():
         return Task.query.all()

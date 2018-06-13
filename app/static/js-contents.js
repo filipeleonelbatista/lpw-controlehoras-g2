@@ -23,77 +23,12 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 } */
-
-window.onload=function(){
-           
-    $("#cnpj").keydown(function(){
-        try {
-            $("#cnpj").unmask();
-        } catch (e) {}
-        
-        var tamanho = $("#cnpj").val().length;
-        
-        if(tamanho <= 14){
-            $("#cnpj").mask("99.999.999/9999-99");
-        }
-        
-        // ajustando foco
-        var elem = this;
-        setTimeout(function(){
-            // mudo a posição do seletor
-            elem.selectionStart = elem.selectionEnd = 10000;
-        }, 0);
-        // reaplico o valor para mudar o foco
-        var currentValue = $(this).val();
-        $(this).val('');
-        $(this).val(currentValue);
-    });
-
-    $("#hrInicio").keydown(function(){
-        try {
-            $("#hrInicio").unmask();
-        } catch (e) {}
-        
-        var tamanho = $("#hrInicio").val().length;
-        
-        if(tamanho <= 5){
-            $("#hrInicio").mask("99:99");
-        }
-        
-        // ajustando foco
-        var elem = this;
-        setTimeout(function(){
-            // mudo a posição do seletor
-            elem.selectionStart = elem.selectionEnd = 10000;
-        }, 0);
-        // reaplico o valor para mudar o foco
-        var currentValue = $(this).val();
-        $(this).val('');
-        $(this).val(currentValue);
-    });
-
-    $("#hrFim").keydown(function(){
-        try {
-            $("#hrFim").unmask();
-        } catch (e) {}
-        
-        var tamanho = $("#hrFim").val().length;
-        
-        if(tamanho <= 5){
-            $("#hrFim").mask("99:99");
-        }
-        
-        // ajustando foco
-        var elem = this;
-        setTimeout(function(){
-            // mudo a posição do seletor
-            elem.selectionStart = elem.selectionEnd = 10000;
-        }, 0);
-        // reaplico o valor para mudar o foco
-        var currentValue = $(this).val();
-        $(this).val('');
-        $(this).val(currentValue);
-    });
-    
-        }
-    
+$(document).ready(function(){
+    $("#hrInicio").inputmask("h:s",{ "placeholder": "hh/mm" });
+});
+$(document).ready(function(){
+    $("#hrFim").inputmask("h:s",{ "placeholder": "hh/mm" });
+});
+$(document).ready(function(){
+    $("#cnpj").inputmask("h:s",{ "placeholder": "99.999.999/9999-99" });
+});

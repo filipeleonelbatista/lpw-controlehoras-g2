@@ -63,12 +63,13 @@
       <div class="col-xs-6">
         <button onclick="getDataFim();" type="button" class="btn btn-block btn-lg btn-danger">Parar  </button>
         <script>
-          
+          var id
             function contador(x){
               var display  = document.getElementById('display');
-              var id       = null;
               
-              if(x==1){
+              
+              if(x==1){ 
+                id       = null;
                 if(!id) {
                     // A mágica...
                     id = setInterval(function () {

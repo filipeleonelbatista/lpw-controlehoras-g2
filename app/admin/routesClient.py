@@ -9,37 +9,46 @@ from app import db
 @login_required
 def clientes():
 	form = ClientsForm()
-	if form.cancelar.data == True:
-            flash('Registro nao foi salvo', 'warning')
-	
-	elif request.method == 'POST' and form.salvar.data == True:
+	if request.method == 'POST' and form.salvar.data == True:
 		try:
-			print(form.cnpj.data)
-			print(form.nome.data)
-			client = Client(clientCNPJ=form.cnpj.data, nameEmpresa=form.nome.data)
-			print(client.clientCNPJ)
-			db.session.add(client)
-			db.session.commit()
-			flash('Registrado com sucesso', 'success')
+			if form.validacao(form):
+				flash('Falta preenchar um campo!', 'danger')
+			elif form.validCnpj(form.cnpj.data):
+				flash('CPF ou CNPJ invalido!', 'danger')
+			else:
+				client = Client(clientCNPJ=form.cnpj.data, nameEmpresa=form.nome.data)
+				db.session.add(client)
+				db.session.commit()
+				flash('Registrado com sucesso', 'success')
 		except:
 			db.session.rollback()
 			flash('Registro falhou na adição', 'danger')
 
 	elif request.method == 'GET' and request.args.get('delete'):
 		try:
-			client = Client.query.filter_by(clientCNPJ=request.args.get('delete')).first_or_404()
-			db.session.delete(client)
-			db.session.commit()
-			flash('Registro apagado com sucesso', 'danger')
+			if request.args.get('delete') == '':
+				flash('Falta o CPF ou CNPJ!', 'danger')
+			elif form.validCnpj(request.args.get('delete')):
+				flash('CPF ou CNPJ invalido!', 'danger')
+			else:
+				client = Client.query.filter_by(clientCNPJ=request.args.get('delete')).first_or_404()
+				db.session.delete(client)
+				db.session.commit()
+				flash('Registro apagado com sucesso', 'danger')
 		except:
 			db.session.rollback()
 			flash('Registro falhou em apagar', 'danger')
 
 	elif request.method == 'GET' and request.args.get('update'):
-		client = Client.query.filter_by(clientCNPJ=request.args.get('update')).first_or_404()
-		form.cnpj.data = client.clientCNPJ
-		form.nome.data = client.nameEmpresa
-		return render_template('admin/editClinet.html',form=form, action='clientUpdate')
+		if request.args.get('update') == '':
+			flash('Falta o CPF ou CNPJ!', 'danger')
+		elif form.validCnpj(request.args.get('update')):
+			flash('CPF ou CNPJ invalido!', 'danger')
+		else:
+			client = Client.query.filter_by(clientCNPJ=request.args.get('update')).first_or_404()
+			form.cnpj.data = client.clientCNPJ
+			form.nome.data = client.nameEmpresa
+			return render_template('admin/editClinet.html',form=form, action='clientUpdate')
 	
 	listTable=Client.query.all()
 	return render_template('admin/clientes.html', form=form, listTable=listTable)
@@ -49,14 +58,19 @@ def clientes():
 def clientUpdate():
 	form = ClientsForm()
 	if request.method == 'POST' and form.salvar.data == True:
-		client = Client.query.filter_by(clientCNPJ=form.cnpj.data).first_or_404()
-		if client:
-			client.cnpj = form.cnpj.data
-			client.nameEmpresa = form.nome.data
-			try:
-				db.session.commit()
-				flash('Registro alterado com sucesso', 'info')
-			except:
-				db.session.rollback()
-				flash('Registro falhou em alterar', 'danger')
+		if form.validacao(form):
+			flash('Falta preenchar um campo!', 'danger')
+		elif form.validacao(form):
+				flash('CPF ou CNPJ invalido!', 'danger')
+		else:
+			client = Client.query.filter_by(clientCNPJ=form.cnpj.data).first_or_404()
+			if client:
+				client.cnpj = form.cnpj.data
+				client.nameEmpresa = form.nome.data
+				try:
+					db.session.commit()
+					flash('Registro alterado com sucesso', 'info')
+				except:
+					db.session.rollback()
+					flash('Registro falhou em alterar', 'danger')
 	return redirect(url_for('.clientes'))

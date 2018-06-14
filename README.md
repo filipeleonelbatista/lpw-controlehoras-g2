@@ -1,3 +1,31 @@
+Instruções abaixo
+### Comentarios das paginas
+```
+/dashboard
+Fariamos alguns graficos para apresentar com os relatórios das telas de relatórios.
+
+/
+Precisa criar o aviso de usuário invalido.
+
+/admin/*
+Testar o permissionamento, somente quem tiver o flag de administrador pode abrir esta pagina
+
+/lancamentos
+conforme combinado ajustei o template. coloquei os validadores em Hora de inicio e final. Preciso ajustar um validador
+para a data, caso seja inserida manualmente sem o datepiker e sem o botão!
+Falta finalizar o banco e gravar os eventos desta tabela! <----- No momento que faz este passo as outras relações de 
+                                                                 Horas trabalhadas e horas por projeto ja podem ser criadas!
+
+/relatorios/horastrabalhadas
+Precisa baixar do banco as informações e ja entregar a tabela pronta. Horas trabalhadas pelo usuário em todos os projetos.
+
+/relatorios/horasxprojeto
+Ter um selecionador dos projetos do usuario ativo e filtrar as horas por projetos.
+
+/perfil
+entendo como tela de edição de usuário. Colocar o upload do avatar. No Base colocar a foto de perfil.
+```
+
 ## for Linux
 ```
 01. [criar pasta]
@@ -26,41 +54,3 @@ python manage.py runserver
 4. [Documentação de MarkDown para escrever o ReadME](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
 5. [Documentação dos Graficos para flask](https://pythonspot.com/flask-and-great-looking-charts-using-chart-js/) 
 
-### Comentarios das paginas
-```
-/dashboard
-Fariamos alguns graficos para apresentar com os relatórios das telas de relatórios.
-
-/
-Precisa criar o aviso de usuário invalido.
-
-/admin/projetos
-Testar o permissionamento, somente quem tiver o codigo de administrador pode abrir esta pagina
-
-/admin/clientes
-Testar o permissionamento, somente quem tiver o codigo de administrador pode abrir esta pagina
-
-/admin/funcionarios
-Testar novamente o cadastro do funcionario. Está funcionando o delete, falta o update.
-
-/admin/atividades
-Testar o permissionamento, somente quem tiver o codigo de administrador pode abrir esta pagina
-
-/lancamentos
-Impedir que o contador inicie direto ao abrir a pagina. ao clicar em iniciar ele grava a hora no banco em uma tabela reserva e depois quando clicar em terminar ele grava a data e hora de inicio e final. apresentando uma janela para selecionar o projeto e atividade.
-
-Baixei o datepiker pro flask, tem que ver como ele se comporta no post das informações.
-
-/relatorios/horastrabalhadas
-Precisa baixar do banco as informações e ja entregar a tabela pronta. Horas trabalhadas pelo usuário em todos os projetos.
-
-/relatorios/horasxprojeto
-Ter um selecionador dos projetos do usuario ativo e filtrar as horas por projetos.
-
-/perfil
-entendo como tela de edição de usuário. Colocar o upload do avatar. No Base colocar a foto de perfil.
-
-/logout
-quando clicar deve executar uma  função que derrube a sessão do usuário e mande pra tela inicial o  "/"
-
-```

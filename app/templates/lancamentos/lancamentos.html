@@ -3,7 +3,7 @@
 {% block scripts %}
   {{ super() }}
   {{ datepicker.loader(theme="base") }} {# to load jQuery-ui #}
-  {{ datepicker.picker(id=".dp", dateFormat='dd/mm/yy') }}
+  {{ datepicker.picker(id=".dp", dateFormat='yy/mm/dd') }}
 {% endblock %}
 {% block page_content %}
   {% with messages = get_flashed_messages(with_categories=true) %}

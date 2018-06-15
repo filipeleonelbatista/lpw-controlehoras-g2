@@ -1,10 +1,11 @@
-from datetime import datetime
+from datetime import date, datetime
 from flask import render_template, redirect, request, url_for, flash
 from flask_login import login_required
 from . import lancamentos
 from .formLancamentos import lancamentoForm
 from app import db
 from app.models import Task, Project, Lancamento
+import traceback
 
 def convert(t):
     date_format = '%d/%m/%Y'
@@ -23,6 +24,8 @@ def lancamentos():
 			if form.validacao(form):
 				flash('Falta preenchar um campo!', 'danger')
 			else:
+				print(form.dtInicio.raw_data[0])
+
 				lancamento = Lancamento(
 					project_id=form.selectProjeto.data,
 					dtInic=form.dtInicio.data,
@@ -36,6 +39,7 @@ def lancamentos():
 				db.session.commit()
 				flash('Registrado com sucesso', 'success')
 		except:
+			traceback.print_exc()
 			db.session.rollback()
 			flash('Registro falhou na adição', 'danger')
 			

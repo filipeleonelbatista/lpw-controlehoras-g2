@@ -4,9 +4,9 @@ from wtforms.validators import DataRequired, Length
 
 class lancamentoForm(FlaskForm):
     selectProjeto = SelectField(u'project', validators=[DataRequired()])
-    dtInicio = DateField('Data de Inicio', format='%Y-%m-%d')
+    dtInicio = DateField('Data de Inicio', format='%d/%m/%Y')
     hrInicio = TimeField('Hora de Inicio')
-    dtFim = DateField('Data de Termino')
+    dtFim = DateField('Data de Termino', format='%d/%m/%Y')
     hrFim = TimeField('Data de Termino')
     selectAtividade = SelectField(u'project', validators=[DataRequired()])
     descricao = TextAreaField('Descrição do trabalho realizado...')

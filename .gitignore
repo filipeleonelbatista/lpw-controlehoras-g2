@@ -174,5 +174,7 @@ data-dev.sqlite
 #migrations
 migrations/
 
+#pasta pycharm
+.idea/
 
 # End of https://www.gitignore.io/api/python,pycharm

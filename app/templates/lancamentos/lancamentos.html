@@ -21,26 +21,27 @@
   {% endif %}
 {% endwith %}
 <div class="col-xs-12">
+  <form action = "{{ request.path }}" method = "POST">
   <div class="col-xs-6">
     <div class="form-group">
       <label for="sel1">Projetos</label>
       {{ form.selectProjeto(required="required", class_="form-control") }}
-      <form class="verticalform">
+      <!-- <form class="verticalform"> -->
         <label>Data Inicio</label>
         <div class="input-group">
           {{ form.dtInicio(required="required", class_="form-control dp") }}
           <spam class="input-group-addon glyphicon glyphicon-calendar"></spam>
         </div>
-      </form>
+      <!-- </form> -->
       <label>Hora Inicio</label>
       {{ form.hrInicio(required="required", class_="form-control") }}
-      <form class="verticalform">
+      <!-- <form class="verticalform"> -->
         <label>Data Fim</label>
         <div class="input-group">
           {{ form.dtFim(required="required", class_="form-control dp") }}
           <spam class="input-group-addon glyphicon glyphicon-calendar"></spam>
         </div>
-      </form>
+      <!-- </form> -->
       <label>Hora Fim</label>
       {{ form.hrFim(required="required", class_="form-control") }}
       
@@ -54,7 +55,9 @@
       <br>
     </div>
   </div>
-  <form action = "{{ request.path }}" method = "POST">
+</form>
+
+  <!-- <form action = "{{ request.path }}" method = "POST"> -->
     <div class="col-xs-6">
       <br>
       <div class="col-xs-6">
@@ -179,7 +182,7 @@
         
       </div>
     </div>
-  </form>
+  <!-- </form> -->
   <div class="col-xs-12">
     <div class="panel panel-default">
       <div class="panel-heading">Lista de Atividades</div>

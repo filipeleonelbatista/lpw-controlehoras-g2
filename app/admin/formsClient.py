@@ -20,4 +20,3 @@ class ClientsForm(FlaskForm):
 			print('Valido')
 			return False
 		return True
-	

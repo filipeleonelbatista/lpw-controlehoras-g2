@@ -66,32 +66,48 @@
       <div class="col-xs-6">
         <button onclick="getDataFim();" type="button" class="btn btn-block btn-lg btn-danger">Parar  </button>
         <script>
-          var id
-            function contador(x){
-              var display  = document.getElementById('display');
-              
-              
-              if(x==1){ 
-                id       = null;
-                if(!id) {
-                    // A mágica...
-                    id = setInterval(function () {
-                      display.value = Number(display.value) + 1;
-                    }, 1000);    
-                  }
-              }
-              
-                if(x==0){
-                  // Desliga a animação mas
-                  // o valor de `id` continua sendo válido (true)
-                  clearInterval(id);
-                  // Anulamos o valor da variável id,
-                  // é como se ela fosse uma variável de controle
-                  id = null;
-                }
-                
-              
-            }   
+var segundo = 0+"0";
+var minuto = 0+"0";
+var hora = 0+"0";
+var timer;
+var x;
+
+function contador(x){
+ if(x==1){
+  timer = setInterval(function(){
+    var display  = document.getElementById('display');
+       if (segundo < 59){
+          segundo++
+          if(segundo < 10){segundo = "0"+segundo}
+       }else{
+          if(segundo == 59 && minuto < 59){
+             segundo = 0+"0";
+             minuto++;
+             if(minuto < 10){minuto = "0"+minuto}
+          }
+         }
+       if(minuto == 59 && segundo == 59 && hora < 23){
+          segundo = 0+"0";
+          minuto = 0+"0";
+          hora++;
+          if(hora < 10){hora = "0"+hora}
+       }else{
+          if(minuto == 59 && segundo == 59 && hora == 23){
+             segundo = 0+"0";
+             minuto = 0+"0";
+             hora = 0+"0";
+          }
+         }
+       display.value = hora +":"+ minuto +":"+ segundo;
+  },983);
+
+   }else{
+      if(x==0){
+      clearInterval(timer);
+       }
+     }
+}
+
 
             function getDataInicio() {
                                
@@ -133,6 +149,7 @@
                   $('#dtInicio').val(str_data);
                   $('#hrInicio').val(str_hora);
                   contador(1);
+
              }
             function getDataFim() {
               var data = new Date();
@@ -178,9 +195,9 @@
       </div>
       <div class="col-xs-12">
         <h2 class="text-center">Tempo Trabalhado: 
-          <input type="text" class="form-control" id="display"/>
+          <input type="text" class="form-control" id="display" value="00:00:00"/>
         </h2>
-        
+
       </div>
     </div>
   <!-- </form> -->

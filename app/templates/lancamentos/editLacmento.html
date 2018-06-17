@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block page_content %}
+	<form action = {{ act }} method = "POST">
+		<h4>Selecione o Projeto </h4>
+        {{ form.selectProjeto(required="required", class_="form-control") }}
+        <h4>Data de Inicio </h4>
+        {{ form.dtInicio(required="required", class_="form-control") }}
+        <h4>Hora de Inicio </h4>
+        {{ form.hrInicio(required="required", class_="form-control") }}
+        <h4>Data de Fim </h4>
+        {{ form.dtFim(required="required", class_="form-control") }}
+        <h4>Hora de Fim </h4>
+        {{ form.hrFim(required="required", class_="form-control") }}
+        <h4>Selecione a Atividade </h4>
+        {{ form.selectAtividade(required="required", class_="form-control") }}
+        <h4>Descrição </h4>
+        {{ form.descricao(required="required", class_="form-control") }}
+        <h4> </h4>
+        {{ form.salvar(class_="btn btn-success") }}
+        {{ form.cancelar(formnovalidate="formnovalidate", class_="btn btn-danger") }}
+	</form>
+{% endblock %}

@@ -11,6 +11,8 @@ class lancamentoForm(FlaskForm):
     selectAtividade = SelectField(u'project', validators=[DataRequired()])
     descricao = TextAreaField('Descrição do trabalho realizado...')
     gravar = SubmitField('Salvar')
+    salvar = SubmitField('Cadastrar')
+    cancelar = SubmitField('Cancelar')
 
 
     def validacao(__self__, form):

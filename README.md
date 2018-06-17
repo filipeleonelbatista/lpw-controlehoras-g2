@@ -18,9 +18,6 @@ Fariamos alguns graficos para apresentar com os relatórios das telas de relató
 Verificar como ultilizar o form comentado.
 Precisa criar o aviso de usuário invalido.
 
-/admin/*
-Testar o permissionamento, somente quem tiver o flag de administrador pode abrir esta pagina
-
 /relatorios/horastrabalhadas
 Precisa baixar do banco as informações e ja entregar a tabela pronta. Horas trabalhadas pelo usuário em todos os projetos.
 

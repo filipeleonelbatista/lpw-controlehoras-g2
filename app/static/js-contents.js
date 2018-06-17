@@ -20,6 +20,10 @@ window.onclick = function(event) {
 } */
 $(document).ready( function () {
     $('#table_id').DataTable({
+    // Desabilitar
+    //pesquisa                     "searching":false,
+    //amostragem e paginas         "paging":   false,
+    //informações de amostragem    "info":     false,
     "language":{
                 "sEmptyTable": "Nenhum registro encontrado",
                 "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",

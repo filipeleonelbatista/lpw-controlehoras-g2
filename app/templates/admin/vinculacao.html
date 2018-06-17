@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 {% block page_content %}
+{% if current_user.is_admin %}
+
     {% with messages = get_flashed_messages(with_categories=true) %}
     <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
     {% if messages %}
@@ -87,4 +89,12 @@
         </div>
     </form>
 </div>
+{% else %}
+<script language="javascript" type="text/javascript">
+     <!--
+     window.open("/acesso_negado","_self")
+     // -->
+ </script>
+
+{% endif %}
 {% endblock %}

@@ -15,6 +15,8 @@
         {% endfor %}
     {% endif %}
 {% endwith %}
+{% if current_user.is_admin %}
+
 <div class="panel panel-default">
     <div class="panel-heading">Lista de Atividades</div>
     <table class="table">
@@ -69,4 +71,13 @@
         </div>
     </form>
 </div>
+
+{% else %}
+<script language="javascript" type="text/javascript">
+     <!--
+     window.open("/acesso_negado","_self")
+     // -->
+ </script>
+
+{% endif %}
 {% endblock %}

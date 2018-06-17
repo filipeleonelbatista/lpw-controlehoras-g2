@@ -7,7 +7,8 @@ que entender como validar este campo
 /admin/vinculação -> Um usuario pode ser coordenador e funcionario no mesmo projeto.
 
 /lancamentos -> o usuario pode cadastrar horas para qualquer projeto. o correto é cadastrar apenas para os projetos em
-que o usuario logado esta trabalhando.
+que o usuario logado esta trabalhando. Mudar o botão para quando clicar abrir o calendario.
+Mudar o formato em que busca a data no calendario e no banco
 
 
 /dashboard

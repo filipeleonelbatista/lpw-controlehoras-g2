@@ -2,8 +2,9 @@
 {% import "bootstrap/wtf.html" as wtf %}
 {% block scripts %}
   {{ super() }}
+
   {{ datepicker.loader(theme="base") }} {# to load jQuery-ui #}
-  {{ datepicker.picker(id=".dp", dateFormat='yy/mm/dd') }}
+  {{ datepicker.picker(id=".dp", btnsId='.dpb', dateFormat='yy/mm/dd') }}
 {% endblock %}
 {% block page_content %}
   {% with messages = get_flashed_messages(with_categories=true) %}
@@ -28,18 +29,32 @@
       {{ form.selectProjeto(required="required", class_="form-control") }}
       <!-- <form class="verticalform"> -->
         <label>Data Inicio</label>
+
         <div class="input-group">
           {{ form.dtInicio(required="required", class_="form-control dp") }}
-          <spam class="input-group-addon glyphicon glyphicon-calendar"></spam>
+
+          <div class="input-group-btn">
+            <div class="btn btn-default dpb">
+              <i class="glyphicon glyphicon-calendar"></i>
+            </div>
+
+         </div>
         </div>
       <!-- </form> -->
       <label>Hora Inicio</label>
       {{ form.hrInicio(required="required", class_="form-control") }}
+
       <!-- <form class="verticalform"> -->
         <label>Data Fim</label>
         <div class="input-group">
+          <!-- required="required", -->
           {{ form.dtFim(required="required", class_="form-control dp") }}
-          <spam class="input-group-addon glyphicon glyphicon-calendar"></spam>
+          <div class="input-group-btn">
+            <div class="btn btn-default dpb">
+              <i class="glyphicon glyphicon-calendar"></i>
+            </div>
+         </div>
+          <!-- spam class="input-group-addon dp"><i class="glyphicon glyphicon-calendar"></i></spam -->
         </div>
       <!-- </form> -->
       <label>Hora Fim</label>

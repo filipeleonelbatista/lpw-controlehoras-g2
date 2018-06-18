@@ -100,6 +100,11 @@ def lUpdate():
                     
     form.selectProjeto.choices = [(project.id, project.nameProject) for project in Project.getAllProject()]
     form.selectAtividade.choices = [(task.codTask, task.descricao) for task in Task.getAllTask()]
+    form.dtInicio.data = None
+    form.hrInicio.data = None
+    form.dtFim.data = None
+    form.hrFim.data = None
+    form.descricao.data = None
     # mantem a lista altualizada
     lListTable = Lancamento.query.all()
     return render_template('lancamentos/lancamentos.html', form=form, listTable=lListTable)

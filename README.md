@@ -1,6 +1,15 @@
 Instruções abaixo
 ### Comentarios das paginas
 ```
+/admin/funcionarios -> Esta cadastrando senhas com apenas 1 digito. Lembrando que armazena a Rash no banco, então temos
+que entender como validar este campo
+
+/admin/vinculação -> Um usuario pode ser coordenador e funcionario no mesmo projeto.
+
+/lancamentos -> o usuario pode cadastrar horas para qualquer projeto. o correto é cadastrar apenas para os projetos em
+que o usuario logado esta trabalhando.
+
+
 /dashboard
 Fariamos alguns graficos para apresentar com os relatórios das telas de relatórios.
 

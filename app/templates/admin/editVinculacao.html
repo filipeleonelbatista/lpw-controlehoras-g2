@@ -3,7 +3,7 @@
 {% block page_content %}
 	<form action = {{ action }} method = "POST">
 		<h4>ID Vinculacao </h4>
-        {{ form.codVinc(required="required", class_="form-control") }}
+        {{ form.codVinc(required="required", class_="form-control", readonly=True) }}
         <h4>Selecione Funcionario </h4>
         {{ form.selectFunc(required="required", class_="form-control") }}
         <h4>Selecione Projeto </h4>

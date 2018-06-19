@@ -1,13 +1,11 @@
 from flask import render_template, redirect, request, url_for, flash
 from flask_login import login_required
-
-from app.lancamentos.formLancamentos import lancamentoForm
 from .formLancamentos import lancamentoForm
 from . import lancamentos
 from app import db
 from app.models import Lancamento, Task, Project
 
-@lancamentos.route('/lancamentos', methods=['GET', 'POST'])
+@lancamentos.route('/lancamentos/lancamentos', methods=['GET', 'POST'])
 @login_required
 def lancamento():
     print('Preparando para registrar, deletar, alterar')
@@ -70,7 +68,7 @@ def lancamento():
     lListTable=Lancamento.query.all()
     return render_template('lancamentos/lancamentos.html', form=form, listTable=lListTable)
 
-@lancamentos.route('/lUpdate', methods=['GET', 'POST'])
+@lancamentos.route('/lancamentos/lUpdate', methods=['GET', 'POST'])
 @login_required
 def lUpdate():
     print('Preparando para fazer alteracao')
@@ -97,14 +95,4 @@ def lUpdate():
                 except:
                     db.session.rollback()
                     flash('Registro falhou em alterar', 'danger')
-                    
-    form.selectProjeto.choices = [(project.id, project.nameProject) for project in Project.getAllProject()]
-    form.selectAtividade.choices = [(task.codTask, task.descricao) for task in Task.getAllTask()]
-    form.dtInicio.data = None
-    form.hrInicio.data = None
-    form.dtFim.data = None
-    form.hrFim.data = None
-    form.descricao.data = None
-    # mantem a lista altualizada
-    lListTable = Lancamento.query.all()
-    return render_template('lancamentos/lancamentos.html', form=form, listTable=lListTable)
+    return redirect(url_for('.lancamento'))

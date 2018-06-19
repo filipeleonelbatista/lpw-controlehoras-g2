@@ -3,7 +3,7 @@
 {% block page_content %}
 	<form action = {{ action }} method = "POST">
 		<h4>ID Ativdade </h4>
-		{{ form.idAtividade(required="required", class_="form-control") }}
+		{{ form.idAtividade(required="required", class_="form-control", readonly=True) }}
 		<h4>Descrição </h4>
 		{{ form.descricao(required="required", class_="form-control") }}
 		<h4> </h4>

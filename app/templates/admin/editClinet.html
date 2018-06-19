@@ -3,7 +3,7 @@
 {% block page_content %}
 	<form action = {{ action }} method = "POST">
 		<h4>CNPJ/CPF Cliente </h4>
-		{{ form.cnpj(required="required", class_="form-control") }}
+		{{ form.cnpj(required="required", class_="form-control", readonly=True) }}
 		<h4>Nome do Cliente </h4>
 		{{ form.nome(required="required", class_="form-control") }}
 		<h4> </h4>

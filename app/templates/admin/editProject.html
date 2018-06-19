@@ -3,7 +3,7 @@
 {% block page_content %}
         <form action = {{ action }} method = "POST">
                 <h4>ID Projeto </h4>
-                {{ form.codProj(required="required", class_="form-control") }}
+                {{ form.codProj(required="required", class_="form-control", readonly=True) }}
                 <h4>Nome do projeto </h4>
                 {{ form.nomeProj(required="required", class_="form-control") }}
                 <h4>Selecione Cliente </h4>

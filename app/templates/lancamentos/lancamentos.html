@@ -212,6 +212,7 @@ function contador(x){
         </thead>
         <tbody>
           <form action="lancamentos" method="GET">
+            {% for listTable in listTables %}
             {% for item in listTable %}
               <tr>
                 <th scope="row">{{ loop.index }}</th>
@@ -233,6 +234,7 @@ function contador(x){
                   </button>
                 </td>
               </tr>
+            {% endfor %}
             {% endfor %}
           </form>
         </tbody>

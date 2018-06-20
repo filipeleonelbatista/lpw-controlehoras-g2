@@ -79,6 +79,9 @@ class Project(UserMixin, db.Model, Base):
     def getAllProject():
         return Project.query.all()
 
+    def getProjectID(idProject):
+        return Project.query.filter_by(codProject=idProject)
+
 class Binding(UserMixin, db.Model, Base):
     print('Preparando para adicionar o binding')
     __tablename__ = 'binding'
@@ -87,6 +90,9 @@ class Binding(UserMixin, db.Model, Base):
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
     users_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     is_coord = db.Column(db.Boolean)
+
+    def getBinding_UserID(idUser):
+        return Binding.query.filter_by(users_id=idUser)
 
 class Lancamento(UserMixin, db.Model):
     print('Preparando para adicionar o lancamentos')
@@ -110,3 +116,4 @@ class Task(UserMixin, db.Model):
 
     def getAllTask():
         return Task.query.all()
+

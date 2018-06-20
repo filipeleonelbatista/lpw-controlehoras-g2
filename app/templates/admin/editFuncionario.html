@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 {% block page_content %}
+{% if current_user.is_admin %}
+
     <form action = {{ action }} method = "POST">
         <h4>Nome do Funcionário </h4>
         {{ form.nome(required="required", class_="form-control") }}
@@ -17,4 +19,12 @@
         
         </div>
     </form>
+{% else %}
+<script language="javascript" type="text/javascript">
+     <!--
+     window.open("/acesso_negado","_self")
+     // -->
+ </script>
+
+{% endif %}
 {% endblock %}

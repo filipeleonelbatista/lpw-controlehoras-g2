@@ -7,23 +7,16 @@ que entender como validar este campo
 /admin/vinculação -> Um usuario pode ser coordenador e funcionario no mesmo projeto.
 
 /lancamentos -> o usuario pode cadastrar horas para qualquer projeto. o correto é cadastrar apenas para os projetos em
-que o usuario logado esta trabalhando.
+que o usuario logado esta trabalhando. Mudar o botão para quando clicar abrir o calendario.
+Mudar o formato em que busca a data no calendario e no banco
 
 
 /dashboard
 Fariamos alguns graficos para apresentar com os relatórios das telas de relatórios.
 
 /
+Verificar como ultilizar o form comentado.
 Precisa criar o aviso de usuário invalido.
-
-/admin/*
-Testar o permissionamento, somente quem tiver o flag de administrador pode abrir esta pagina
-
-/lancamentos
-conforme combinado ajustei o template. coloquei os validadores em Hora de inicio e final. Preciso ajustar um validador
-para a data, caso seja inserida manualmente sem o datepiker e sem o botão!
-Falta finalizar o banco e gravar os eventos desta tabela! <----- No momento que faz este passo as outras relações de 
-                                                                 Horas trabalhadas e horas por projeto ja podem ser criadas!
 
 /relatorios/horastrabalhadas
 Precisa baixar do banco as informações e ja entregar a tabela pronta. Horas trabalhadas pelo usuário em todos os projetos.

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.css">
+{% endblock %}
+
+
+{% block page_content %}
+<form action="relatorios" method="GET">
+    <div class="col-xs-12">
+        {% for item in listTable %}
+        <h3><strong>Projeto:</strong> {{ item.project.nameProject }}</h3>
+
+        <div class="form-group col-xs-3">
+            <label for="sel1">Mes de referencia: </label>
+            <select class="form-control" id="mesId">
+              <option>Jan</option>
+              <option>Fev</option>
+              <option>Mar</option>
+              <option>Abr</option>
+              <option>Mai</option>
+            </select>
+        </div>
+
+
+    <table id="table_horasProjeto" class="display">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Atividade</th>
+            <th>Data Inicio</th>
+            <th>Hora Inicio</th>
+            <th>Data fim</th>
+            <th>Hora Fim</th>
+            <th>Descrição</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for item in listTable if item.project.id == item.project_id %}
+        <tr>
+            <th scope="row">{{ loop.index }}</th>
+                <td>{{ item.task.descricao }}</td>
+                <td>{{ item.dtInic }}</td>
+                <td>{{ item.hrInic }}</td>
+                <td>{{ item.dtFim }}</td>
+                <td>{{ item.hrFim }}</td>
+                <td>{{ item.descricao }}</td>
+        </tr>
+          {% endfor %}
+
+    </tbody>
+    </table>
+
+        <div class="row">
+            <div class="col-xs-3">
+                <strong>Horas Trabalhadas:</strong> <br>
+                <input class="form-control" type="text" id="htTime" value="00:00">
+            </div>
+            <div class="col-xs-3">
+                <strong>Horas Extras:</strong> <br>
+                <input class="form-control" type="text" id="heTime" value="00:00">
+            </div>
+            <div class="col-xs-3">
+                <strong>Horas Banco de Horas:</strong> <br>
+                <input class="form-control" type="text" id="hbhTIME" value="00:00">
+            </div>
+        </div>
+
+
+        </div>
+    {% endfor %}
+    </form>
+
+{% endblock %}
+
+
+{% block scripts %}
+{{ super() }}
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.js"></script>
+
+{% endblock %}

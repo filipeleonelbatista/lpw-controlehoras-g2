@@ -16,6 +16,10 @@ def login():
         return redirect(request.args.get('next') or url_for('dashaboard.dashaboard'))
     return render_template('auth/login.html', form=form)
 
+@auth.route('/acesso_negado')
+def acesso():
+    return render_template('/acesso_negado.html')
+
 @auth.route('/logout')
 @login_required
 def logout():

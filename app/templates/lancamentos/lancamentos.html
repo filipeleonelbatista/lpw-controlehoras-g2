@@ -2,8 +2,9 @@
 {% import "bootstrap/wtf.html" as wtf %}
 {% block scripts %}
   {{ super() }}
+
   {{ datepicker.loader(theme="base") }} {# to load jQuery-ui #}
-  {{ datepicker.picker(id=".dp", dateFormat='yy/mm/dd') }}
+  {{ datepicker.picker(id=".dp", btnsId='.dpb', dateFormat='yy/mm/dd') }}
 {% endblock %}
 {% block page_content %}
   {% with messages = get_flashed_messages(with_categories=true) %}
@@ -28,14 +29,36 @@
       {{ form.selectProjeto(required="required", class_="form-control") }}
       <!-- <form class="verticalform"> -->
         <label>Data Inicio</label>
-          {{ form.dtInicio(required="required", class_="form-control", autocomplete="off") }}
+
+        <div class="input-group">
+          {{ form.dtInicio(required="required", class_="form-control dp") }}
+
+          <div class="input-group-btn">
+            <div class="btn btn-default dpb">
+              <i class="glyphicon glyphicon-calendar"></i>
+            </div>
+
+         </div>
+        </div>
       <!-- </form> -->
       <label>Hora Inicio</label>
-      {{ form.hrInicio(required="required", class_="form-control", autocomplete="off") }}
+      {{ form.hrInicio(required="required", class_="form-control") }}
+
+      <!-- <form class="verticalform"> -->
         <label>Data Fim</label>
-          {{ form.dtFim(required="required", class_="form-control", autocomplete="off") }}
+        <div class="input-group">
+          <!-- required="required", -->
+          {{ form.dtFim(required="required", class_="form-control dp") }}
+          <div class="input-group-btn">
+            <div class="btn btn-default dpb">
+              <i class="glyphicon glyphicon-calendar"></i>
+            </div>
+         </div>
+          <!-- spam class="input-group-addon dp"><i class="glyphicon glyphicon-calendar"></i></spam -->
+        </div>
+      <!-- </form> -->
       <label>Hora Fim</label>
-      {{ form.hrFim(required="required", class_="form-control", autocomplete="off") }}
+      {{ form.hrFim(required="required", class_="form-control") }}
       
       <label for="sel1">Atividade </label>
       {{ form.selectAtividade(required="required", class_="form-control") }}
@@ -206,13 +229,12 @@ function contador(x){
             <th>Hora Inicio</th>
             <th>Data fim</th>
             <th>Hora Fim</th>
-            <th>Total Horas</th>
+            <th>Descrição</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody>
           <form action="lancamentos" method="GET">
-            {% for listTable in listTables %}
             {% for item in listTable %}
               <tr>
                 <th scope="row">{{ loop.index }}</th>
@@ -224,17 +246,16 @@ function contador(x){
                 <td>{{ item.hrFim }}</td>
                 <td>{{ item.descricao }}</td>
                 <td>
-                  <button class="btn btn-default" type="submit" name="update" value={{ item.id }}>
+                  <button class="btn btn-default" type="submit" name="update" value={{ item.idBinding }}>
                   <a href="#"><span class="glyphicon glyphicon-pencil" style="color:green" aria-hidden="true">
                   </span></a>
                   </button>
-                  <button class="btn btn-default" type="submit" name="delete" value={{ item.id }}>
+                  <button class="btn btn-default" type="submit" name="delete" value={{ item.idBinding }}>
                   <a href="#"><span class="glyphicon glyphicon-trash" style="color:red" aria-hidden="true">
                   </span></a>
                   </button>
                 </td>
               </tr>
-            {% endfor %}
             {% endfor %}
           </form>
         </tbody>

@@ -116,4 +116,3 @@ class Task(UserMixin, db.Model):
 
     def getAllTask():
         return Task.query.all()
-

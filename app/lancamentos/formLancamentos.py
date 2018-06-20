@@ -17,4 +17,16 @@ class lancamentoForm(FlaskForm):
     cancelar = SubmitField('Cancelar')
 
     def validacao(__self__, form):
+        if form.dtInicio.data == '' and form.hrInicio.data == ''\
+                and form.dtFim.data == '' and form.hrFim.data == '':
+            return True
         return False
+
+    def valdDate(__self__, form):
+        ret = False
+        if form.dtInicio.data == form.dtFim.data:
+            if form.hrInicio.data > form.hrFim.data:
+                ret = True
+        elif form.dtInicio.data > form.dtFim.data:
+            ret = True
+        return ret

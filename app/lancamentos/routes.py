@@ -14,9 +14,10 @@ def lancamento():
     form.selectAtividade.choices = [(task.codTask, task.descricao) for task in Task.getAllTask()]
 
     if request.method == 'POST' and form.gravar.data == True:
-        print('cadastro')
         if form.validacao(form):
             flash('Falta preenchar um campo!', 'danger')
+        elif form.valdDate(form):
+            flash('Data ou hora invalida!', 'danger')
         else:
             try:
                 lancam = Lancamento(project_id=form.selectProjeto.data, dtInic=form.dtInicio.data,
@@ -70,6 +71,8 @@ def lUpdate():
     if request.method == 'POST' and form.salvar.data == True:
         if form.validacao(form):
             flash('Falta preenchar um campo!', 'danger')
+        elif form.valdDate(form):
+            flash('Data ou hora invalida!', 'danger')
         else:
             lancamento = Lancamento.query.filter_by(id=form.idLac.data).first_or_404()
             if lancamento:

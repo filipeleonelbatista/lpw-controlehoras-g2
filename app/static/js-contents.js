@@ -18,15 +18,7 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 } */
-$(document).ready(function(){
-    $("#htTime").mask("99:99");
-});
-$(document).ready(function(){
-    $("#heTime").mask("99:99");
-});
-$(document).ready(function(){
-    $("#hbhTIME").mask("99:99");
-});
+
  $(document).ready( function () {
     $('#table_horasProjeto').DataTable({
 
@@ -44,7 +36,7 @@ $(document).ready(function(){
                 "sLoadingRecords": "Carregando...",
                 "sProcessing": "Processando...",
                 "sZeroRecords": "Nenhum registro encontrado",
-                "sSearch": "Pesquisar por Texto:",
+                "sSearch": "Pesquisar por Projeto:",
                 "oPaginate": {
                     "sNext": "Próximo",
                     "sPrevious": "Anterior",

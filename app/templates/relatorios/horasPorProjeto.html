@@ -8,69 +8,88 @@
 
 
 {% block page_content %}
-<form action="relatorios" method="GET">
-    <div class="col-xs-12">
-        {% for item in listTable %}
-        <h3><strong>Projeto:</strong> {{ item.project.nameProject }}</h3>
-
-        <div class="form-group col-xs-3">
-            <label for="sel1">Mes de referencia: </label>
-            <select class="form-control" id="mesId">
-              <option>Jan</option>
-              <option>Fev</option>
-              <option>Mar</option>
-              <option>Abr</option>
-              <option>Mai</option>
-            </select>
+<div class="form-group">
+    <div class="col-xs-3">
+            <label for="sel1">Projeto </label>
+             {{ hpform.selectProject(required="required", class_="form-control") }}
         </div>
-
+        <div class="col-xs-3">
+            <label for="sel1">Mes de referencia </label>
+            {{ hpform.selectMonth(required="required", class_="form-control") }}
+        </div>
+        <div class=" col-xs-3"><br>
+             {{ hpform.gravar(class_="btn btn-success") }}
+        </div>
+</div>
 
     <table id="table_horasProjeto" class="display">
     <thead>
         <tr>
             <th>#</th>
+            <th>Projeto</th>
             <th>Atividade</th>
             <th>Data Inicio</th>
             <th>Hora Inicio</th>
             <th>Data fim</th>
             <th>Hora Fim</th>
+            <th>Horas Trabalhadas</th>
             <th>Descrição</th>
         </tr>
     </thead>
     <tbody>
-    {% for item in listTable if item.project.id == item.project_id %}
+    {% for item in listTable %}
         <tr>
             <th scope="row">{{ loop.index }}</th>
+                <td>{{ item.project.nameProject }}</td>
                 <td>{{ item.task.descricao }}</td>
                 <td>{{ item.dtInic }}</td>
                 <td>{{ item.hrInic }}</td>
                 <td>{{ item.dtFim }}</td>
                 <td>{{ item.hrFim }}</td>
+                <td> none </td>
                 <td>{{ item.descricao }}</td>
         </tr>
           {% endfor %}
 
     </tbody>
+        <tfoot>
+        <tr>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th>Horas Extras</th>
+            <th>00:00:00</th>
+            <th> </th>
+        </tr>
+        <tr>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th>Banco de Horas</th>
+            <th>00:00:00</th>
+            <th> </th>
+        </tr>
+        <tr>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th>Total de Horas</th>
+            <th>00:00:00</th>
+            <th> </th>
+        </tr>
+        </tfoot>
     </table>
 
-        <div class="row">
-            <div class="col-xs-3">
-                <strong>Horas Trabalhadas:</strong> <br>
-                <input class="form-control" type="text" id="htTime" value="00:00">
-            </div>
-            <div class="col-xs-3">
-                <strong>Horas Extras:</strong> <br>
-                <input class="form-control" type="text" id="heTime" value="00:00">
-            </div>
-            <div class="col-xs-3">
-                <strong>Horas Banco de Horas:</strong> <br>
-                <input class="form-control" type="text" id="hbhTIME" value="00:00">
-            </div>
         </div>
-
-
-        </div>
-    {% endfor %}
     </form>
 
 {% endblock %}

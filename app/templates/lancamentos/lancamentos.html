@@ -1,0 +1,266 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block scripts %}
+  {{ super() }}
+
+  {{ datepicker.loader(theme="base") }} {# to load jQuery-ui #}
+  {{ datepicker.picker(id=".dp", btnsId='.dpb', dateFormat='yy/mm/dd') }}
+{% endblock %}
+{% block page_content %}
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+        <!-- <strong>Title</strong> --> {{ message }}
+        <br>
+        <form action="lancamentos" method="GET">
+          <input type="submit" value="Close">
+        </form>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+<div class="col-xs-12">
+  <form action = "{{ request.path }}" method = "POST">
+  <div class="col-xs-6">
+    <div class="form-group">
+      <label for="sel1">Projetos</label>
+      {{ form.selectProjeto(required="required", class_="form-control") }}
+      <!-- <form class="verticalform"> -->
+        <label>Data Inicio</label>
+
+        <div class="input-group">
+          {{ form.dtInicio(required="required", class_="form-control dp") }}
+
+          <div class="input-group-btn">
+            <div class="btn btn-default dpb">
+              <i class="glyphicon glyphicon-calendar"></i>
+            </div>
+
+         </div>
+        </div>
+      <!-- </form> -->
+      <label>Hora Inicio</label>
+      {{ form.hrInicio(required="required", class_="form-control") }}
+
+      <!-- <form class="verticalform"> -->
+        <label>Data Fim</label>
+        <div class="input-group">
+          <!-- required="required", -->
+          {{ form.dtFim(required="required", class_="form-control dp") }}
+          <div class="input-group-btn">
+            <div class="btn btn-default dpb">
+              <i class="glyphicon glyphicon-calendar"></i>
+            </div>
+         </div>
+          <!-- spam class="input-group-addon dp"><i class="glyphicon glyphicon-calendar"></i></spam -->
+        </div>
+      <!-- </form> -->
+      <label>Hora Fim</label>
+      {{ form.hrFim(required="required", class_="form-control") }}
+      
+      <label for="sel1">Atividade </label>
+      {{ form.selectAtividade(required="required", class_="form-control") }}
+      
+      <label for="sel1">Descrição</label>
+      {{ form.descricao(class_="form-control") }}
+      <br>
+      {{ form.gravar(class_="btn btn-success") }}
+      <br>
+    </div>
+  </div>
+</form>
+
+  <!-- <form action = "{{ request.path }}" method = "POST"> -->
+    <div class="col-xs-6">
+      <br>
+      <div class="col-xs-6">
+        <button onclick="getDataInicio()" type="button" class="btn btn-block btn-lg btn-primary">Iniciar </button>
+      </div>
+      <div class="col-xs-6">
+        <button onclick="getDataFim();" type="button" class="btn btn-block btn-lg btn-danger">Parar  </button>
+        <script>
+var segundo = 0+"0";
+var minuto = 0+"0";
+var hora = 0+"0";
+var timer;
+var x;
+
+function contador(x){
+ if(x==1){
+  timer = setInterval(function(){
+    var display  = document.getElementById('display');
+       if (segundo < 59){
+          segundo++
+          if(segundo < 10){segundo = "0"+segundo}
+       }else{
+          if(segundo == 59 && minuto < 59){
+             segundo = 0+"0";
+             minuto++;
+             if(minuto < 10){minuto = "0"+minuto}
+          }
+         }
+       if(minuto == 59 && segundo == 59 && hora < 23){
+          segundo = 0+"0";
+          minuto = 0+"0";
+          hora++;
+          if(hora < 10){hora = "0"+hora}
+       }else{
+          if(minuto == 59 && segundo == 59 && hora == 23){
+             segundo = 0+"0";
+             minuto = 0+"0";
+             hora = 0+"0";
+          }
+         }
+       display.value = hora +":"+ minuto +":"+ segundo;
+  },983);
+
+   }else{
+      if(x==0){
+      clearInterval(timer);
+       }
+     }
+}
+
+
+            function getDataInicio() {
+                               
+              var data = new Date();
+              var dia     = data.getDate();           // 1-31
+              var mes     = data.getMonth();          // 0-11 (zero=janeiro)
+              var ano4    = data.getFullYear();       // 4 dígitos
+              var hora    = data.getHours();          // 0-23
+              var min     = data.getMinutes();        // 0-59      
+              
+              if ((hora<10)&&(min<10)){
+                var str_hora = '0' + hora + ':0' + min;
+              }else{
+                if(hora<10){
+                var str_hora = '0' + hora + ':' + min;                   
+                }else{
+                  if(min<10){
+                    var str_hora = hora + ':0' + min; 
+                  }else{
+                    var str_hora = hora + ':' + min;
+                  }
+                }
+              }
+              
+              if((dia<10)&&(mes<10)){
+                var str_data = '0' + dia + '/0' + (mes+1) + '/' + ano4;
+              }else{
+                if(dia<10){
+                  var str_data = '0' + dia + '/' + (mes+1) + '/' + ano4;
+                }else{
+                  if(mes<10){
+                    var str_data = dia + '/0' + (mes+1) + '/' + ano4;
+                  }else{
+                     var str_data = dia + '/' + (mes+1) + '/' + ano4; 
+                  }
+                }
+              }  
+              
+                  $('#dtInicio').val(str_data);
+                  $('#hrInicio').val(str_hora);
+                  contador(1);
+
+             }
+            function getDataFim() {
+              var data = new Date();
+              var dia     = data.getDate();           // 1-31
+              var mes     = data.getMonth();          // 0-11 (zero=janeiro)
+              var ano4    = data.getFullYear();       // 4 dígitos
+              var hora    = data.getHours();          // 0-23
+              var min     = data.getMinutes();        // 0-59      
+              
+              
+              if ((hora<10)&&(min<10)){
+                var str_hora = '0' + hora + ':0' + min;
+              }else{
+                if(hora<10){
+                var str_hora = '0' + hora + ':' + min;                   
+                }else{
+                  if(min<10){
+                    var str_hora = hora + ':0' + min; 
+                  }else{
+                    var str_hora = hora + ':' + min;
+                  }
+                }
+              } 
+
+              if((dia<10)&&(mes<10)){
+                var str_data = '0' + dia + '/0' + (mes+1) + '/' + ano4;
+              }else{
+                if(dia<10){
+                  var str_data = '0' + dia + '/' + (mes+1) + '/' + ano4;
+                }else{
+                  if(mes<10){
+                    var str_data = dia + '/0' + (mes+1) + '/' + ano4;
+                  }else{
+                     var str_data = dia + '/' + (mes+1) + '/' + ano4; 
+                  }
+                }
+              } 
+                  $('#dtFim').val(str_data);
+                  $('#hrFim').val(str_hora);
+                  contador(0);
+           }
+            </script>  
+      </div>
+      <div class="col-xs-12">
+        <h2 class="text-center">Tempo Trabalhado: 
+          <input type="text" class="form-control" id="display" value="00:00:00"/>
+        </h2>
+
+      </div>
+    </div>
+  <!-- </form> -->
+  <div class="col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">Lista de Atividades</div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Projeto</th>
+            <th>Atividade</th>
+            <th>Data Inicio</th>
+            <th>Hora Inicio</th>
+            <th>Data fim</th>
+            <th>Hora Fim</th>
+            <th>Descrição</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <form action="lancamentos" method="GET">
+            {% for item in listTable %}
+              <tr>
+                <th scope="row">{{ loop.index }}</th>
+                <td>{{ item.project.nameProject }}</td>
+                <td>{{ item.task.descricao }}</td>
+                <td>{{ item.dtInic }}</td>
+                <td>{{ item.hrInic }}</td>
+                <td>{{ item.dtFim }}</td>
+                <td>{{ item.hrFim }}</td>
+                <td>{{ item.descricao }}</td>
+                <td>
+                  <button class="btn btn-default" type="submit" name="update" value={{ item.idBinding }}>
+                  <a href="#"><span class="glyphicon glyphicon-pencil" style="color:green" aria-hidden="true">
+                  </span></a>
+                  </button>
+                  <button class="btn btn-default" type="submit" name="delete" value={{ item.idBinding }}>
+                  <a href="#"><span class="glyphicon glyphicon-trash" style="color:red" aria-hidden="true">
+                  </span></a>
+                  </button>
+                </td>
+              </tr>
+            {% endfor %}
+          </form>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

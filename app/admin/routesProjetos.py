@@ -10,8 +10,7 @@ from app.models import Client, Project
 @login_required
 def projetos():
     if not current_user.is_admin:
-        flash('Solicite o auxilio do adminstrador do sistema!', 'danger')
-        return redirect(url_for('dashaboard.dashaboard'))
+        return redirect(url_for('auth.acesso'))
 
     form = ProjetoForm()
     form.selectClient.choices = [(client.id, client.nameEmpresa) for client in Client.getAllClient()]

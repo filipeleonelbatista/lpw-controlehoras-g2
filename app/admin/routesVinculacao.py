@@ -10,8 +10,7 @@ from app.models import User, Project, Binding
 @login_required
 def vinculacao():
     if not current_user.is_admin:
-        flash('Solicite o auxilio do adminstrador do sistema!', 'danger')
-        return redirect(url_for('dashaboard.dashaboard'))
+        return redirect(url_for('auth.acesso'))
 
     form = VincForm()
     form.selectFunc.choices = [(user.id, user.username) for user in User.getAllUsers()]

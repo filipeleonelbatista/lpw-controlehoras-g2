@@ -10,8 +10,7 @@ from app import db
 @login_required
 def clientes():
     if not current_user.is_admin:
-        flash('Solicite o auxilio do adminstrador do sistema!', 'danger')
-        return redirect(url_for('dashaboard.dashaboard'))
+        return redirect(url_for('auth.acesso'))
 
     form = ClientsForm()
     if request.method == 'POST' and form.salvar.data == True:

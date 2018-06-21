@@ -235,9 +235,9 @@ function contador(x){
                 <th scope="row">{{ loop.index }}</th>
                 <td>{{ item.project.nameProject }}</td>
                 <td>{{ item.task.descricao }}</td>
-                <td>{{ item.dtInic }}</td>
+                <td>{{ item.dtInic.strftime('%d/%m/%Y') }}</td>
                 <td>{{ item.hrInic }}</td>
-                <td>{{ item.dtFim }}</td>
+                <td>{{ item.dtFim.strftime('%d/%m/%Y') }}</td>
                 <td>{{ item.hrFim }}</td>
                 <td>{{ item.descricao }}</td>
                 <td>

@@ -60,7 +60,7 @@ def lancamento():
             form.hrFim.data = lancam.hrFim
             form.descricao.data = lancam.descricao
             form.idLac.data = lancam.id
-            return render_template('lancamentos/editLacmento.html', form=form, action='lUpdate')
+            return render_template('lancamentos/editLacmento.html', form=form, action='/lancamentos/lUpdate')
 
     #mantem a lista altualizada
     listTable = Lancamento.query.filter_by(users_id=current_user.id).all()

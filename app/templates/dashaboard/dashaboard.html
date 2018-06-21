@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
+{% block title %}
+Pagina inicial{{ super() }}
+{% endblock %} 
+
+
 {% block page_content %}
 {% with messages = get_flashed_messages(with_categories=true) %}
     <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->

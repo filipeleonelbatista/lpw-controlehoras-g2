@@ -1,24 +1,51 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Editar lançamento{{ super() }}
+{% endblock %} 
+
+{% block scripts %}
+  {{ super() }}
+  {{ datepicker.loader(theme="base") }} {# to load jQuery-ui #}
+  {{ datepicker.picker(id=".dp", btnsId='.dpb', dateFormat='dd/mm/yy') }}
+{% endblock %}
+
+
 {% block page_content %}
 	<form action = {{ action }} method = "POST" >
-            <h4> ID Registro: {{ form.idLac(size=4, readonly=True, align="right", style="text-align: right") }}</h4>
-		<h4>Selecione o Projeto:  </h4>
+            <label> ID Registro: {{ form.idLac(class_="form-control", size=4, readonly=True, align="right", style="text-align: right") }}</label><br>
+		<label>Selecione o Projeto:  </label>
         {{ form.selectProjeto(required="required", class_="form-control") }}
-        <h4>Data de Inicio </h4>
-        {{ form.dtInicio(required="required", class_="form-control", autocomplete="off") }}
-        <h4>Hora de Inicio </h4>
+        <label>Data de Inicio </label>
+        <div class="input-group">
+          {{ form.dtInicio(required="required", class_="form-control dp", autocomplete="off") }}
+          <div class="input-group-btn">
+            <div class="btn btn-default dpb">
+              <i class="glyphicon glyphicon-calendar"></i>
+            </div>
+         </div>
+        </div>
+        <label>Hora de Inicio </label>
         {{ form.hrInicio(required="required", class_="form-control", autocomplete="off") }}
-        <h4>Data de Fim </h4>
-        {{ form.dtFim(required="required", class_="form-control", autocomplete="off") }}
-        <h4>Hora de Fim </h4>
+        <label>Data de Fim </label>
+        <div class="input-group">
+          {{ form.dtFim(required="required", class_="form-control dp", autocomplete="off") }}
+          <div class="input-group-btn">
+            <div class="btn btn-default dpb">
+              <i class="glyphicon glyphicon-calendar"></i>
+            </div>
+         </div>
+        </div>
+        <label>Hora de Fim </label>
         {{ form.hrFim(required="required", class_="form-control", autocomplete="off") }}
-        <h4>Selecione a Atividade </h4>
+        <label>Selecione a Atividade </label>
         {{ form.selectAtividade(required="required", class_="form-control") }}
-        <h4>Descrição </h4>
+        <label>Descrição </label>
         {{ form.descricao(class_="form-control", autocomplete="off") }}
-        <h4> </h4>
+        <br>
         {{ form.salvar(class_="btn btn-success") }}
+
         {{ form.cancelar(formnovalidate="formnovalidate", class_="btn btn-danger") }}
 	</form>
 {% endblock %}

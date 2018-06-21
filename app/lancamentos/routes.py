@@ -5,7 +5,7 @@ from . import lancamentos
 from app import db
 from app.models import Lancamento, Task, Binding
 
-@lancamentos.route('/lancamentos/lancamentos', methods=['GET', 'POST'])
+@lancamentos.route('/lancamentos', methods=['GET', 'POST'])
 @login_required
 def lancamento():
     form = lancamentoForm()

@@ -108,6 +108,9 @@ class Lancamento(UserMixin, db.Model):
     hrFim = db.Column(db.Time)
     descricao = db.Column(db.String(256))
 
+    def getAllLancamento():
+        return Lancamento.query.all()
+
 class Task(UserMixin, db.Model):
     print('Preparando para adicionar o task')
     __tablename__ = 'task'

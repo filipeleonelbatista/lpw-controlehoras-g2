@@ -1,12 +1,16 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
+{% block title %}
+Lançamentos - {{ super() }}
+{% endblock %} 
+
 {% block scripts %}
   {{ super() }}
-
   {{ datepicker.loader(theme="base") }} {# to load jQuery-ui #}
-  {{ datepicker.picker(id=".dp", btnsId='.dpb', dateFormat='yy/mm/dd') }}
+  {{ datepicker.picker(id=".dp", btnsId='.dpb', dateFormat='dd/mm/yy') }}
 {% endblock %}
 {% block page_content %}
+
   {% with messages = get_flashed_messages(with_categories=true) %}
   <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
   {% if messages %}
@@ -59,9 +63,9 @@
       {{ form.gravar(class_="btn btn-success") }}
       <br>
     </div>
-  </div>
+ 
 </form>
-
+ </div>
   <!-- <form action = "{{ request.path }}" method = "POST"> -->
     <div class="col-xs-6">
       <br>
@@ -219,7 +223,7 @@ function contador(x){
             <th>Hora Inicio</th>
             <th>Data fim</th>
             <th>Hora Fim</th>
-            <th>Total Horas</th>
+            <th>Descrição</th>
             <th>Ações</th>
           </tr>
         </thead>

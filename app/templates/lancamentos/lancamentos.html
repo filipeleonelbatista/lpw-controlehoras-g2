@@ -27,44 +27,34 @@
     <div class="form-group">
       <label for="sel1">Projetos</label>
       {{ form.selectProjeto(required="required", class_="form-control") }}
-      <!-- <form class="verticalform"> -->
         <label>Data Inicio</label>
-
         <div class="input-group">
-          {{ form.dtInicio(required="required", class_="form-control dp") }}
-
+          {{ form.dtInicio(required="required", class_="form-control dp", autocomplete="off") }}
           <div class="input-group-btn">
             <div class="btn btn-default dpb">
               <i class="glyphicon glyphicon-calendar"></i>
             </div>
-
          </div>
         </div>
-      <!-- </form> -->
       <label>Hora Inicio</label>
-      {{ form.hrInicio(required="required", class_="form-control") }}
-
-      <!-- <form class="verticalform"> -->
+      {{ form.hrInicio(required="required", class_="form-control", autocomplete="off") }}
         <label>Data Fim</label>
         <div class="input-group">
-          <!-- required="required", -->
-          {{ form.dtFim(required="required", class_="form-control dp") }}
+          {{ form.dtFim(required="required", class_="form-control dp", autocomplete="off") }}
           <div class="input-group-btn">
             <div class="btn btn-default dpb">
               <i class="glyphicon glyphicon-calendar"></i>
             </div>
          </div>
-          <!-- spam class="input-group-addon dp"><i class="glyphicon glyphicon-calendar"></i></spam -->
         </div>
-      <!-- </form> -->
       <label>Hora Fim</label>
-      {{ form.hrFim(required="required", class_="form-control") }}
+      {{ form.hrFim(required="required", class_="form-control", autocomplete="off") }}
       
       <label for="sel1">Atividade </label>
       {{ form.selectAtividade(required="required", class_="form-control") }}
       
       <label for="sel1">Descrição</label>
-      {{ form.descricao(class_="form-control") }}
+      {{ form.descricao(class_="form-control", autocomplete="off") }}
       <br>
       {{ form.gravar(class_="btn btn-success") }}
       <br>
@@ -229,7 +219,7 @@ function contador(x){
             <th>Hora Inicio</th>
             <th>Data fim</th>
             <th>Hora Fim</th>
-            <th>Descrição</th>
+            <th>Total Horas</th>
             <th>Ações</th>
           </tr>
         </thead>
@@ -246,11 +236,11 @@ function contador(x){
                 <td>{{ item.hrFim }}</td>
                 <td>{{ item.descricao }}</td>
                 <td>
-                  <button class="btn btn-default" type="submit" name="update" value={{ item.idBinding }}>
+                  <button class="btn btn-default" type="submit" name="update" value={{ item.id }}>
                   <a href="#"><span class="glyphicon glyphicon-pencil" style="color:green" aria-hidden="true">
                   </span></a>
                   </button>
-                  <button class="btn btn-default" type="submit" name="delete" value={{ item.idBinding }}>
+                  <button class="btn btn-default" type="submit" name="delete" value={{ item.id }}>
                   <a href="#"><span class="glyphicon glyphicon-trash" style="color:red" aria-hidden="true">
                   </span></a>
                   </button>

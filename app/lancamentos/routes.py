@@ -20,10 +20,14 @@ def lancamento():
             flash('Data ou hora invalida!', 'danger')
         else:
             try:
-                lancam = Lancamento(project_id=form.selectProjeto.data, dtInic=form.dtInicio.data,
-                                    hrInic=form.hrInicio.data,
-                                    dtFim=form.dtFim.data, hrFim=form.hrFim.data, task_id=form.selectAtividade.data,
-                                    descricao=form.descricao.data)
+                lancam = Lancamento(
+                    users_id=current_user.id,
+                    project_id=form.selectProjeto.data,
+                    dtInic=form.dtInicio.data,
+                    hrInic=form.hrInicio.data,
+                    dtFim=form.dtFim.data, hrFim=form.hrFim.data,
+                    task_id=form.selectAtividade.data,
+                    descricao=form.descricao.data)
                 db.session.add(lancam)
                 db.session.commit()
                 flash('Registrado com sucesso', 'success')
@@ -59,10 +63,8 @@ def lancamento():
             return render_template('lancamentos/editLacmento.html', form=form, action='lUpdate')
 
     #mantem a lista altualizada
-    lListTables = []
-    for project in Binding.query.filter_by(users_id=current_user.id).all():
-        lListTables.append(Lancamento.query.filter_by(project_id=project.project_id))
-    return render_template('lancamentos/lancamentos.html', form=form, listTables=lListTables)
+    listTable = Lancamento.query.filter_by(users_id=current_user.id).all()
+    return render_template('lancamentos/lancamentos.html', form=form, listTable=listTable)
 
 @lancamentos.route('/lancamentos/lUpdate', methods=['GET', 'POST'])
 @login_required

@@ -21,6 +21,7 @@ class User(UserMixin, db.Model, Base):
     is_admin = db.Column(db.Boolean)
     password_hash = db.Column(db.String(256))
     binding = db.relationship( 'Binding', backref = 'users', lazy = True)
+    lancamento = db.relationship('Lancamento', backref='users', lazy=True)
     #avatar_hash = db.Column(db.String(256))
     #talks = db.relationship('Talk', lazy='dynamic', backref='author')
 
@@ -100,6 +101,7 @@ class Lancamento(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
     task_id = db.Column(db.Integer, db.ForeignKey('task.id'))
+    users_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     dtInic = db.Column(db.Date)
     hrInic = db.Column(db.Time)
     dtFim = db.Column(db.Date)

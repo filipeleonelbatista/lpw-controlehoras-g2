@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block scripts %}
+  {{ super() }}
+
+  {{ datepicker.loader(theme="base") }} {# to load jQuery-ui #}
+  {{ datepicker.picker(id=".dp") }}
+{% endblock %}
+{% block page_content %}
+<div class="col-xs-12">
+  <div class="col-xs-6">
+      <div class="form-group">
+         
+        <label for="sel1">Projetos</label>
+        <select class="form-control " id="sel1">
+          <option>Projeto 1</option>
+          <option>Projeto 2</option>
+          <option>Projeto 3</option>
+          <option>Projeto 4</option>
+        </select>
+
+            <form class="verticalform">
+                <label>Data Inicio</label>  
+              <div class="input-group">
+                    <input type="text" class="form-control dp" aria-describedby="basic-addon2" />
+                    <spam class="input-group-addon glyphicon glyphicon-calendar"></spam>
+                  </div>
+                </form>
+
+                    <label>Hora Inicio</label> 
+                     <input type="time" class="form-control" /> 
+            
+            <form class="verticalform">
+              <label>Data Fim</label>  
+            <div class="input-group">
+                  <input type="text" class="form-control dp" aria-describedby="basic-addon2" />
+                  <spam class="input-group-addon glyphicon glyphicon-calendar"></spam>
+                </div>
+              </form>
+
+                  <label>Hora Fim</label> 
+                    <input type="time" class="form-control" />         
+                
+
+          <label for="sel1">Atividade</label>
+          <select class="form-control " id="sel1">
+            <option>Projeto 1</option>
+            <option>Projeto 2</option>
+            <option>Projeto 3</option>
+            <option>Projeto 4</option>
+          </select>
+
+
+          <label for="sel1"></label>
+          <textarea rows="5" class="form-control" placeholder="Descrição do trabalho realizado..."></textarea> 
+          <br>
+
+          <div class="panel panel-default"> 
+              <div class="panel-heading">Lista de Atividades</div> 
+              <table class="table"> 
+                      <thead> 
+                          <tr> 
+                              <th>Ação</th> 
+                              <th>Data Inicio</th> 
+                              <th>Hora Inicio</th> 
+                              <th>Data fim</th> 
+                              <th>Hora Fim</th>
+                              <th>Total Horas</th> 
+                          </tr> 
+                      </thead> 
+                      <tbody class="text-center"> 
+                          <tr> 
+                              <td> 
+                                  <a href="#"><span class="glyphicon glyphicon-remove" style="color:red" aria-hidden="true"></span></a>
+                                      &nbsp;
+                                      <a href="#"><span class="glyphicon glyphicon-pencil" style="color:green" aria-hidden="true"></span></a>
+                              </td>
+                              <td>21/03/2012</td> 
+                              <td>11:30</td> 
+                              <td>21/03/2012</td> 
+                              <td>18:30</td> 
+                              <td>7</td> 
+                               
+                          </tr> 
+                      </tbody> 
+                  </table> 
+          </div>
+     
+     </div>
+  </div>
+        <div class="col-xs-6">
+            <div class="col-xs-6">
+                <button type="button" class="btn btn-block btn-lg btn-primary">Iniciar </button>
+            </div>
+            <div class="col-xs-6">
+                <button type="button" class="btn btn-block btn-lg btn-danger">Parar  </button>
+            </div>
+            <div class="col-xs-12">
+                <h2 class="text-center">Tempo Trabalhado: [00:07]<br><br>
+                
+                    <button type="button" class="btn btn-block btn-lg btn-success">Gravar </button>
+                </h2>
+                
+            </div>
+        </div>
+</div>
+
+
+{% endblock %}

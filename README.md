@@ -9,7 +9,6 @@ que entender como validar este campo
 /lancamentos -> o usuario pode cadastrar horas para qualquer projeto. o correto é cadastrar apenas para os projetos em
 que o usuario logado esta trabalhando.
 
-
 /dashboard
 Fariamos alguns graficos para apresentar com os relatórios das telas de relatórios.
 
@@ -18,12 +17,6 @@ Precisa criar o aviso de usuário invalido.
 
 /admin/*
 Testar o permissionamento, somente quem tiver o flag de administrador pode abrir esta pagina
-
-/lancamentos
-conforme combinado ajustei o template. coloquei os validadores em Hora de inicio e final. Preciso ajustar um validador
-para a data, caso seja inserida manualmente sem o datepiker e sem o botão!
-Falta finalizar o banco e gravar os eventos desta tabela! <----- No momento que faz este passo as outras relações de 
-                                                                 Horas trabalhadas e horas por projeto ja podem ser criadas!
 
 /relatorios/horastrabalhadas
 Precisa baixar do banco as informações e ja entregar a tabela pronta. Horas trabalhadas pelo usuário em todos os projetos.
@@ -62,4 +55,5 @@ python manage.py runserver
 3. [Guia basico do GIT](http://rogerdudler.github.io/git-guide/index.pt_BR.html)
 4. [Documentação de MarkDown para escrever o ReadME](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
 5. [Documentação dos Graficos para flask](https://pythonspot.com/flask-and-great-looking-charts-using-chart-js/) 
+6. [dataTables -> na pagina de relatorios](https://datatables.net/)
 

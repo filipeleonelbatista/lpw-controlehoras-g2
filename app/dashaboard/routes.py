@@ -3,7 +3,6 @@ from flask_login import login_required
 from .forms import RelatForm, Results
 from . import dashaboard
 
-@dashaboard.route('/', methods=['GET', 'POST'])
 @dashaboard.route('/dashaboard', methods=['GET', 'POST'])
 @login_required
 def dashaboard():

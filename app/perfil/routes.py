@@ -3,6 +3,7 @@ from .forms import PerfilForm
 from . import perfil
 
 @perfil.route('/perfil', methods=['GET', 'POST'])
+@login_required
 def perfil():
 	form = PerfilForm()
 	return render_template('perfil/perfil.html', form=form)

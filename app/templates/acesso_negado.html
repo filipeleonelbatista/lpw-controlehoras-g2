@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Acesso Negado{{ super() }}
+{% endblock %} 
+
+
+
+{% block page_content %}
+<div class="text-center">
+    <br><br>
+    <p>
+        <span class="glyphicon glyphicon-ban-circle" style="font-size:100px;color:Red;" aria-hidden="true"></span>
+    </p>
+         <h2>Voce não tem permissão de acessar esta pagina!</h2>
+        <p>Caso isso não esteja correto, contate o administrador do sistema! </p>
+    <br><br>
+</div>
+
+
+{% endblock %}

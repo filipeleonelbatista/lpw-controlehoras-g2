@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Vinculação{{ super() }}
+{% endblock %} 
+
+
+{% block page_content %}
+{% if current_user.is_admin %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+                <!-- <strong>Title</strong> --> {{ message }}
+                <br>
+                <form action="vinculacao" method="GET">
+                    <input type="submit" value="Close">
+                </form>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<div class="panel panel-default">
+    <div class="panel-heading">Lista de Vinculação</div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>CodVinculacao</th>
+                <th>Nome do Projeto</th>
+                <th>Funcionario</th>
+                <th>Cargo</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <form action="vinculacao" method="GET">
+                {% for item in listTable %}
+                    <tr>
+                        <th scope="row">{{ loop.index }}</th>
+                        <td>{{ item.idBinding }}</td>
+                        <td>{{ item.project.nameProject }}</td>
+                        <td>{{ item.users.username }}</td>
+                        <td>{% if item.is_coord %}
+                            <div class="btn btn-sm btn-outline-success">
+                                    Coordenador
+                            </div>
+                                {% else %}
+                                <div class="btn btn-sm btn-outline-primary">
+                                        Funcionário
+                                </div>
+                                {% endif %}
+
+                        </td>
+                        <td>
+                            <button class="btn btn-default" type="submit" name="update" value={{ item.idBinding }}>
+                            <a href="#"><span class="glyphicon glyphicon-pencil" style="color:green" aria-hidden="true">
+                            </span></a>
+                            </button>
+                            <button class="btn btn-default" type="submit" name="delete" value={{ item.idBinding }}>
+                            <a href="#"><span class="glyphicon glyphicon-trash" style="color:red" aria-hidden="true">
+                            </span></a>
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </form>
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <button onclick="document.getElementById('cadProj').style.display='block'" class="btn btn-success">Cadastrar Vinculação</button>
+    <form action = "{{ request.path }}" method = "POST">
+        <div id="cadProj" class="modal">
+            <div class="modal-content">
+                <div class="container">
+                    <div class="col-xs-10">
+                        <h4>ID Vinculacao </h4>
+                        {{ form.codVinc(required="required", class_="form-control", autocomplete="off") }}
+                        <h4>Selecione Funcionario </h4>
+                        {{ form.selectFunc(required="required", class_="form-control", autocomplete="off") }}
+                        <h4>Selecione Projeto </h4>
+                        {{ form.selectProj(required="required", class_="form-control", autocomplete="off") }}
+                        <h4>É coordenador 
+                        {{ form.coordenador }} </h4>
+                        <h4> </h4>
+                        {{ form.salvar(class_="btn btn-success") }}
+                        {{ form.cancelar(formnovalidate="formnovalidate", class_="btn btn-danger") }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% else %}
+<script language="javascript" type="text/javascript">
+     <!--
+     window.open("/acesso_negado","_self")
+     // -->
+ </script>
+
+{% endif %}
+{% endblock %}

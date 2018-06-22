@@ -21,7 +21,10 @@ def funcionarios():
             elif form.validInteger(form.matricula.data):
                 flash('Matricula deve ser composto de somente numeros!', 'danger')
             else:
-                user = User(matricula=form.matricula.data, username=form.nome.data, password=form.password.data,
+                user = User(matricula=form.matricula.data, 
+                            fullusername=form.nomeCompleto.data, 
+                            username=form.nome.data, 
+                            password=form.password.data,
                             is_admin=form.admin.data)
                 db.session.add(user)
                 db.session.commit()
@@ -73,6 +76,7 @@ def funcUpdate():
         else:
             user = User.query.filter_by(matricula=form.matricula.data).first_or_404()
             if user:
+                user.fullusername = form.nomeCompleto.data
                 user.username = form.nome.data
                 user.matricula = form.matricula.data
                 user.is_admin = form.admin.data

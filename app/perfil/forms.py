@@ -4,8 +4,11 @@ from wtforms.validators import DataRequired, Length
 
 class PerfilForm(FlaskForm):
     matricula = IntegerField('Matricula', validators=[DataRequired()])
-    nome = StringField('Nome', validators=[DataRequired(), Length(1, 64)])
-    password = PasswordField('Password', validators=[DataRequired()])
-    confirm = PasswordField('Confirm', validators=[DataRequired()])
-    submit = SubmitField('Save')
+    nomeCompleto = StringField('Nome completo', validators=[DataRequired(), Length(1, 64)])
+    nome = StringField('Nome de usuário', validators=[DataRequired(), Length(1, 64)])
+    password = PasswordField('Senha', validators=[DataRequired()])
+    confirm = PasswordField('Confirmar senha', validators=[DataRequired()])
+    submit = SubmitField('Atualizar')
+    cancel = SubmitField('Cancelar')
+    upload = SubmitField('Atualizar imagem')
    

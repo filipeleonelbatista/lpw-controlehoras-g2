@@ -15,7 +15,7 @@ migrate = Migrate(app, db)
 manager.add_command('db', MigrateCommand)
 
 @manager.command
-def adduser(matricula, username, admin=True):
+def adduser(matricula, fullusername, username, admin=True):
     from getpass import getpass
     password = getpass()
     password2 = getpass(prompt="Confirme: ")
@@ -23,7 +23,7 @@ def adduser(matricula, username, admin=True):
         import sys
         sys.exit('Erro: senhas nao conferem')
     db.create_all()
-    user = User(matricula=matricula, username=username, password=password, is_admin=admin)
+    user = User(matricula=matricula, fullusername=fullusername, username=username, password=password, is_admin=admin)
     db.session.add(user)
     db.session.commit()
     print('Usuario {0} foi registrado com sucesso.'.format(username) )

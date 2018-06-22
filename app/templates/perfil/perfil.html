@@ -6,8 +6,34 @@ Perfil{{ super() }}
 {% endblock %} 
 
 
-
 {% block page_content %}
-{{ wtf.quick_form(form) }}
+
+<div class="col-xs-3">
+    <center>
+        <label>Imagem de Perfil </label>
+        <img src="{{ url_for('static', filename='images/img_avatar.png') }}" class="img-thumbnail">
+        <br><br>
+        {{ form.upload(class_="btn btn-primary") }}
+    </center>
+</div>
+<div class="col-xs-9">
+    <div class="form-group">
+        <label>Nome completo </label>
+            {{ form.nomeCompleto(class_="form-control") }}
+        <label>Nome de usuário </label>
+            {{ form.nome(class_="form-control") }}
+        <label>Matricula </label>
+            {{ form.matricula(class_="form-control") }}
+        <label>Senha </label>
+            {{ form.password(class_="form-control") }}
+        <label>Confirmar senha </label>
+            {{ form.confirm(class_="form-control") }}
+        <br>
+            {{ form.submit(class_="btn btn-success") }}
+            {{ form.cancel(class_="btn btn-danger") }}
+    </div>
+</div>
+
+
 
 {% endblock %}

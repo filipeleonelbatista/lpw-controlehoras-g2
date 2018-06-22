@@ -30,8 +30,9 @@ Funcionários{{ super() }}
         <thead>
             <tr>
                 <th>#</th>
+                <th>Nome do funcionário</th>
+                <th>Nome de usuário</th>
                 <th>Matricula</th>
-                <th>Nome</th>
                 <th>Tipo</th>
                 <th>Ações</th>
             </tr>
@@ -41,8 +42,9 @@ Funcionários{{ super() }}
                 {% for item in listTable %}
                     <tr>
                         <th scope="row">{{ loop.index }}</th>
-                        <td>{{ item.matricula }}</td>
+                        <td>{{ item.fullusername }}</td>
                         <td>{{ item.username }}</td>
+                        <td>{{ item.matricula }}</td>
                         <td>{% if item.is_admin %}
                             <div class="btn btn-sm btn-outline-success">
                                     Administrador
@@ -78,16 +80,17 @@ Funcionários{{ super() }}
             <div class="modal-content">
                 <div class="container">
                     <div class="col-xs-10">
-                        <h4>Nome do Funcionário </h4>
+                        <label>Nome do Funcionário </label>
+                        {{ form.nomeCompleto(required="required", class_="form-control", autocomplete="off") }}
+                        <label>Nome de usuário </label>
                         {{ form.nome(required="required", class_="form-control", autocomplete="off") }}
-                        <h4>Matricula </h4>
+                        <label>Matricula </label>
                         {{ form.matricula(required="required", class_="form-control", autocomplete="off") }}
-                        <h4>Senha </h4>
+                        <label>Senha </label>
                         {{ form.password(required="required", class_="form-control", autocomplete="off") }}
-                        <h4> </h4>
+                        <label> </label>
                         {{ form.admin }}
-                        é Admimnistrador?
-                        <h4> </h4>
+                        é Admimnistrador?<br><br>
                         {{ form.salvar(class_="btn btn-success") }}
                         {{ form.cancelar(formnovalidate="formnovalidate", class_="btn btn-danger") }}
                         

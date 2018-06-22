@@ -54,7 +54,7 @@
                 <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Suporte <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                                <li><a href="/perfil">Alterar senha</a></li>
+                                <li><a href="/perfil">Perfil</a></li>
                                 <li><a href="/logout">Sair</a></li>
                         </ul>
                 </li>
@@ -62,7 +62,8 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Bem Vindo, {{ current_user.username }}</a></li>
+                        <li><a href="#"><img src="{{ url_for('static', filename='images/img_avatar.png') }}" class="avatarnav">&nbsp Bem Vindo, {{ current_user.fullusername }}</a></li>
+                        
                         </ul>
      
              {% endif %}

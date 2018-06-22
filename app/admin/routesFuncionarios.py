@@ -53,6 +53,7 @@ def funcionarios():
             user = User.query.filter_by(matricula=request.args.get('update')).first_or_404()
             form.matricula.data = user.matricula
             form.nome.data = user.username
+            form.nomeCompleto.data = user.fullusername
             form.admin.data = user.is_admin
             return render_template('admin/editFuncionario.html', form=form, action='funcUpdate')
 

@@ -28,7 +28,7 @@ Clientes{{ super() }}
         <thead>
             <tr>
                 <th>#</th>
-                <th>CPF/CNPJ</th>
+                <th>CNPJ</th>
                 <th>Nome</th>
                 <th>Actions</th>
             </tr>
@@ -63,7 +63,7 @@ Clientes{{ super() }}
             <div class="modal-content">
                 <div class="container">
                     <div class="col-xs-10">
-                        <h4>CNPJ/CPF Cliente </h4>
+                        <h4>CNPJ Cliente </h4>
                         {{ form.cnpj(required="required", class_="form-control", autocomplete="off") }}
                         <h4>Nome do Cliente </h4>
                         {{ form.nome(required="required", class_="form-control", autocomplete="off") }}

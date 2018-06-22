@@ -14,7 +14,7 @@ Editar lançamento{{ super() }}
 
 {% block page_content %}
 	<form action = {{ action }} method = "POST" >
-            <label> ID Registro: {{ form.idLac(class_="form-control", size=4, readonly=True, align="right", style="text-align: right") }}</label><br>
+          {{ form.idLac(class_="form-control", size=4, readonly=True, align="right", style="text-align: right") }}
 		<label>Selecione o Projeto:  </label>
         {{ form.selectProjeto(required="required", class_="form-control") }}
         <label>Data de Inicio </label>

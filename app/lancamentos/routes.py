@@ -76,6 +76,7 @@ def lUpdate():
         elif form.valdDate(form):
             flash('Data ou hora invalida!', 'danger')
         else:
+            print(form.idLac.data)
             lancamento = Lancamento.query.filter_by(id=form.idLac.data).first_or_404()
             if lancamento:
                 lancamento.project_id = form.selectProjeto.data

@@ -4,13 +4,6 @@ from .forms import horasProjetoForm, Results
 from . import relatorios
 from app.models import Task, Project, Lancamento
 
-
-@relatorios.route('/minhasHoras', methods=['GET', 'POST'])
-@login_required
-def minhasHoras():
-	listTable=Lancamento.query.all()
-	return render_template('relatorios/minhasHoras.html', listTable=listTable)
-
 @relatorios.route('/horasPorProjeto', methods=['GET', 'POST'])
 @login_required
 def horasProjeto():

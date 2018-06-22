@@ -1,10 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import TextAreaField, SelectField, DateField, TimeField, SubmitField, IntegerField
+from wtforms import TextAreaField, SelectField, DateField, TimeField, SubmitField, IntegerField, HiddenField
 from wtforms.validators import DataRequired
 
 
 class lancamentoForm(FlaskForm):
-    idLac = IntegerField('ID')
+    idLac = HiddenField('ID')
     selectProjeto = SelectField(u'project', validators=[DataRequired()])
     dtInicio = DateField('Data de Inicio', format='%d/%m/%Y')
     hrInicio = TimeField('Hora de Inicio', format='%H:%M')

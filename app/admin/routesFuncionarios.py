@@ -64,8 +64,7 @@ def funcionarios():
 @login_required
 def funcUpdate():
     if not current_user.is_admin:
-        flash('Solicite o auxilio do adminstrador do sistema!', 'danger')
-        return redirect(url_for('dashaboard.dashaboard'))
+        return redirect(url_for('auth.acesso'))
 
     form = FuncionarioForm()
     if request.method == 'POST' and form.salvar.data == True:

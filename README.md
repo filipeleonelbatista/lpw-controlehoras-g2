@@ -56,5 +56,4 @@ python manage.py runserver
 4. [Documentação de MarkDown para escrever o ReadME](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
 5. [Documentação dos Graficos para flask](https://pythonspot.com/flask-and-great-looking-charts-using-chart-js/) 
 6. [dataTables -> na pagina de relatorios](https://datatables.net/)
-7. [Flask File Upload](http://flask.pocoo.org/docs/0.12/patterns/fileuploads/)
-
+7. [Flask File Upload](http://flask.pocoo.org/docs/1.0/patterns/fileuploads/)

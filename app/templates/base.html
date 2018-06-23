@@ -57,9 +57,14 @@
                 <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                  <img src="{{ url_for('static', filename='images/img_avatar.png') }}" class="avatarnav">&nbsp {{ current_user.fullusername }}  
+                                  <img src="{{ url_for('static', filename='images/img_avatar.png') }}" class="img-rounded" width="25px"> 
                                 <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
+                                        <li class="dropdown-header header-nav-current-user">
+                                                        Bem vindo<BR>
+                                                <strong>{{ current_user.fullusername }}</strong>
+                                        </li>
+                                        <li class="divider"></li>
                                         <li><a href="/perfil"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Perfil</a></li>
                                         <li><a href="/logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Sair </a></li>
                                 </ul>
@@ -92,7 +97,19 @@
                 </div>
         </div>   
 </div>
+
+{%- block footer %}
+<footer class="footer">
+        <br>
+        <div class="container">
+                <span class="text-muted">Desenvolvido por Filipe Batista e Lucio Pintanel.</span>
+        </div>
+        <br>
+</footer>
+{%- endblock footer %}
+
 {% endblock %}
+
 
 {% block scripts %}
 {{ super() }}

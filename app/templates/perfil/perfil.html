@@ -8,7 +8,7 @@ Perfil{{ super() }}
 
 {% block page_content %}
 
-<div class="col-xs-3">
+<div class="col-sm-3">
     <center>
         <label>Imagem de Perfil </label>
         <img src="{{ url_for('static', filename='images/img_avatar.png') }}" class="img-thumbnail">
@@ -16,7 +16,7 @@ Perfil{{ super() }}
         {{ form.upload(class_="btn btn-primary") }}
     </center>
 </div>
-<div class="col-xs-9">
+<div class="col-sm-9">
     <div class="form-group">
         <label>Nome completo </label>
             {{ form.nomeCompleto(class_="form-control") }}

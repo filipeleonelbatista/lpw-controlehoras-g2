@@ -26,9 +26,9 @@ Lançamentos{{ super() }}
     {% endfor %}
   {% endif %}
 {% endwith %}
-<div class="col-xs-12">
+<div class="col-sm-12">
   <form action = "{{ request.path }}" method = "POST">
-  <div class="col-xs-6">
+  <div class="col-sm-6">
     <div class="form-group">
       <label for="sel1">Projetos</label>
       {{ form.selectProjeto(required="required", class_="form-control") }}
@@ -67,12 +67,12 @@ Lançamentos{{ super() }}
  
 </form>
  </div>
-    <div class="col-xs-6">
+    <div class="col-sm-6">
       <br>
-      <div class="col-xs-6">
+      <div class="col-sm-6">
         <button onclick="getDataInicio()" type="button" class="btn btn-block btn-lg btn-primary">Iniciar </button>
       </div>
-      <div class="col-xs-6">
+      <div class="col-sm-6">
         <button onclick="getDataFim();" type="button" class="btn btn-block btn-lg btn-danger">Parar  </button>
         <script>
 var segundo = 0+"0";
@@ -202,7 +202,7 @@ function contador(x){
            }
             </script>  
       </div>
-      <div class="col-xs-12">
+      <div class="col-sm-12">
         <h2 class="text-center">Tempo Trabalhado: 
           <input type="text" class="form-control" id="display" value="00:00:00"/>
         </h2>
@@ -210,9 +210,9 @@ function contador(x){
       </div>
     </div>
   <!-- </form> -->
-  <div class="col-xs-12">
+  <div class="col-sm-12">
     <div class="panel panel-default">
-      <div class="panel-heading">Lista de Atividades</div>
+      <div class="panel-heading"><strong>Lista de Atividades</strong></div>
       <table class="table">
         <thead>
           <tr>

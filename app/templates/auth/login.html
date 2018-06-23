@@ -26,11 +26,13 @@ Login{{ super() }}
 </p>
    
 {{ wtf.quick_form(form) }}
-    <!-- <form action method = "post" role="form" >
+    <!-- <form action = {{ action }} method = "post" >
         <div class="form-group">
+            <label>Nome de usuário</label>
             {{ form.name(class_="form-control") }} 
         </div>
         <div class="form-group">
+            <label>Senha</label>
             {{ form.password(class_="form-control") }} 
         </div>
         <div class="form-group">

@@ -29,8 +29,8 @@ Clientes{{ super() }}
             <tr>
                 <th>#</th>
                 <th>CNPJ</th>
-                <th>Nome</th>
-                <th>Actions</th>
+                <th>Nome do cliente</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -63,11 +63,11 @@ Clientes{{ super() }}
             <div class="modal-content">
                 <div class="container">
                     <div class="col-xs-10">
-                        <h4>CNPJ Cliente </h4>
+                        <label>CNPJ Cliente </label>
                         {{ form.cnpj(required="required", class_="form-control", autocomplete="off") }}
-                        <h4>Nome do Cliente </h4>
+                        <label>Nome do Cliente </label>
                         {{ form.nome(required="required", class_="form-control", autocomplete="off") }}
-                        <h4> </h4>
+                        <br>
                         {{ form.salvar(class_="btn btn-success") }}
                         {{ form.cancelar(formnovalidate="formnovalidate", class_="btn btn-danger") }}
                     </div>

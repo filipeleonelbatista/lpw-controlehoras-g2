@@ -29,8 +29,7 @@ Atividades{{ super() }}
         <thead>
             <tr>
                 <th>#</th>
-                <th>CodAtividade</th>
-                <th>Descrição</th>
+                <th>Descrição da atividade</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -39,7 +38,6 @@ Atividades{{ super() }}
                 {% for item in listTable %}
                     <tr>
                         <th scope="row">{{ loop.index }}</th>
-                        <td>{{ item.codTask }}</td>
                         <td>{{ item.descricao }}</td>
                         <td>
                             <button class="btn btn-default" type="submit" name="update" value={{ item.codTask }}>
@@ -64,11 +62,11 @@ Atividades{{ super() }}
             <div class="modal-content">
                 <div class="container">
                     <div class="col-xs-10">
-                        <h4>ID Atividade </h4>
+                        <label>ID Atividade </label>
                         {{ form.idAtividade(required="required", class_="form-control", autocomplete="off") }}
-                        <h4>Descrição </h4>
+                        <label>Descrição </label>
                         {{ form.descricao(required="required", class_="form-control", autocomplete="off") }}
-                        <h4> </h4>
+                        <br>
                         {{ form.salvar(class_="btn btn-success") }}
                         {{ form.cancelar(formnovalidate="formnovalidate", class_="btn btn-danger") }}
                     </div>

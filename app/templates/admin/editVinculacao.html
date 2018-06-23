@@ -10,15 +10,15 @@ Editar vinculo{{ super() }}
 {% if current_user.is_admin %}
 
 	<form action = {{ action }} method = "POST">
-		<h4>ID Vinculacao </h4>
-        {{ form.codVinc(required="required", class_="form-control", readonly=True) }}
-        <h4>Selecione Funcionario </h4>
-        {{ form.selectFunc(required="required", class_="form-control") }}
-        <h4>Selecione Projeto </h4>
-        {{ form.selectProj(required="required", class_="form-control") }}
-        <h4>É coordenador </h4>
-        {{ form.coordenador }}
-        <h4> </h4>
+		<label>ID Vinculacao </label>
+        {{ form.codVinc(class_="form-control", size=4, readonly=True, align="right") }}
+        <label>Selecione Funcionario </label>
+        {{ form.selectFunc(required="required", class_="form-control", autocomplete="off") }}
+        <label>Selecione Projeto </label>
+        {{ form.selectProj(required="required", class_="form-control", autocomplete="off") }}
+        <br> 
+        {{ form.coordenador }} É coordenador
+        <br><br>
         {{ form.salvar(class_="btn btn-success") }}
         {{ form.cancelar(formnovalidate="formnovalidate", class_="btn btn-danger") }}
 	</form>

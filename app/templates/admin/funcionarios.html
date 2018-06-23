@@ -74,7 +74,7 @@ Funcionários{{ super() }}
 </div>
 
 <div class="container">
-    <button onclick="document.getElementById('cadProj').style.display='block'" class="btn btn-success">Cadastrar funcionario</button>
+    <button onclick="document.getElementById('cadProj').style.display='block'" class="btn btn-success">Cadastrar funcionário</button>
     <form action = "{{ request.path }}" method = "POST">
         <div id="cadProj" class="modal">
             <div class="modal-content">
@@ -88,7 +88,7 @@ Funcionários{{ super() }}
                         {{ form.matricula(required="required", class_="form-control", autocomplete="off") }}
                         <label>Senha </label>
                         {{ form.password(required="required", class_="form-control", autocomplete="off") }}
-                        <label> </label>
+                        <br>
                         {{ form.admin }}
                         é Admimnistrador?<br><br>
                         {{ form.salvar(class_="btn btn-success") }}

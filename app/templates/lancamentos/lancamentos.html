@@ -32,7 +32,7 @@ Lançamentos{{ super() }}
     <div class="form-group">
       <label for="sel1">Projetos</label>
       {{ form.selectProjeto(required="required", class_="form-control") }}
-        <label>Data Inicio</label>
+        <label>Data de início</label>
         <div class="input-group">
           {{ form.dtInicio(required="required", class_="form-control dp", autocomplete="off") }}
           <div class="input-group-btn">
@@ -41,9 +41,9 @@ Lançamentos{{ super() }}
             </div>
          </div>
         </div>
-      <label>Hora Inicio</label>
+      <label>Hora de início</label>
       {{ form.hrInicio(required="required", class_="form-control", autocomplete="off") }}
-        <label>Data Fim</label>
+        <label>Data de fim</label>
         <div class="input-group">
           {{ form.dtFim(required="required", class_="form-control dp", autocomplete="off") }}
           <div class="input-group-btn">
@@ -52,7 +52,7 @@ Lançamentos{{ super() }}
             </div>
          </div>
         </div>
-      <label>Hora Fim</label>
+      <label>Hora de fim</label>
       {{ form.hrFim(required="required", class_="form-control", autocomplete="off") }}
       
       <label for="sel1">Atividade </label>
@@ -67,7 +67,6 @@ Lançamentos{{ super() }}
  
 </form>
  </div>
-  <!-- <form action = "{{ request.path }}" method = "POST"> -->
     <div class="col-xs-6">
       <br>
       <div class="col-xs-6">
@@ -220,10 +219,10 @@ function contador(x){
             <th>#</th>
             <th>Projeto</th>
             <th>Atividade</th>
-            <th>Data Inicio</th>
-            <th>Hora Inicio</th>
-            <th>Data fim</th>
-            <th>Hora Fim</th>
+            <th>Data de início</th>
+            <th>Hora de início</th>
+            <th>Data de fim</th>
+            <th>Hora de fim</th>
             <th>Descrição</th>
             <th>Ações</th>
           </tr>

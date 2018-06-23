@@ -29,7 +29,6 @@ Vinculação{{ super() }}
         <thead>
             <tr>
                 <th>#</th>
-                <th>CodVinculacao</th>
                 <th>Nome do Projeto</th>
                 <th>Funcionario</th>
                 <th>Cargo</th>
@@ -41,7 +40,6 @@ Vinculação{{ super() }}
                 {% for item in listTable %}
                     <tr>
                         <th scope="row">{{ loop.index }}</th>
-                        <td>{{ item.idBinding }}</td>
                         <td>{{ item.project.nameProject }}</td>
                         <td>{{ item.users.username }}</td>
                         <td>{% if item.is_coord %}
@@ -78,15 +76,15 @@ Vinculação{{ super() }}
             <div class="modal-content">
                 <div class="container">
                     <div class="col-xs-10">
-                        <h4>ID Vinculacao </h4>
+                        <label>ID Vinculacao </label>
                         {{ form.codVinc(required="required", class_="form-control", autocomplete="off") }}
-                        <h4>Selecione Funcionario </h4>
+                        <label>Selecione Funcionario </label>
                         {{ form.selectFunc(required="required", class_="form-control", autocomplete="off") }}
-                        <h4>Selecione Projeto </h4>
+                        <label>Selecione Projeto </label>
                         {{ form.selectProj(required="required", class_="form-control", autocomplete="off") }}
-                        <h4>É coordenador 
-                        {{ form.coordenador }} </h4>
-                        <h4> </h4>
+                        <br>
+                        {{ form.coordenador }} É coordenador 
+                        <br><br>
                         {{ form.salvar(class_="btn btn-success") }}
                         {{ form.cancelar(formnovalidate="formnovalidate", class_="btn btn-danger") }}
                     </div>

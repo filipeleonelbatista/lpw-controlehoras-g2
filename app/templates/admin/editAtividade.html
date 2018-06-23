@@ -9,11 +9,11 @@ Editar atividade{{ super() }}
 {% block page_content %}
 {% if current_user.is_admin %}
 	<form action = {{ action }} method = "POST">
-		<h4>ID Ativdade </h4>
+		<label>ID Ativdade </label>
 		{{ form.idAtividade(required="required", class_="form-control", readonly=True) }}
-		<h4>Descrição </h4>
+		<label>Descrição </label>
 		{{ form.descricao(required="required", class_="form-control") }}
-		<h4> </h4>
+		<br>
 		{{ form.salvar(class_="btn btn-success") }}
 		{{ form.cancelar(formnovalidate="formnovalidate", class_="btn btn-danger") }}
 	</form>

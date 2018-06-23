@@ -31,8 +31,8 @@
                 <ul class="dropdown-menu">
                         <li><a href="/admin/projetos">Projetos</a></li>
                         <li><a href="/admin/clientes">Clientes</a></li>
-                        <li><a href="/admin/funcionarios">Funcionarios</a></li>
-                        <li><a href="/admin/vinculacao">Funcionarios x Projetos</a></li>
+                        <li><a href="/admin/funcionarios">Funcionários</a></li>
+                        <li><a href="/admin/vinculacao">Vincular funcionários em projetos</a></li>
                         <li><a href="/admin/atividades">Atividades</a></li>
                 </ul>
                 {% endif %}
@@ -48,7 +48,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Relatórios <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                               
-                                <li><a href="/horasPorProjeto">Horas x Projeto</a></li>
+                                <li><a href="/horasPorProjeto">Horas por projeto</a></li>
                         </ul>
                 </li>
 
@@ -57,7 +57,7 @@
                 <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                  <img src="{{ url_for('static', filename='images/img_avatar.png') }}" class="avatarnav">&nbsp Bem Vindo, {{ current_user.fullusername }}  
+                                  <img src="{{ url_for('static', filename='images/img_avatar.png') }}" class="avatarnav">&nbsp {{ current_user.fullusername }}  
                                 <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                         <li><a href="/perfil"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Perfil</a></li>

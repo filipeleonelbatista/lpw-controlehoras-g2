@@ -43,6 +43,14 @@ entendo como tela de edição de usuário. Colocar o upload do avatar. No Base c
 11. [executar o sistema - python3 manage.py runserver]
 
 ```
+
+## Rodar servidor aberto na rede
+```
+export FLASK_APP=manage.py
+
+flask run --host=0.0.0.0
+
+```
 ## install packege
 pip3 install -r requirements.txt
 

@@ -10,7 +10,6 @@ Editar vinculo{{ super() }}
 {% if current_user.is_admin %}
 
 	<form action = {{ action }} method = "POST">
-		<label>ID Vinculacao </label>
         {{ form.codVinc(class_="form-control", size=4, readonly=True, align="right") }}
         <label>Selecione Funcionario </label>
         {{ form.selectFunc(required="required", class_="form-control", autocomplete="off") }}

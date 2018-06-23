@@ -87,7 +87,7 @@ Funcionários{{ super() }}
                         <label>Matricula </label>
                         {{ form.matricula(required="required", class_="form-control", autocomplete="off") }}
                         <label>Senha </label>
-                        {{ form.password(required="required", class_="form-control", autocomplete="off") }}
+                        {{ form.password(required="required", minlength=4, class_="form-control", autocomplete="off") }}
                         <br>
                         {{ form.admin }}
                         é Admimnistrador?<br><br>

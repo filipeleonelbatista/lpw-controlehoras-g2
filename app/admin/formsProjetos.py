@@ -1,11 +1,11 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, SelectField, SubmitField
+from wtforms import StringField, IntegerField, SelectField, SubmitField, HiddenField
 from wtforms.validators import DataRequired, Length
 
 from app.models import Client
 
 class ProjetoForm(FlaskForm):
-	codProj = IntegerField('Codigo Projeto')
+	codProj = HiddenField('Codigo Projeto')
 	nomeProj = StringField('Nome do Projeto', validators=[DataRequired(), Length(1, 64)])
 	selectClient = SelectField(u'Cliente', validators=[DataRequired()])
 	descrProj = StringField('Descrição do Projeto', validators=[DataRequired(), Length(1, 64)])
@@ -18,7 +18,7 @@ class ProjetoForm(FlaskForm):
 		for a in Client.query.order_by(Client.nameEmpresa)]
 
 	def validacao(__self__, form):
-		if form.codProj.data == '' or form.nomeProj.data == '':
+		if form.nomeProj.data == '':
 			print('Algum campo vazio!')
 			return True
 		return False

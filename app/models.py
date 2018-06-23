@@ -71,7 +71,7 @@ class Project(UserMixin, db.Model, Base):
     __tablename__ = 'project'
     id = db.Column(db.Integer, primary_key=True)
     codProject = db.Column(db.Integer,nullable=False, unique=True, index=True)
-    nameProject = db.Column(db.String(64), nullable=False, unique=True, index=True)
+    nameProject = db.Column(db.String(64), nullable=False, index=True)
     client_id = db.Column (db.Integer, db.ForeignKey('client.id'),
         nullable = False)
     descricao = db.Column(db.String(64))

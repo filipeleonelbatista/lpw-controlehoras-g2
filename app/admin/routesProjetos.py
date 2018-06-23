@@ -17,13 +17,18 @@ def projetos():
 
     if request.method == 'POST' and form.salvar.data == True:
         try:
+            last = Project.query.all()
+            print(last[-1].codProject)
+            print(last[-1].codProject + 1)
+            idProjProx = (last[-1].codProject + 1)
             if form.validacao(form):
                 flash('Falta preenchar um campo!', 'danger')
-            elif form.validInteger(form.codProj.data):
+            elif form.validInteger(idProjProx):
                 flash('ID do projeto deve ser composto de somente numeros!', 'danger')
-            else:
+            else:                
+
                 project = Project(
-                    codProject=form.codProj.data,
+                    codProject=idProjProx,
                     nameProject=form.nomeProj.data,
                     client_id=form.selectClient.data,
                     descricao=form.descrProj.data
@@ -43,7 +48,7 @@ def projetos():
                 project = Project.query.filter_by(codProject=request.args.get('delete')).first_or_404()
                 db.session.delete(project)
                 db.session.commit()
-                flash('Registro apagado com sucesso', 'danger')
+                flash('Registro apagado com sucesso', 'info')
         except:
             db.session.rollback()
             flash('Registro falhou em apagar', 'danger')
@@ -73,11 +78,13 @@ def projectUpdate():
 
     form = ProjetoForm()
     if request.method == 'POST' and form.salvar.data == True:
+        print('Cod Proj: ' + form.codProj.data)
         if form.validacao(form):
             flash('Falta preenchar um campo!', 'danger')
-        elif form.validInteger(form.codProj.data):
+        elif form.validInteger(int(form.codProj.data)):
             flash('ID do projeto deve ser composto de somente numeros!', 'danger')
         else:
+            print(form.codProj.data)
             project = Project.query.filter_by(codProject=form.codProj.data).first_or_404()
             if project:
                 project.codProject = form.codProj.data

@@ -18,6 +18,8 @@ def funcionarios():
         try:
             if form.validacao(form):
                 flash('Falta preenchar um campo!', 'danger')
+            elif form.validlengthPass(form):
+                flash('A senha tem que ter mais de 4 caracteres!', 'danger')
             elif form.validInteger(form.matricula.data):
                 flash('Matricula deve ser composto de somente numeros!', 'danger')
             else:
@@ -41,7 +43,7 @@ def funcionarios():
                 user = User.query.filter_by(matricula=request.args.get('delete')).first_or_404()
                 db.session.delete(user)
                 db.session.commit()
-                flash('Registro apagado com sucesso', 'danger')
+                flash('Registro apagado com sucesso', 'info')
         except:
             db.session.rollback()
             flash('Registro falhou em apagar', 'danger')
@@ -71,6 +73,8 @@ def funcUpdate():
     if request.method == 'POST' and form.salvar.data == True:
         if form.validacao(form):
             flash('Falta preenchar um campo!', 'danger')
+        elif form.validlengthPass(form):
+                flash('A senha tem que ter mais de 4 caracteres!', 'danger')
         elif form.validInteger(form.matricula.data):
             flash('Matricula deve ser composto de somente numeros!', 'danger')
         else:

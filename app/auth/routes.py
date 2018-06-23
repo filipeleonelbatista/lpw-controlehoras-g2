@@ -8,8 +8,12 @@ from ..models import User
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-    if form.validate_on_submit():
+    print('Verificar submit')
+    print(form.submit.data)
+    if form.submit.data:
+        print('Verificando se usuario existe')
         user = User.query.filter_by(username=form.name.data).first()
+        print(form.password.data)
         if user is None or not user.verify_password(form.password.data):
             flash('Invalid name or password', 'danger')
             return redirect(url_for('.login'))

@@ -7,7 +7,7 @@ class FuncionarioForm(FlaskForm):
     nomeCompleto = StringField('Nome completo', validators=[DataRequired(), Length(1, 64)])
     nome = StringField('Nome de usuario', validators=[DataRequired(), Length(1, 64)])
     admin = BooleanField('Administrador')
-    password = PasswordField('Senha', validators=[DataRequired(), Length(min=3, max=64)])
+    password = PasswordField('Senha', validators=[DataRequired(), Length(min=4, max=64)])
     salvar = SubmitField('Cadastrar')
     cancelar = SubmitField('Cancelar')
 
@@ -17,6 +17,11 @@ class FuncionarioForm(FlaskForm):
     		print('Algum campo vazio!')
     		return True
     	return False
+
+    def validlengthPass(__self__, form):
+        if (len(form.password.data) >= 4):
+            return False
+        return True
 
     def validInteger(__self__, matricula):
     	if type(matricula) == int:

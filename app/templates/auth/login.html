@@ -24,9 +24,7 @@ Login{{ super() }}
 <p class="text-center">
     <span class="glyphicon glyphicon-time" style="font-size:100px;color:Gray;" aria-hidden="true"></span>
 </p>
-   
-{{ wtf.quick_form(form) }}
-    <!-- <form action method = "post" role="form" >
+    <form action="login" method="POST">
         <div class="form-group">
             {{ form.name(class_="form-control") }} 
         </div>
@@ -39,7 +37,7 @@ Login{{ super() }}
         <div class="form-group">
             {{ form.submit(class_="btn btn-success") }}
         </div>
-     </form> -->
+     </form>
 
 {% endblock %}
 

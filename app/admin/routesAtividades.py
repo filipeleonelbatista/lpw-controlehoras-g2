@@ -15,12 +15,15 @@ def atividades():
     form = AtividadeForm()
     if request.method == 'POST' and form.salvar.data == True:
         try:
+            last = Task.query.all()
+            print(last[-1].codTask + 1)
+            idTaskProx = (last[-1].codTask + 1)
             if form.validacao(form):
                 flash('Falta preenchar um campo!', 'danger')
-            elif form.validInteger(form.idAtividade.data):
+            elif form.validInteger(idTaskProx):
                 flash('ID da atividade deve ser composto de somente numeros!', 'danger')
             else:
-                atividade = Task(codTask=form.idAtividade.data, descricao=form.descricao.data)
+                atividade = Task(codTask=idTaskProx, descricao=form.descricao.data)
                 db.session.add(atividade)
                 db.session.commit()
                 flash('Registrado com sucesso', 'success')
@@ -36,7 +39,7 @@ def atividades():
                 atividade = Task.query.filter_by(codTask=request.args.get('delete')).first_or_404()
                 db.session.delete(atividade)
                 db.session.commit()
-                flash('Registro apagado com sucesso', 'danger')
+                flash('Registro apagado com sucesso', 'info')
         except:
             db.session.rollback()
             flash('Registro falhou em apagar', 'danger')
@@ -66,7 +69,7 @@ def atividUpdate():
     if request.method == 'POST' and form.salvar.data == True:
         if form.validacao(form):
             flash('Falta preenchar um campo!', 'danger')
-        elif form.validInteger(form.idAtividade.data):
+        elif form.validInteger(int(form.idAtividade.data)):
             flash('ID da atividade deve ser composto de somente numeros!', 'danger')
         else:
             atividade = Task.query.filter_by(codTask=form.idAtividade.data).first_or_404()

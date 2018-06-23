@@ -18,13 +18,13 @@ def vinculacao():
 
     if request.method == 'POST' and form.salvar.data == True:
         try:
-            if form.validacao(form):
-                flash('Falta preenchar um campo!', 'danger')
-            elif form.validInteger(form.codVinc.data):
+            last = Binding.query.all()
+            idBindingProx = (last[-1].idBinding + 1)
+            if form.validInteger(idBindingProx):
                 flash('ID da vinculacao deve ser composto de somente numeros!', 'danger')
             else:
                 binding = Binding(
-                    idBinding=form.codVinc.data,
+                    idBinding=idBindingProx,
                     project_id=form.selectProj.data,
                     users_id=form.selectFunc.data,
                     is_coord=form.coordenador.data
@@ -44,7 +44,7 @@ def vinculacao():
                 binding = Binding.query.filter_by(idBinding=request.args.get('delete')).first_or_404()
                 db.session.delete(binding)
                 db.session.commit()
-                flash('Registro apagado com sucesso', 'danger')
+                flash('Registro apagado com sucesso', 'info')
         except:
             db.session.rollback()
             flash('Registro falhou em apagar', 'danger')
@@ -75,9 +75,7 @@ def vinctUpdate():
 
     form = VincForm()
     if request.method == 'POST' and form.salvar.data == True:
-        if form.validacao(form):
-            flash('Falta preenchar um campo!', 'danger')
-        elif form.validInteger(form.codVinc.data):
+        if form.validInteger(int(form.codVinc.data)):
             flash('ID da vinculacao deve ser composto de somente numeros!', 'danger')
         else:
             binding = Binding.query.filter_by(idBinding=form.codVinc.data).first_or_404()

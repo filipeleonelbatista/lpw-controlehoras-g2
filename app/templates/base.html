@@ -57,7 +57,7 @@
                 <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                  <img src="{{ url_for('static', filename='images/img_avatar.png') }}" class="img-rounded" width="25px"> 
+                                  <img src="{{ current_user.gravatar() }}" class="img-rounded" width="25px"> 
                                 <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                         <li class="dropdown-header header-nav-current-user">

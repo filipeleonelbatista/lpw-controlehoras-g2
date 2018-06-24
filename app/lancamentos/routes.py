@@ -1,4 +1,6 @@
 from flask import render_template, redirect, request, url_for, flash
+from sqlalchemy import extract
+from datetime import date, datetime
 from flask_login import login_required, current_user
 from .formLancamentos import lancamentoForm
 from . import lancamentos
@@ -14,18 +16,27 @@ def lancamento():
     form.selectAtividade.choices = [(task.codTask, task.descricao) for task in Task.getAllTask()]
 
     if request.method == 'POST' and form.gravar.data == True:
+        dateInic = datetime(form.dtInicio.data.year, form.dtInicio.data.month, form.dtInicio.data.day, 
+            form.hrInicio.data.hour, form.hrInicio.data.minute, form.hrInicio.data.second)
+        print(dateInic)
+
+        dateEnd = datetime(form.dtFim.data.year, form.dtFim.data.month, form.dtFim.data.day, 
+            form.hrFim.data.hour, form.hrFim.data.minute, form.hrFim.data.second)
+        print(dateEnd)
+
         if form.validacao(form):
             flash('Falta preenchar um campo!', 'danger')
-        elif form.valdDate(form):
+        elif form.valdDate(dateInic, dateEnd):
             flash('Data ou hora invalida!', 'danger')
         else:
-            try:
+            try:                
                 lancam = Lancamento(
                     users_id=current_user.id,
                     project_id=form.selectProjeto.data,
-                    dtInic=form.dtInicio.data,
-                    hrInic=form.hrInicio.data,
-                    dtFim=form.dtFim.data, hrFim=form.hrFim.data,
+                    dtInic=dateInic.date(),
+                    hrInic=dateInic.time(),
+                    dtFim=dateEnd.date(),
+                    hrFim=dateEnd.time(),
                     task_id=form.selectAtividade.data,
                     descricao=form.descricao.data)
                 db.session.add(lancam)
@@ -42,7 +53,7 @@ def lancamento():
                 lancament = Lancamento.query.filter_by(id=request.args.get('delete')).first_or_404()
                 db.session.delete(lancament)
                 db.session.commit()
-                flash('Registro apagado com sucesso', 'danger')
+                flash('Registro apagado com sucesso', 'info')
             except:
                 db.session.rollback()
                 flash('Registro falhou em apagar', 'danger')
@@ -62,8 +73,10 @@ def lancamento():
             form.idLac.data = lancam.id
             return render_template('lancamentos/editLacmento.html', form=form, action='/lancamentos/lUpdate')
 
+    today = date.today()
     #mantem a lista altualizada
-    listTable = Lancamento.query.filter_by(users_id=current_user.id).all()
+    listTable = Lancamento.query.filter_by(users_id=current_user.id).\
+        filter(extract('month', Lancamento.dtInic) == today.month).order_by(Lancamento.id.desc()).limit(10)
     return render_template('lancamentos/lancamentos.html', form=form, listTable=listTable)
 
 @lancamentos.route('/lancamentos/lUpdate', methods=['GET', 'POST'])
@@ -71,19 +84,27 @@ def lancamento():
 def lUpdate():
     form = lancamentoForm(request.form)  # type: lancamentoForm
     if request.method == 'POST' and form.salvar.data == True:
+        dateInic = datetime(form.dtInicio.data.year, form.dtInicio.data.month, form.dtInicio.data.day, 
+            form.hrInicio.data.hour, form.hrInicio.data.minute, form.hrInicio.data.second)
+        print(dateInic)
+
+        dateEnd = datetime(form.dtFim.data.year, form.dtFim.data.month, form.dtFim.data.day, 
+            form.hrFim.data.hour, form.hrFim.data.minute, form.hrFim.data.second)
+        print(dateEnd)
+
         if form.validacao(form):
             flash('Falta preenchar um campo!', 'danger')
-        elif form.valdDate(form):
+        elif form.valdDate(dateInic, dateEnd):
             flash('Data ou hora invalida!', 'danger')
         else:
             print(form.idLac.data)
             lancamento = Lancamento.query.filter_by(id=form.idLac.data).first_or_404()
             if lancamento:
                 lancamento.project_id = form.selectProjeto.data
-                lancamento.dtInic = form.dtInicio.data
-                lancamento.hrInic = form.hrInicio.data
-                lancamento.dtFim = form.dtFim.data
-                lancamento.hrFim = form.hrFim.data
+                lancamento.dtInic = dateInic.date()
+                lancamento.hrInic = dateInic.time()
+                lancamento.dtFim = dateEnd.date()
+                lancamento.hrFim = dateEnd.time()
                 lancamento.task_id = form.selectAtividade.data
                 lancamento.descricao = form.descricao.data
                 try:

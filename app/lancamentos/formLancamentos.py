@@ -1,15 +1,15 @@
 from flask_wtf import FlaskForm
-from wtforms import TextAreaField, SelectField, DateField, TimeField, SubmitField, IntegerField, HiddenField
+from wtforms import TextAreaField, SelectField, DateField, DateTimeField, TimeField, SubmitField, IntegerField, HiddenField
 from wtforms.validators import DataRequired
 
 
 class lancamentoForm(FlaskForm):
     idLac = HiddenField('ID')
     selectProjeto = SelectField(u'project', validators=[DataRequired()])
-    dtInicio = DateField('Data de Inicio', format='%d/%m/%Y')
-    hrInicio = TimeField('Hora de Inicio', format='%H:%M')
-    dtFim = DateField('Data de Termino', format='%d/%m/%Y')
-    hrFim = TimeField('Data de Termino', format='%H:%M')
+    dtInicio = DateTimeField('Data de Inicio', format='%d/%m/%Y')
+    hrInicio = DateTimeField('Hora de Inicio', format='%H:%M')
+    dtFim = DateTimeField('Data de Termino', format='%d/%m/%Y')
+    hrFim = DateTimeField('Data de Termino', format='%H:%M')
     selectAtividade = SelectField(u'project', validators=[DataRequired()])
     descricao = TextAreaField('Descrição do trabalho realizado...')
     gravar = SubmitField('Salvar')
@@ -22,11 +22,11 @@ class lancamentoForm(FlaskForm):
             return True
         return False
 
-    def valdDate(__self__, form):
+    def valdDate(__self__, dateInic, dateEnd):
         ret = False
-        if form.dtInicio.data == form.dtFim.data:
-            if form.hrInicio.data > form.hrFim.data:
+        if dateInic.date() == dateEnd.date():
+            if dateInic.time() > dateEnd.time():
                 ret = True
-        elif form.dtInicio.data > form.dtFim.data:
+        elif dateInic.date() > dateEnd.date():
             ret = True
         return ret

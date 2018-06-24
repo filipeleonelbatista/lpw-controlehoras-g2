@@ -81,9 +81,11 @@ Funcionários{{ super() }}
                 <div class="container">
                     <div class="col-sm-10">
                         <label>Nome do Funcionário </label>
-                        {{ form.nomeCompleto(required="required", class_="form-control", autocomplete="off") }}
+                        {{ form.nomeCompleto(required="required", class_="form-control", autocomplete="off") }}                       
                         <label>Nome de usuário </label>
                         {{ form.nome(required="required", class_="form-control", autocomplete="off") }}
+                        <label>Email </label>
+                        {{ form.email(required="required", class_="form-control", autocomplete="off") }}
                         <label>Matricula </label>
                         {{ form.matricula(required="required", class_="form-control", autocomplete="off") }}
                         <label>Senha </label>

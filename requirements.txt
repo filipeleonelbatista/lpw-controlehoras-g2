@@ -10,6 +10,8 @@ wtforms_components
 flask-login
 Flask-Datepicker
 blueprint
+#avatar
+Flask-Gravatar
 #https://github.com/poliquin/brazilnum
 brazilnum
 

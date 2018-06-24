@@ -24,11 +24,19 @@ Login{{ super() }}
 <p class="text-center">
     <span class="glyphicon glyphicon-time" style="font-size:100px;color:Gray;" aria-hidden="true"></span>
 </p>
+<<<<<<< HEAD
     <form action="login" method="POST">
+=======
+   
+{{ wtf.quick_form(form) }}
+    <!-- <form action = {{ action }} method = "post" >
+>>>>>>> d6e242ea9fa8e75ee1d29c09785b5f224f22de80
         <div class="form-group">
+            <label>Nome de usuário</label>
             {{ form.name(class_="form-control") }} 
         </div>
         <div class="form-group">
+            <label>Senha</label>
             {{ form.password(class_="form-control") }} 
         </div>
         <div class="form-group">

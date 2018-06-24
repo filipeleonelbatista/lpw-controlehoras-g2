@@ -23,7 +23,7 @@ Clientes{{ super() }}
 {% endwith %}
 {% if current_user.is_admin %}
 <div class="panel panel-default">
-    <div class="panel-heading">Lista de Clientes</div>
+    <div class="panel-heading"><strong>Lista de Clientes</strong></div>
     <table class="table">
         <thead>
             <tr>
@@ -62,7 +62,7 @@ Clientes{{ super() }}
         <div id="cadProj" class="modal">
             <div class="modal-content">
                 <div class="container">
-                    <div class="col-xs-10">
+                    <div class="col-sm-10">
                         <label>CNPJ Cliente </label>
                         {{ form.cnpj(required="required", class_="form-control", autocomplete="off") }}
                         <label>Nome do Cliente </label>

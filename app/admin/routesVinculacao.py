@@ -19,7 +19,11 @@ def vinculacao():
     if request.method == 'POST' and form.salvar.data == True:
         try:
             last = Binding.query.all()
-            idBindingProx = (last[-1].idBinding + 1)
+            if last:
+                idBindingProx = (last[-1].idBinding + 1)
+            else:
+                idBindingProx = 1
+
             if form.validInteger(idBindingProx):
                 flash('ID da vinculacao deve ser composto de somente numeros!', 'danger')
             else:

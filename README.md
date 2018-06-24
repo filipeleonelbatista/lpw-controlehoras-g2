@@ -57,3 +57,4 @@ python manage.py runserver
 5. [Documentação dos Graficos para flask](https://pythonspot.com/flask-and-great-looking-charts-using-chart-js/) 
 6. [dataTables -> na pagina de relatorios](https://datatables.net/)
 7. [Flask File Upload](http://flask.pocoo.org/docs/1.0/patterns/fileuploads/)
+8. [Gerador de CNPJ](http://geradordecnpj.clevert.com.br/cnpj.php)

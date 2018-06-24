@@ -18,9 +18,11 @@ def projetos():
     if request.method == 'POST' and form.salvar.data == True:
         try:
             last = Project.query.all()
-            print(last[-1].codProject)
-            print(last[-1].codProject + 1)
-            idProjProx = (last[-1].codProject + 1)
+            if last:
+                idProjProx = (last[-1].codProject + 1)
+            else:
+                idProjProx=1
+            
             if form.validacao(form):
                 flash('Falta preenchar um campo!', 'danger')
             elif form.validInteger(idProjProx):

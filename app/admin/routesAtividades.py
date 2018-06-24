@@ -1,4 +1,5 @@
 from flask import render_template, redirect, request, url_for, flash
+from sqlalchemy import inspect
 from flask_login import login_required, current_user
 from .formsAtividades import AtividadeForm
 from . import admin
@@ -16,8 +17,11 @@ def atividades():
     if request.method == 'POST' and form.salvar.data == True:
         try:
             last = Task.query.all()
-            print(last[-1].codTask + 1)
-            idTaskProx = (last[-1].codTask + 1)
+            if last:
+                idTaskProx = (last[-1].codTask + 1)
+            else:
+                idTaskProx = 1
+                
             if form.validacao(form):
                 flash('Falta preenchar um campo!', 'danger')
             elif form.validInteger(idTaskProx):

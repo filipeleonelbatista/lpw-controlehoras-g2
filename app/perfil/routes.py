@@ -6,6 +6,11 @@ from app.models import User
 from .forms import PerfilForm
 from . import perfil
 
+ALLOWED_EXTENSIONS = set(['jpg', 'jpeg'])
+
+def allowed_file(filename):
+	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 @perfil.route('/perfil', methods=['GET', 'POST'])
 @login_required
 def perfil():
@@ -35,6 +40,8 @@ def perfil():
 					flash('Registro falhou em alterar', 'danger')
 			else:
 				print('Usuario nao foi encontrado e/ou nao existe')
+	elif request.method == 'POST' and form.upload.data == True:
+		print('Atualização')
 	else:
 		print('Botão Cancel')
 
@@ -44,7 +51,3 @@ def perfil():
 	form.nomeCompleto.data = user.fullusername
 	form.email.data = user.email
 	return render_template('perfil/perfil.html', form=form)
-
-@perfil.route('/perfil/upLoadImg', method=['GET', 'POST'])
-def upLoadImg():
-	return redirect(url_for('perfil'))

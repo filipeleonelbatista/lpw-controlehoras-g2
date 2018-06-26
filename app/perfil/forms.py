@@ -11,7 +11,7 @@ class PerfilForm(FlaskForm):
     confirm = PasswordField('Confirmar senha', validators=[DataRequired(), Length(4, 64)])
     submit = SubmitField('Atualizar')
     cancel = SubmitField('Cancelar')
-    upload = SubmitField('Atualizar imagem')
+    upload = FileField('Atualizar imagem')
     
     def validacao(__self__, form):
     	if form.nomeCompleto.data == '' or form.nome.data == '' or form.email.data == '' or \

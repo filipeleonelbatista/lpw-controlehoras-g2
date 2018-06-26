@@ -26,7 +26,7 @@ Perfil{{ super() }}
     <center>
         <label>Imagem de Perfil </label>
         <br>
-        <img src="{{ current_user.gravatar(size=256, rating='x') }}" class="img-thumbnail">
+        <img src="{{ url_for('static', filename='images/img_avatar.png') }}" class="img-thumbnail">
         <br><br>
         {{ form.upload(class_="btn btn-primary") }}
     </center>

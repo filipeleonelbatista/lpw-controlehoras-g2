@@ -3,13 +3,12 @@ from datetime import datetime
 
 from flask import request
 
-from . import db, login_manager, gravatar
+from . import db, login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, DateTime, String, Integer, ForeignKey, func
-from flask_gravatar import Gravatar
 
 Base = declarative_base()
 
@@ -37,14 +36,7 @@ class User(UserMixin, db.Model, Base):
 
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
-
-    def gravatar(self, size=100, default='identicon', rating='g'):
-        if request.is_secure:
-            use_ssl = True
-        else:
-            use_ssl = False
-        return gravatar(self.email, size, rating, use_ssl)
-
+        
     def getAllUsers():
         return User.query.all()
 

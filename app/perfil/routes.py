@@ -1,8 +1,7 @@
 from flask import render_template, redirect, request, url_for, flash
 from flask_login import login_required, current_user
 from werkzeug.security import generate_password_hash
-from app import db, gravatar
-from flask_gravatar import Gravatar
+from app import db
 from app.models import User
 from .forms import PerfilForm
 from . import perfil
@@ -45,4 +44,7 @@ def perfil():
 	form.nomeCompleto.data = user.fullusername
 	form.email.data = user.email
 	return render_template('perfil/perfil.html', form=form)
-	
+
+@perfil.route('/perfil/upLoadImg', method=['GET', 'POST'])
+def upLoadImg():
+	return redirect(url_for('perfil'))

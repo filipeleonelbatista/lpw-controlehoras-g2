@@ -4,9 +4,6 @@ from flask_bootstrap import Bootstrap
 from flask_datepicker import datepicker
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-from flask_gravatar import Gravatar
-
-gravatar = Gravatar()
 
 bootstrap = Bootstrap
 Datepicker = datepicker
@@ -43,8 +40,6 @@ def create_app(config_name):
 
     # Inicializando Database
     db.init_app(app)
-
-    gravatar.init_app(app)
 
     # Inicializando Autenticacao
     from .auth import auth as auth_blueprint

@@ -66,3 +66,7 @@ python manage.py runserver
 6. [dataTables -> na pagina de relatorios](https://datatables.net/)
 7. [Flask File Upload](http://flask.pocoo.org/docs/1.0/patterns/fileuploads/)
 8. [Gerador de CNPJ](http://geradordecnpj.clevert.com.br/cnpj.php)
+
+
+
+#https://gist.github.com/macagua/5c2f5e4e38df92aae7fe

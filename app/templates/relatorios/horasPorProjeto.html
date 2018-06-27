@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Horas por projeto{{ super() }}
+{% endblock %} 
+
+
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.css">
+{% endblock %}
+
+
+{% block page_content %}
+
+    <div class="col-sm-12">
+        <strong><h3>Horas por projeto </h3></strong>
+        <div class="col-sm-12">
+            <form action="horasPorProjeto" method="POST">
+                <div class="col-sm-4">
+                    <label>Projeto</label>
+                    {{ hpform.selectProject(class_="form-control") }}
+                </div>
+                <div class="col-sm-4">
+                        <label>Mes de referência</label>
+                        {{ hpform.selectMonth(class_="form-control") }}
+                </div>
+                <div class="col-sm-4">
+                        <br>    
+                    {{ hpform.gravar(class_="btn btn-success") }}
+                </div>
+            </form>
+        </div>
+    <table id="table_horasProjeto" class="display">
+            
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Atividade</th>
+            <th>Data de início</th>
+            <th>Hora de início</th>
+            <th>Data de fim</th>
+            <th>Hora de fim</th>
+            <th>Descrição</th>
+        </tr>
+    </thead>
+    <tbody>
+    <form action="relatorios" method="GET">
+    {% for item in listTable if item.project.id == item.project_id %}
+        <tr>
+            <th scope="row">{{ loop.index }}</th>
+                <td>{{ item.task.descricao }}</td>
+                <td>{{ item.dtInic }}</td>
+                <td>{{ item.hrInic }}</td>
+                <td>{{ item.dtFim }}</td>
+                <td>{{ item.hrFim }}</td>
+                <td>{{ item.descricao }}</td>
+        </tr>
+          {% endfor %}
+
+    </tbody>
+    <tfoot>
+            <tr>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <th>Total de Horas: </th>
+                <td>00:00:00</td>
+                <td> </td>
+            </tr>
+    </tfoot>
+    </table>
+        </div>
+
+    </form>
+
+{% endblock %}
+
+
+{% block scripts %}
+{{ super() }}
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.js"></script>
+<script src="{{ url_for('static', filename='datatable.local.js') }}"></script>
+{% endblock %}

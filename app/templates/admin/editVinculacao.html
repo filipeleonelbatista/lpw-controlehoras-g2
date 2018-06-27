@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Editar vinculo{{ super() }}
+{% endblock %} 
+
+
+{% block page_content %}
+{% if current_user.is_admin %}
+
+	<form action = {{ action }} method = "POST">
+        {{ form.codVinc(class_="form-control", size=4, readonly=True, align="right") }}
+        <label>Selecione Funcionario </label>
+        {{ form.selectFunc(required="required", class_="form-control", autocomplete="off") }}
+        <label>Selecione Projeto </label>
+        {{ form.selectProj(required="required", class_="form-control", autocomplete="off") }}
+        <br> 
+        {{ form.coordenador }} É coordenador
+        <br><br>
+        {{ form.salvar(class_="btn btn-success") }}
+        {{ form.cancelar(formnovalidate="formnovalidate", class_="btn btn-danger") }}
+	</form>
+
+{% else %}
+<script language="javascript" type="text/javascript">
+     <!--
+     window.open("/acesso_negado","_self")
+     // -->
+ </script>
+
+{% endif %}
+{% endblock %}

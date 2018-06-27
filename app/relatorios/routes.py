@@ -1,6 +1,6 @@
 import calendar, datetime
 from sqlalchemy import extract
-import locale
+#import locale
 from flask import render_template, redirect, request, url_for, flash
 from flask_login import login_required, current_user
 from .forms import horasProjetoForm
@@ -19,9 +19,10 @@ def horasProjeto():
 
 	months_choices = []
 	months_choices.append((0, ''))
-	locale.setlocale(locale.LC_ALL, 'pt_PT.UTF-8')
+	#locale.setlocale(locale.LC_ALL, 'pt_PT.UTF-8')
+	mesP = ['', 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
 	for i in range(1,13):
-		months_choices.append((i, datetime.date(2018, i, 1).strftime('%B')))
+		months_choices.append((i, mesP[i]))
 	hpform.selectMonth.choices = months_choices
 
 	if request.method == 'POST' and hpform.gravar.data == True:

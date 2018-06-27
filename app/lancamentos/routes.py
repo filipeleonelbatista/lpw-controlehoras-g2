@@ -41,7 +41,9 @@ def lancamento():
                     descricao=form.descricao.data)
                 db.session.add(lancam)
                 db.session.commit()
-                flash('Registrado com sucesso', 'success')
+                strTmp = 'Registrado com sucesso - data inicio:' + str(dateInic.date().strftime('%d/%m/%Y')) + ' hora inicio: ' + str(dateInic.time()) + ' data fim: ' + \
+                    str(dateEnd.date())  + ' hora fim: ' + str(dateEnd.time())
+                flash(strTmp, 'success')
             except:
                 db.session.rollback()
                 flash('Registro falhou na adição', 'danger')

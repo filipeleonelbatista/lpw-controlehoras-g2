@@ -76,7 +76,7 @@ def lancamento():
     today = date.today()
     #mantem a lista altualizada
     listTable = Lancamento.query.filter_by(users_id=current_user.id).\
-        filter(extract('month', Lancamento.dtInic) == today.month).order_by(Lancamento.id.desc()).limit(10)
+        filter(extract('month', Lancamento.dtInic) == today.month).order_by(Lancamento.id.desc()).all()
     return render_template('lancamentos/lancamentos.html', form=form, listTable=listTable)
 
 @lancamentos.route('/lancamentos/lUpdate', methods=['GET', 'POST'])

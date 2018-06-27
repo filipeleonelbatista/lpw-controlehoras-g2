@@ -34,10 +34,11 @@ Horas por projeto{{ super() }}
             </form>
         </div>
     <table id="table_horasProjeto" class="display">
-            
     <thead>
         <tr>
             <th>#</th>
+            <th>Nome</th>
+            <th>Cargo</th>
             <th>Atividade</th>
             <th>Data de início</th>
             <th>Hora de início</th>
@@ -51,6 +52,8 @@ Horas por projeto{{ super() }}
     {% for item in listTable if item.project.id == item.project_id %}
         <tr>
             <th scope="row">{{ loop.index }}</th>
+                <td>{{ item.users.fullusername }}</td>            
+                <td>{{ item.users.binding.is_coord }}</td>
                 <td>{{ item.task.descricao }}</td>
                 <td>{{ item.dtInic }}</td>
                 <td>{{ item.hrInic }}</td>
@@ -71,7 +74,8 @@ Horas por projeto{{ super() }}
                 <td>00:00:00</td>
                 <td> </td>
             </tr>
-    </tfoot>
+    </tfoot>    
+    
     </table>
         </div>
 

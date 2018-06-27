@@ -29,7 +29,7 @@ Perfil{{ super() }}
         <img src="{{ url_for('static', filename='images/img_avatar.png') }}" class="img-thumbnail">
         <br><br>
       
-        <button onclick="document.getElementById('uploadImagem').style.display='block'" class="btn btn-success">Cadastrar funcionário</button>
+        <button onclick="document.getElementById('uploadImagem').style.display='block'" class="btn btn-primary">Cadastrar funcionário</button>
             <form action = "{{ request.path }}" method = "POST">
                 <div id="uploadImagem" class="modal">
                     <div class="modal-content">

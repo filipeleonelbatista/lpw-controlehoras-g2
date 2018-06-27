@@ -40,9 +40,7 @@ Perfil{{ super() }}
             {{ form.nomeCompleto(class_="form-control") }}
         <label>Nome de usuário </label>
             {{ form.nome(class_="form-control", autocomplete="off") }}
-        <label>E-mail </label>
-            {{ form.email(class_="form-control", autocomplete="off") }}
-        <label>Matricula </label>
+       <label>Matricula </label>
             {{ form.matricula(class_="form-control", readonly=True, autocomplete="off") }}
         <label>Senha </label>
             {{ form.password(class_="form-control", minlength=4) }}

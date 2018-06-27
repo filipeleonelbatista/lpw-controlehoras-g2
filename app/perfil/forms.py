@@ -1,12 +1,12 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, IntegerField, FileField
-from wtforms.validators import DataRequired, Length, Email
+from wtforms.validators import DataRequired, Length
 
 class PerfilForm(FlaskForm):
     matricula = IntegerField('Matricula', validators=[DataRequired()])
     nomeCompleto = StringField('Nome completo', validators=[DataRequired(), Length(1, 64)])
     nome = StringField('Nome de usuário', validators=[DataRequired(), Length(1, 64)])
-    email = StringField('Email', validators=[DataRequired(), Length(1, 64), Email()])
+    imagem = StringField('Imagem')
     password = PasswordField('Senha', validators=[DataRequired(), Length(4, 64)])
     confirm = PasswordField('Confirmar senha', validators=[DataRequired(), Length(4, 64)])
     submit = SubmitField('Atualizar')
@@ -14,7 +14,7 @@ class PerfilForm(FlaskForm):
     upload = FileField('Atualizar imagem')
     
     def validacao(__self__, form):
-    	if form.nomeCompleto.data == '' or form.nome.data == '' or form.email.data == '' or \
+    	if form.nomeCompleto.data == '' or form.nome.data == '' or \
     	form.password.data == '' or form.confirm.data == '':
     		return True
     	return False

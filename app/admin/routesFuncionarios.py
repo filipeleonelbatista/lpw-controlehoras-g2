@@ -25,8 +25,7 @@ def funcionarios():
             else:
                 user = User(matricula=form.matricula.data, 
                             fullusername=form.nomeCompleto.data, 
-                            username=form.nome.data, 
-                            email=form.email.data,
+                            username=form.nome.data,
                             password=form.password.data,
                             is_admin=form.admin.data)
                 db.session.add(user)

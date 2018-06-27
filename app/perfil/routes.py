@@ -29,7 +29,6 @@ def perfil():
 				user.fullusername = form.nomeCompleto.data
 				user.username = form.nome.data
 				user.matricula = form.matricula.data
-				user.email = form.email.data
 				user.password_hash = generate_password_hash(form.password.data)
 				try:
 					db.session.add(user)
@@ -49,5 +48,4 @@ def perfil():
 	form.matricula.data = user.matricula
 	form.nome.data = user.username
 	form.nomeCompleto.data = user.fullusername
-	form.email.data = user.email
 	return render_template('perfil/perfil.html', form=form)

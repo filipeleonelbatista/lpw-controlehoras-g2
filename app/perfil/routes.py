@@ -18,7 +18,6 @@ def allowed_file(filename):
 @perfil.route('/perfil', methods=['GET', 'POST'])
 @login_required
 def perfil():
-	avatar='img_avatar.png'
 	form = PerfilForm()
 	if request.method == 'POST' and form.submit.data == True:
 		if form.password.data != form.confirm.data:
@@ -46,17 +45,22 @@ def perfil():
 				print('Usuario nao foi encontrado e/ou nao existe')
 	elif request.method == 'POST' and form.enviar.data == True:
 		file = request.files['upload']
-		print(file)
-		#filename = secure_filename(file)
 		if file and allowed_file(file.filename):
+			user = User.query.filter_by(matricula=current_user.matricula).first_or_404()
 			file.save(os.path.join(UPLOAD_FOLDER, file.filename))
-			avatar=file.filename
-			return render_template('perfil/perfil.html', form=form, avatar=avatar)
-	else:
-		print('Botão Cancel')
-
+			user.imagem = file.filename
+			try:
+				db.session.commit()
+				flash('Registro alterado com sucesso', 'info')
+			except:
+				db.session.rollback()
+				flash('Registro falhou em alterar', 'danger')
+		else:
+			flash('Não foi selecionado nenhum arquivo ou não existe', 'danger')
+		
+		
 	user = User.query.filter_by(matricula=current_user.matricula).first_or_404()
 	form.matricula.data = user.matricula
 	form.nome.data = user.username
 	form.nomeCompleto.data = user.fullusername
-	return render_template('perfil/perfil.html', form=form, avatar=avatar)
+	return render_template('perfil/perfil.html', form=form, avatar=user.imagem)

@@ -26,8 +26,12 @@ Perfil{{ super() }}
     <center>
         <label>Imagem de Perfil </label>
         <br>
-        <img src="{{ url_for('static', filename='images/' + avatar) }}" class="img-thumbnail">
+        {% if avatar %}
+         <img src="{{ url_for('static', filename='images/' + avatar) }}" class="img-thumbnail">
+        {% else %}
+        <img src="{{ url_for('static', filename='images/img_avatar3.png') }}" class="img-thumbnail">
         <br><br>
+        {% endif %}
       
         <button onclick="document.getElementById('uploadImagem').style.display='block'" class="btn btn-primary">Cadastrar funcionário</button>
             <form action = "{{ request.path }}" method = "POST" enctype="multipart/form-data">

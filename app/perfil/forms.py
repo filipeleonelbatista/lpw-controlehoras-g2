@@ -12,6 +12,7 @@ class PerfilForm(FlaskForm):
     submit = SubmitField('Atualizar')
     cancel = SubmitField('Cancelar')
     upload = FileField('Atualizar imagem')
+    enviar = SubmitField('Enviar')
     
     def validacao(__self__, form):
     	if form.nomeCompleto.data == '' or form.nome.data == '' or \

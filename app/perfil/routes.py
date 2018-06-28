@@ -1,3 +1,6 @@
+import os
+from werkzeug.utils import secure_filename
+
 from flask import render_template, redirect, request, url_for, flash
 from flask_login import login_required, current_user
 from werkzeug.security import generate_password_hash
@@ -6,7 +9,8 @@ from app.models import User
 from .forms import PerfilForm
 from . import perfil
 
-ALLOWED_EXTENSIONS = set(['jpg', 'jpeg'])
+ALLOWED_EXTENSIONS = set(['jpg', 'jpeg', 'png'])
+UPLOAD_FOLDER = 'app/static/images/'
 
 def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -14,6 +18,7 @@ def allowed_file(filename):
 @perfil.route('/perfil', methods=['GET', 'POST'])
 @login_required
 def perfil():
+	avatar='img_avatar.png'
 	form = PerfilForm()
 	if request.method == 'POST' and form.submit.data == True:
 		if form.password.data != form.confirm.data:
@@ -39,8 +44,14 @@ def perfil():
 					flash('Registro falhou em alterar', 'danger')
 			else:
 				print('Usuario nao foi encontrado e/ou nao existe')
-	elif request.method == 'POST' and form.upload.data == True:
-		print('Atualização')
+	elif request.method == 'POST' and form.enviar.data == True:
+		file = request.files['upload']
+		print(file)
+		#filename = secure_filename(file)
+		if file and allowed_file(file.filename):
+			file.save(os.path.join(UPLOAD_FOLDER, file.filename))
+			avatar=file.filename
+			return render_template('perfil/perfil.html', form=form, avatar=avatar)
 	else:
 		print('Botão Cancel')
 
@@ -48,4 +59,4 @@ def perfil():
 	form.matricula.data = user.matricula
 	form.nome.data = user.username
 	form.nomeCompleto.data = user.fullusername
-	return render_template('perfil/perfil.html', form=form)
+	return render_template('perfil/perfil.html', form=form, avatar=avatar)

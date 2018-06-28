@@ -26,11 +26,11 @@ Perfil{{ super() }}
     <center>
         <label>Imagem de Perfil </label>
         <br>
-        <img src="{{ url_for('static', filename='images/img_avatar.png') }}" class="img-thumbnail">
+        <img src="{{ url_for('static', filename='images/' + avatar) }}" class="img-thumbnail">
         <br><br>
       
         <button onclick="document.getElementById('uploadImagem').style.display='block'" class="btn btn-primary">Cadastrar funcionário</button>
-            <form action = "{{ request.path }}" method = "POST">
+            <form action = "{{ request.path }}" method = "POST" enctype="multipart/form-data">
                 <div id="uploadImagem" class="modal">
                     <div class="modal-content">
                         <div class="container">
@@ -39,7 +39,7 @@ Perfil{{ super() }}
                                 <label>Selecionar nova imagem </label>                   
                                 {{ form.upload(class_="form-control") }}
                                 <br><br>
-                                <button class="btn btn-success">Enviar</button><!-- aqui deve ser substituido por um botão de enviar. -->
+                                {{ form.enviar(class_="btn btn-success") }}
                                 <button class="btn btn-danger" onclick="document.getElementById('uploadImagem').style.display='none'">Cancelar</button>
                             </div>
                         </div>

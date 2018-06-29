@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Editar cliente{{ super() }}
+{% endblock %} 
+
+
+{% block page_content %}
+{% if current_user.is_admin %}
+	<form action = {{ action }} method = "POST">
+		<label>CNPJCliente </label>
+		{{ form.cnpj(required="required", class_="form-control", readonly=True) }}
+		<label>Nome do Cliente </label>
+		{{ form.nome(required="required", class_="form-control") }}
+		<br>
+		{{ form.salvar(class_="btn btn-success") }}
+		{{ form.cancelar(formnovalidate="formnovalidate", class_="btn btn-danger") }}
+	</form>
+
+{% else %}
+<script language="javascript" type="text/javascript">
+     <!--
+     window.open("/acesso_negado","_self")
+     // -->
+ </script>
+
+{% endif %}
+{% endblock %}

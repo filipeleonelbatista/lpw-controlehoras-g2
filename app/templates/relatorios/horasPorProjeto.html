@@ -30,6 +30,7 @@ Horas por projeto{{ super() }}
                 <div class="col-sm-4">
                         <br>    
                     {{ hpform.gravar(class_="btn btn-success") }}
+                    <button class="btn btn-warning" href="/relatorios">Resetar</button>
                 </div>
             </form>
         </div>
@@ -38,13 +39,11 @@ Horas por projeto{{ super() }}
         <tr>
             <th>#</th>
             <th>Nome</th>
-            <th>Cargo</th>
             <th>Atividade</th>
             <th>Data de início</th>
             <th>Hora de início</th>
             <th>Data de fim</th>
             <th>Hora de fim</th>
-            <th>Total</th>
             <th>Descrição</th>
         </tr>
     </thead>
@@ -53,14 +52,12 @@ Horas por projeto{{ super() }}
     {% for item in listTable if item.project.id == item.project_id %}
         <tr>
             <th scope="row">{{ loop.index }}</th>
-                <td>{{ item.users.fullusername }}</td>            
-                <td>{{ item.users.binding.is_coord }}</td>
+                <td>{{ item.users.fullusername }}</td>         
                 <td>{{ item.task.descricao }}</td>
                 <td>{{ item.dtInic }}</td>
                 <td>{{ item.hrInic }}</td>
                 <td>{{ item.dtFim }}</td>
                 <td>{{ item.hrFim }}</td>
-                <td></td>
                 <td>{{ item.descricao }}</td>
         </tr>
           {% endfor %}
@@ -72,8 +69,9 @@ Horas por projeto{{ super() }}
                 <td> </td>
                 <td> </td>
                 <td> </td>
+                <td> </td>
                 <th>Total de Horas: </th>
-                <td></td>
+                <td>00:00:00</td>
                 <td> </td>
             </tr>
     </tfoot>    

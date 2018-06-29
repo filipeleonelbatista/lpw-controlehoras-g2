@@ -44,6 +44,7 @@ Horas por projeto{{ super() }}
             <th>Hora de início</th>
             <th>Data de fim</th>
             <th>Hora de fim</th>
+            <th>Total</th>
             <th>Descrição</th>
         </tr>
     </thead>
@@ -59,6 +60,7 @@ Horas por projeto{{ super() }}
                 <td>{{ item.hrInic }}</td>
                 <td>{{ item.dtFim }}</td>
                 <td>{{ item.hrFim }}</td>
+                <td></td>
                 <td>{{ item.descricao }}</td>
         </tr>
           {% endfor %}
@@ -71,7 +73,7 @@ Horas por projeto{{ super() }}
                 <td> </td>
                 <td> </td>
                 <th>Total de Horas: </th>
-                <td>00:00:00</td>
+                <td></td>
                 <td> </td>
             </tr>
     </tfoot>    

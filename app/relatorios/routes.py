@@ -1,6 +1,5 @@
-import calendar, datetime
+from datetime import timedelta, datetime
 from sqlalchemy import extract
-#import locale
 from flask import render_template, redirect, request, url_for, flash
 from flask_login import login_required, current_user
 from .forms import horasProjetoForm
@@ -19,7 +18,6 @@ def horasProjeto():
 
 	months_choices = []
 	months_choices.append((0, ''))
-	#locale.setlocale(locale.LC_ALL, 'pt_PT.UTF-8')
 	mesP = ['', 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
 	for i in range(1,13):
 		months_choices.append((i, mesP[i]))
@@ -48,7 +46,18 @@ def horasProjeto():
 		if user.is_coord:
 			print('Coordenador')
 			listTable=Lancamento.query.filter_by(project_id=user.project_id).all()
-			return render_template('relatorios/horasPorProjeto.html', listTable=listTable, hpform=hpform)
+			for user in listTable:
+				dateBegin = datetime(user.dtInic.year, user.dtInic.month, user.dtInic.day, user.hrInic.hour, user.hrInic.minute, user.hrInic.second)
+				dateEnd = datetime(user.dtInic.year, user.dtInic.month, user.dtInic.day, user.hrFim.hour, user.hrFim.minute, user.hrFim.second)
+				somaDateHora = datetime(1, 1, 1, 0, 0)
+				somaDateHora = somaDateHora + (dateEnd - dateBegin)
+			return render_template('relatorios/horasPorProjeto.html', listTable=listTable, hpform=hpform, somaDateHora=somaDateHora)
 
 	listTable = Lancamento.query.filter_by(users_id=current_user.id).all()
-	return render_template('relatorios/horasPorProjeto.html', listTable=listTable, hpform=hpform)
+	print('value')
+	for user in listTable:
+		print('value')
+		dateBegin = datetime(user.dtInic.year, user.dtInic.month, user.dtInic.day, user.hrInic.data.hour, user.hrInic.data.minute, user.hrInic.data.second)
+		dateEnd = datetime(user.dtInic.year, user.dtInic.month, user.dtInic.day, user.hrFim.data.hour, user.hrFim.data.minute, user.hrFim.data.second)
+		somaDateHora = somaDateHora + (dateEnd - dateBegin)
+	return render_template('relatorios/horasPorProjeto.html', listTable=listTable, hpform=hpform, somaDateHora=somaDateHora)

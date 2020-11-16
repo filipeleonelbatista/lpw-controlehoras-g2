@@ -53,9 +53,6 @@ Para mais veja o requirements.txt
 
 <h3 align="center" >Vamos nos conectar 😉</h3>
 <p align="center">
-  <a href="http://filipeleonelbatista.github.io/">
-    <img alt="Meu site" width="22px" src="https://github.com/filipeleonelbatista/filipeleonelbatista/blob/master/assets/worldwide.svg" />
-  </a>&ensp;
   <a href="https://www.linkedin.com/in/filipelbatista/">
     <img alt="LinkedIn" width="22px" src="https://github.com/filipeleonelbatista/filipeleonelbatista/blob/master/assets/052-linkedin.svg" />
   </a>&ensp;

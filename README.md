@@ -4,7 +4,6 @@
 
 - [Sobre](#-sobre)
 - [Tecnologias](#Tecnologias)
-- [Download](#Download)
 - [Como baixar o projeto](#-como-baixar-o-projeto)
 
 ## 🔖&nbsp; Sobre
@@ -22,15 +21,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [sqlite3](https://flask.palletsprojects.com/en/1.1.x/patterns/sqlite3/)
 
 Para mais veja o requirements.txt
-
----
-## Download
-
-<p>
-    <a href="./.github/app.apk">
-        <img width="150" src="./.github/android.svg">
-    </a>
-</p>
 
 ---
 
@@ -53,6 +43,10 @@ Para mais veja o requirements.txt
 
     # Iniciar o projeto localmente
     $ python manage.py runserver
+
+    # Adicionar usuario
+    $ python manage.py adduser <matricula> <nomecompletosemespaço> <nomedeusuario>
+    # Será solicitado confirmar uma senha.
 ```
 
 ---
